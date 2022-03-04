@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>keydown event</title>
+</head>
+<body onload="docReady()">
+    <div>
+        <p>nhấn cái phím lên xuống qua lại để di chuyển nhân vật</p>
+        <img id="img" style="position: absolute;left: 50px;top: 50px" src="../image/nopita_standing.jpeg" alt="this is a picture" width="100px">
+
+    </div>
+    <script>
+        var imgObj = document.getElementById("img");
+        function up() {
+           imgObj.src ="../image/nopita_up.png";
+            imgObj.style.top = parseInt(imgObj.style.top) -5 + "px";
+        }
+        function down() {
+            imgObj.src ="../image/nopita_down.jpeg";
+            imgObj.style.top =parseInt(imgObj.style.top) + 5 +"px";
+        }
+        function right() {
+            imgObj.src ="../image/nopita_right.png";
+            imgObj.style.left = parseInt(imgObj.style.left) + 5 +"px";
+        }
+        function left() {
+            imgObj.src ="../image/nopita_left.jpeg";
+            imgObj.style.left = parseInt(imgObj.style.left) - 5 +"px";
+        }
+        function moveObj(e) {
+            switch (e.keyCode){
+                case 37:
+                    left();
+                    break;
+                case 38:
+                    up();
+                    break;
+                case 39:
+                    right();
+                    break;
+                case 40:
+                    down();
+                    break;
+            }
+        }
+        function changeImg() {
+            imgObj.src = "../image/nopita_standing.jpeg";
+        }
+        function docReady() {
+            window.addEventListener("keydown",moveObj );
+            window.addEventListener("keyup", changeImg);
+
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        goodNumber();
+
+        function findDivisor(num) {
+            let arrDivisor = [];
+            for(let i = 1;i<num;i++){
+                if(num%i==0){
+                    arrDivisor.push(i);
+                }
+            }
+            return arrDivisor;
+        }
+
+        function checkValue(num) {
+            if(!isNaN(num)){
+                return false;
+            }
+            return true;
+        }
+
+       function goodNumber() {
+            let num;
+            let arrDivisor;
+            let sumDivisor = 0;
+           do{
+               num = parseInt(prompt("please input number: "));
+           }while(checkValue(num));
+           arrDivisor = findDivisor(num);
+           arrDivisor.forEach(function(value){
+               sumDivisor+=value;
+           })
+           console.log(arrDivisor)
+           console.log(num);
+           if(sumDivisor === num){
+               document.write("true");
+           }else document.write("false");
+       }
+
+
+    </script>
+</body>
+</html>

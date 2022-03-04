@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>change c to f</title>
+</head>
+<body>
+    <div>
+        <p>chuyển độ C sang độ F</p>
+        <button type="button" onclick="change()">Start</button>
+    </div>
+    <script>
+        function change() {
+            let C = prompt("vui lòng nhập vào độ C mà bạn muốn chuyển");
+            let F = parseInt(C)*9/5+32;
+            alert("số bạn đã nhập là :" + F + "độ F");
+        }
+    </script>
+</body>
+</html>

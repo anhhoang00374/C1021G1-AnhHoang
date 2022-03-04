@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task5</title>
+</head>
+<body>
+<div>
+    <p>Viết một chương trình nhập vào 2 chuỗi,
+        sau đó kiểm tra xem hai chuỗi có giống nhau hay không.
+    </p>
+    <label for="input1">Input value to add into the first array  </label>
+    <br><br>
+    <input type="text" placeholder="add value" id = input1>
+    <br><br>
+    <button type="button" onclick="addValue1()">ADD</button>
+    <br><br>
+    <label for="input2">Input value to add into the second array  </label>
+    <br><br>
+    <input type="text" placeholder="add value" id = input2>
+    <br><br>
+    <button type="button" onclick="addValue2()">ADD</button>
+    <br><br>
+    <button type="button" onclick="checkValue()">CHECK</button>
+    <div id="show"></div>
+
+</div>
+    <script>
+        let input1 = null,input2 = null;
+        let showContent = null;
+        let arr1 = [],arr2 = [];
+        function addValue1() {
+            input1 = document.getElementById("input1");
+            arr1.push(input1.value);
+            input1.value = "";
+        }
+        function addValue2() {
+            input2 = document.getElementById("input2");
+            arr2.push(input2.value);
+            input.value = "";
+        }
+        function checkValue() {
+            let isSame = true;
+            showContent = document.getElementById("show");
+            for(let i = 0; i<arr1.length;i++){
+                if(arr1[i]!=arr2[i]){
+                    isSame = false;
+                    break;
+                }
+            }
+            if(isSame){
+                showContent.innerHTML = " same";
+            }else showContent.innerHTML = "different";
+            arr2 =[];
+            arr1 =[];
+
+        }
+    </script>
+</body>
+</html>

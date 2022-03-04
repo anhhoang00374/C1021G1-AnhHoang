@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task 10</title>
+</head>
+<body>
+    <div>
+        <h3>tính tiền điện sinh hoạt</h3>
+        <p> công thức tính dưới 50 kwh giá 1.678vnd, từ 50 đến 100 kwh giá 1.734vnd,100 đến 200 kwh
+        giá 2.014vnd, từ 200 đến 300 kwh giá 2,536vnd,từ 300 đến 400kwh giá 2.834,
+        từ 500kwh giá 2,927vnd và cộng thêm 10% thuế</p>
+        <input type="text" placeholder="nhập  lượng điện đã tiêu thụ" id="input">
+        <input type="button" value="Tính" onclick="calculation()">
+        <p id ="show"></p>
+    </div>
+    <script>
+        let input = document.getElementById("input");
+        let showContent = document.getElementById("show");
+        let content = "";
+        function calculation() {
+            let price = 0;
+            let inputValue = parseInt(input.value);
+            if(inputValue>0){
+                if(inputValue<50){
+                    price = inputValue*1.678;
+                }else if(inputValue<100){
+                    price = 50*1.678 + (inputValue-50)*1.734;
+                }else if(inputValue<200){
+                    price = 50*1.678 + 50*1.734 + (inputValue-100)*2.014;
+                }else if(inputValue<300){
+                    price = 50*1.678 + 50*1.734 + 100*2.014+ (inputValue-200)*2.536;
+                }else if(inputValue<400){
+                    price = 50*1.678 + 50*1.734 + 100*2.014+100*2.536+ (inputValue-300)*2.834;
+                }else price = 50*1.678 + 50*1.734 + 100*2.014+100*2.536+ 100*2834+ (inputValue-400)*2.927;
+                price = price + price*0.1;
+                content = " giá tiện bạn phải nộp là " + price + "vnd";
+            }else content = " dữ liệu nhập vào bị lỗi, vui lòng nhập lại";
+            showContent.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

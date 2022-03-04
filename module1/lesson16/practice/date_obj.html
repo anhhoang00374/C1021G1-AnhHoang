@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create date object</title>
+</head>
+<body>
+    <script>
+      function Date(day,month,year) {
+          this.day = day;
+          this.month =  month;
+          this.year = year;
+          this.getDay = function(){
+              return this.day;
+          }
+          this.getMonth = function(){
+              return this.month;
+          }
+      }
+      Date.prototype.getDay = function(){
+          return this.day;
+      }
+      Date.prototype.getMonth = function(){
+          return this.month;
+      }
+      Date.prototype.getYear = function(){
+          return this.year;
+      }
+      Date.prototype.setDay = function(day){
+          this.day = day
+      }
+      Date.prototype.setMonth = function(month){
+          this.month = month;
+      }
+      Date.prototype.setYear = function(year){
+          this.year = year;
+      }
+      Date.prototype.setDate = function(day,month,year){
+          this.day = day;
+          this.month = month;
+          this.year = year;
+      }
+      Date.prototype.toString  = function(){
+          return this.day + "/"+ this.month + "/" + this.year;
+      }
+      let date = new Date(2,2,2007);
+      let day = date.getDay();
+      let month = date.getMonth();
+      let year = date.getYear();
+      alert(day + "/" + month + "/" + year );
+      date.setDay(10);
+      date.setMonth(10);
+      date.setYear(2019);
+      day = date.getDay();
+      month = date.getMonth();
+      year = date.getYear();
+      alert(day + "/" + month + "/" + year );
+      date.setDate(17,11,2021);
+      alert(date.toString());
+    </script>
+</body>
+</html>

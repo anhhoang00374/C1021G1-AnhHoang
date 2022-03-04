@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task1</title>
+</head>
+<body>
+    <div>
+        <div id="container" style="width: 500px;position: relative;margin: 0 auto;">
+            <div style="text-align: center;font-size: 30px;height: 35px">Xổ số CodeGym</div>
+            <div>
+                <div style="text-align: center; width: 50%;position: absolute;left: 0px;top:45px; border-right: 1px solid rgba(255,0,47,0.54)">
+                    <button onclick="buyingLottery()" type="button" style="background: green;color: white">Mua vé số</button>
+                    <p id ="lottery"></p>
+                </div>
+                <div style="text-align: center; width: 50%;position: absolute;left: 50%;top:37px">
+                    <button onclick="displayResult()" type="button" style="background: red;color: white">Dò số</button>
+                    <p id="result">Nhấn "Dò số" để in kết quả</p>
+                    <p id="random"></p>
+                </div>
+            </div>
+            <div style="text-align: center; width: 100%;position: absolute;left: 0px;top:300px">
+                <p id="money">vé trúng là 1 2 3 4 5 6</p>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        let lottery = document.getElementById("lottery");
+        let quantityLottery = 0;
+        let quantityResult = 0
+        let content = "";
+        let result = "";
+        let num = "";
+        let showRe = document.getElementById("result");
+        let showRm = document.getElementById("random");
+        let showMoney = document.getElementById("money");
+        let arrayResult = [];
+        let arrLottery = [];
+
+        function buyingLottery() {
+            let arrNum = [];
+            if(quantityLottery<4) {
+                quantityLottery++;
+                let selectNum = parseInt(prompt("input 1 to select a number \r\nother character to random"));
+                if (selectNum == 1) {
+                    for (let i = 0; i < 6; i++) {
+                        let num = parseInt(prompt("input your number"));
+                        if(!isNaN(num)&&(num<100&&num>-1)){
+                            arrNum.push(num);
+                        }else {
+                            alert("please input a number between 0 to 99");
+                            i--;
+                        }
+
+
+                    }
+                }else
+                    {
+                        for (let i = 0; i < 6; i++) {
+                            let num = Math.round(Math.random() * 99);
+                            if(!isNaN(num)&&(num<100&&num>-1)){
+                                arrNum.push(num);
+                            }else {
+                                alert("please input a number between 0 to 99");
+                                i--;
+                            }
+
+                        }
+                    }
+                    arrLottery.push(arrNum);
+                } else alert("you can only buy 4");
+                showLottery(arrNum);
+        }
+
+        function displayResult() {
+            quantityLottery = 0;
+            content = "";
+            showRandom();
+
+        }
+
+        function random(){
+            if(arrayResult.length<6){
+                if(quantityResult<10){
+                    showRm.innerHTML = Math.round(Math.random()*99)+"";
+                    quantityResult++;
+                } else {
+                    showRm.innerHTML = arrayResult.length+1 + "";
+                    quantityResult = 0;
+                    arrayResult.push(showRm.innerText);
+                    showResultLottery(arrayResult);
+                }
+                if(arrayResult.length ==6){
+                    clearInterval(num);
+                    arrayResult = [];
+                    showRm.innerHTML = "";
+                    checkResult();
+                    arrLottery =[];
+                }
+            }
+        }
+        function showRandom() {
+            num = setInterval(random,100);
+        }
+
+        function showLottery(arr) {
+            content+="<br>";
+            arr.forEach(function(value){
+                if(value<10){
+                    value = "0"+ value;
+                }
+                content += `<span style="display: inline-block;border: 1px solid red;border-radius: 50%;">${value}</span> &nbsp;`;
+            })
+            content += "<br>";
+            lottery.innerHTML = content;
+        }
+
+        function showResultLottery(arr) {
+            result = "";
+            result+="<br>";
+            arrayResult.forEach(function(value){
+                if(value<10){
+                    value = "0"+ value;
+                }
+                result += `<span style="display: inline-block;border: 1px solid red;border-radius: 50%;">${value}</span> &nbsp;`;
+            })
+            result += "<br>";
+            showRe.innerHTML = result;
+        }
+
+
+        function checkResult() {
+            let er = [1, 2, 3, 4, 5, 6]
+            let award = "Bạn đã được giải : <br>";
+            console.log(award);
+            let money = 0;
+
+            for (let i = 0; i < arrLottery.length; i++) {
+                let count = 0;
+                console.log(arrLottery.length);
+                for (let j = arrLottery[i].length - 1; j > -1; j--) {
+                    if (parseInt(arrLottery[i][j]) == er[j]) {
+                        count++;
+                    }else break;
+                }
+                if (count == 6) {
+                    award += "giải nhất <br>";
+                    money += 1000000000;
+                } else if (count == 5) {
+                    award += "giải nhì <br>";
+                    money += 500000000;
+                } else if (count > 2) {
+                    award += "giải khuyến khích <br>";
+                    money += 100000000;
+                }
+            }
+            if(money>0){
+                showMoney.innerHTML = award +"<br> số tiền nhần được là : " + money +"VND";
+            }else {
+                award = "bạn hơi xui!!!chúc bạn may mắn lần sau";
+                showMoney.innerHTML = award;
+            }
+        }
+    </script>
+</body>
+</html>

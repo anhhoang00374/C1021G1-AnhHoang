@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task7</title>
+</head>
+<body>
+<div>
+    <p>cách giải phương trình bậc 2 dạng ax<sup>2</sup> + bx + c = 0 ( a ≠ 0)</p>
+    <input type="text" placeholder="nhập vào giá trị a" id ="num1"><br><br>
+    <input type="text" placeholder="nhập vào giá trị b" id ="num2"><br><br>
+    <input type="text" placeholder="nhập vào gía trị c" id ="num3"><br><br>
+    <input type="button" value="kết quả" onclick="result()"><br><br>
+    <p id ="show"></p>
+</div>
+<script>
+    let input1 = document.getElementById("num1");
+    let input2 = document.getElementById("num2");
+    let input3 = document.getElementById("num3")
+    let showContent = document.getElementById("show");
+    function result(){
+        let a = parseInt(input1.value);
+        let b = parseInt(input2.value);
+        let c = parseInt(input3.value)
+        let content = "";
+        if(!isNaN(a*b*c)){
+            let delta =b*b-4*a*c;
+            if(delta<0){
+                content = "phương trình có vô nghiêm";
+            }else if(delta==0){
+                content = "phương trình " + a + "x"+"<sup>2</sup> + " + b + "x + c = 0 " +"có nghiệm kép là " + -b/(2*a);
+            } else content = "phương trình " + a + "x"+"<sup>2</sup> + " + b + "x + c = 0 " +"có 2 nghiệm là " + (-b+Math.sqrt(delta))/(2*a) + " và " + (-b-Math.sqrt(delta))/(2*a);
+        } else content = "vui lòng nhập số";
+        showContent.innerHTML = content;
+        input1.value = "";
+        input2.value = "";
+        input3.value = "";
+    }
+</script>
+</body>
+</html>

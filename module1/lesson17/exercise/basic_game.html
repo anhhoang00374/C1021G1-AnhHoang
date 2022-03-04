@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basic game</title>
+</head>
+<body>
+    <div id ="container">
+        <img id="img" src="" alt="">
+    </div>
+    <script>
+        let container = document.getElementById("container");
+        container.style.width = innerWidth-100+"px";
+        container.style.height = innerHeight - 100 +"px";
+        container.style.border = "10px solid gray";
+        container.style.margin = "0 auto";
+        container.style.position = "relative";
+        let img = document.getElementById("img");
+        img.style.position = "absolute";
+        img.setAttribute("width","150px");
+        img.setAttribute("height","100px");
+        let direction = "right";
+        class  Rocket{
+            constructor(positionX,positionY,speed) {
+                this._positionX = positionX;
+                this._positionY = positionY;
+                this._speed =speed;
+            }
+
+            getPositionX() {
+                return this._positionX;
+            }
+
+            setPositionX(value) {
+                this._positionX = value;
+            }
+
+            getPositionY() {
+                return this._positionY;
+            }
+
+            setPositionY(value) {
+                this._positionY = value;
+            }
+
+            getSpeed() {
+                return this._speed;
+            }
+
+            setSpeed(value) {
+                this._speed = value;
+            }
+
+            createRocket(src){
+                img.src = src;
+            }
+            setPosition(positionX,positionY){
+                img.style.left = positionX +"px";
+                img.style.top = positionY + "px";
+            }
+            moveRocketRightLeft(){
+                let speed = this._speed;
+                let positionX = Math.random()*(innerWidth- 260);
+                if(positionX<this._positionX){
+                    this.createRocket("image/left.png");
+                    while(positionX<this._positionX){
+                        this._positionX -= speed;
+                        this.setPosition(this._positionX,this._positionY);
+                    }
+                }else {
+                    this.createRocket("image/right.png");
+                    while(positionX>this._positionX){
+                        this._positionX += speed;
+                        this.setPosition(this._positionX,this._positionY);
+                    }
+                }
+
+            }
+            moveRocketUpDown(){
+                let speed = this._speed;
+                let positionY = Math.random()*(innerHeight-260);
+                if(positionY<this._positionY){
+                    this.createRocket("image/up.png");
+                    while(positionY<this._positionY){
+                        this._positionY -= speed;
+                        this.setPosition(this._positionX,this._positionY);
+                    }
+                }else {
+                    this.createRocket("image/down.png");
+                    while(positionY>this._positionY){
+                        this._positionY += speed;
+                        this.setPosition(this._positionX,this._positionY);
+                    }
+                }
+            }
+        }
+        let rocket = new Rocket(0,0,10);
+        rocket.createRocket("image/right.png");
+        rocket.setPosition(rocket.getPositionX(),rocket.getPositionY());
+        function movingLeftRight() {
+            rocket.moveRocketRightLeft();
+        }
+        function movingUpDown() {
+            rocket.moveRocketUpDown()
+        }
+        setInterval(movingLeftRight,4000);
+        function interval(){
+            setInterval(movingUpDown,4000);
+        }
+
+        setTimeout(interval,2000);
+    </script>
+</body>
+</html>

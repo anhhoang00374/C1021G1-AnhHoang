@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+    <div>
+        <p>Viết một chương trình nhập vào một chuỗi và
+            chuyển các ký tự chữ thường trong chuỗi vừa nhập sang thành dạng chữ hoa</p>
+        <input type="text" placeholder="thêm phần tử vào mảng" id="input">
+        <br>
+        <br>
+        <button type="button" onclick="convertArray()">Convert</button>
+        <br>
+        <br>
+        <div id="show"></div>
+    </div>
+    <script>
+        let input = null,showContent = null;
+        let resutl  = "";
+        function convertArray() {
+            input = document.getElementById("input");
+            showContent = document.getElementById("show");
+            let arrString = input.value.split(" ");
+            arrString.forEach(function (value,index){
+                let arrValue = value.split("");
+                for(let i = 0;i<arrValue.length;i++){
+                    if(arrValue[i] ===arrValue[i].toLowerCase()){
+                      resutl += arrValue[i].toUpperCase();
+                    } else resutl += arrValue[i].toLowerCase();
+                }
+                resutl+=" ";
+            })
+            input.value = "";
+            showContent.innerHTML = resutl;
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task4</title>
+</head>
+    <body>
+    <div>
+        <p>
+            Viết hàm kiểm tra xem ký tự nhập vào có phải là ký tự số không.
+            Nếu là ký tự số hàm trả về true, ngược lại trả về false.
+        </p>
+        <button type="button" onclick="checkNumber()"> Perform</button>
+    </div>
+    <script>
+        function checkNumber() {
+            let num = prompt("please input number");
+            if(!isNaN(parseInt(num))){
+                alert(true);
+            } else alert(false);
+        }
+    </script>
+</body>
+</html>

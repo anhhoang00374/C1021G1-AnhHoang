@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+</head>
+<body>
+    <div>
+        <p>Bài 1: Vẽ hình chữ nhật rỗng chiều dài n và
+            chiều rộng m.</p>
+        <button onclick="draw()"> Draw</button>
+        <p id="showContent"></p>
+    </div>
+    <script>
+        function draw() {
+            let showContent = document.getElementById("showContent");
+            let width = parseInt(prompt("please input width od shape: "));
+            let height = parseInt(prompt("please input height od shape: "));
+            let content ="";
+            if(!isNaN(width*height)){
+                for(let i = 0;i<height;i++){
+                    for(let j = 0;j<width;j++){
+                        if(i==0||i==height-1||j==0||j==width-1){
+                            content += "*"
+                        }else{
+                            content +="&nbsp;&nbsp;";
+                        }
+                    }
+                    content += "</br>";
+                }
+                showContent.innerHTML = content;
+            }
+        }
+    </script>
+</body>
+</html>

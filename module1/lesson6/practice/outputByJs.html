@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>output by JS</title>
+</head>
+<body>
+  <!-- hiển thi kết quả sử dụng alert() -->
+
+  <span>kích vào đây để hiện kết quả bằng alert()</span><button type="button" onclick="message()">Click me</button>
+  <br>
+  <br>
+  <!-- hiên thi nội dung bằng HTML -->
+  <div>
+    <span>kích vào đây để thay đổi nội dung   </span>
+    <button type="button" onclick="changeContent()">Change</button>
+    <div id="change">nội dung ở đây sẽ bị thay đổi</div>
+  </div>
+  <br>
+  <br>
+  <!-- hiển thị nội dung bằng document.write -->
+  <div>
+    <span>kích vào đây để xem nội dung bằng document.write</span>
+    <button type="button" onclick="showMessageWrite();">Click Me!</button>
+  </div>
+  <br>
+  <br>
+
+  <!-- hiển thị nội dung bằng console.log -->
+  <div>
+    <span>kích vào đây để xem nọi dung bằng console.log</span>
+    <button type="button" onclick="showMessageConsole();">Click Me!</button>
+  </div>
+
+  <script>
+    var content = document.getElementById("change");
+    function message(){
+      alert("hello")
+    }
+    function changeContent(){
+      content.innerHTML = "nội dung đã thay đổi";
+    }
+    function showMessageWrite(){
+      document.write('Xin chào!');
+    }
+    function showMessageConsole() {
+      console.log("Xin chào!");
+    }
+  </script>
+</body>
+</html>

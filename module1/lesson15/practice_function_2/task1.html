@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+</head>
+<body>
+    <div>
+        <p>
+            Bài 1: Viết hàm tính bình phương của một số bất kỳ được đưa vào.
+            Gọi hàm vừa xây dựng được.
+        </p>
+        <button type="button" onclick="square()"> Perform</button>
+    </div>
+    <script>
+        function square() {
+            let num = prompt("please input number");
+            if(!isNaN(parseInt(num))){
+                alert("the square of this number is : " + num*num);
+            } else alert("this is not a number");
+        }
+    </script>
+</body>
+</html>

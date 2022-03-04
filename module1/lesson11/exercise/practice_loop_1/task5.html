@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task5</title>
+</head>
+<body>
+<div>
+    <p>
+        Hiển thị tổng 20 số đầu trong dãy fibonacci
+    </p>
+    <button type="button" onclick="printNum()">In</button>
+    <p id="show"></p>
+</div>
+<script>
+    let showContent = document.getElementById("show");
+    function printNum(){
+        let firstNum = 1;
+        let secondNum = 1;
+        let sum = 0;
+       for(let i =1;i<=10;i++) {
+           sum += firstNum+secondNum;
+           firstNum = firstNum + secondNum;
+           secondNum = firstNum + secondNum;
+       }
+        showContent.innerHTML = "tổng 20 số hạng đầu trong day fibonaccy là " + sum;
+    }
+</script>
+</body>
+</html>

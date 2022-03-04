@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>multiple</title>
+</head>
+<body>
+    <div>
+        <p>kiểm tra một số có phải là bội số còn lại hay không</p>
+        <button type="button" onclick="multiple()">Start</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        var result = document.getElementById("result");
+        function multiple() {
+            let num1 = prompt("vui lòng nhập số thứ nhất");
+            let num2 = prompt("vui lòng nhập số thứ hai");
+            if(num1%num2==0){
+                result.innerHTML = "số thứ nhất là bội số của số thứ hai"
+            } else result.innerHTML = "số thứ nhất không phải là bội số của số thứ hai";
+        }
+    </script>
+</body>
+</html>

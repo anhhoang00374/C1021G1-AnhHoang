@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task4</title>
+</head>
+<body>
+    <div>
+        <p> Viết chương trình khởi tạo/nhập vào một mảng số nguyên và
+            đảo ngược các phần tử trong mảng đó.
+        </p>
+        <label for="input">nhập vào 10 phần tử cho mảng</label> <br> <br>
+        <input type="text" id="input" placeholder=" nhập số"> <br> <br>
+        <button type="button" onclick="addNumber()">ADD</button>
+        <br><br>
+        <button type="button" onclick="printValue()">PRINT</button>
+        <div id ="show"></div>
+    </div>
+    <script>
+        let input = null;
+        let showContent = null;
+        let arrNum = []
+        function addNumber() {
+            input = document.getElementById("input");
+            if(!isNaN(parseInt(input.value))){
+                arrNum.push(parseInt(input.value));
+            }else alert("please input number");
+            input.value = "";
+        }
+        function printValue() {
+            showContent = document.getElementById("show");
+            showContent.innerHTML ="Your array is " + arrNum.toString() +" and reserve " +  arrNum.reverse().toString();
+            arrNum = [];
+        }
+    </script>
+</body>
+</html>

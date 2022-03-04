@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+<div>
+    <p>Bài tập tính diện tích hình tam giác vuông</p>
+    <input type="text" placeholder="Chiều dài cạnh đáy(m)" id="input1"><br><br>
+    <input type="text" placeholder="Chiều cao(m)" id="input2"><br><br>
+    <input type="button" value ="Convert" id="btn">
+    <p id="show"></p>
+</div>
+<script>
+    let btn = document.getElementById("btn");
+    let input1 = document.getElementById("input1");
+    let input2 = document.getElementById("input2");
+    let showContent = document.getElementById("show");
+    btn.addEventListener("click", convert);
+    function convert(){
+        let width = parseInt(input1.value);
+        let height = parseInt(input2.value);
+        let area = 0;
+        let content = "";
+        if(!isNaN(width*height)){
+            area = width*height/2;
+            content = "diện tích hình tam giác vuông là " + area + "m"+"<sup>2</sup>";
+
+        } else content = "vui lòng nhập số";
+
+        showContent.innerHTML = content;
+        input1.value = "";
+        input2.value = "";
+    }
+</script>
+</body>
+</html>

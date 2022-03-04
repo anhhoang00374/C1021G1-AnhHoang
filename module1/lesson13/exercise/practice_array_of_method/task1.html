@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+</head>
+<body>
+    <div>
+        <p>viết chương trình nối tất cả các phần tử trong một mảng chuỗi lại với nhau</p>
+        <input type="text" placeholder="thêm phần tử vào mảng" id="input">
+        <button type="button" onclick="getValue()">Add</button>
+        <br>
+        <br>
+        <button type="button" onclick="printValue()">Convert</button>
+        <div id="show"></div>
+    </div>
+    <script>
+        let texInput = null;
+        let showContent = null;
+        let arrayValue = [];
+        function getValue() {
+            texInput = document.getElementById("input");
+            arrayValue.push(texInput.value);
+            texInput.value="";
+
+
+        }
+        function printValue() {
+            showContent = document.getElementById("show");
+            showContent.innerHTML = arrayValue.toString();
+        }
+    </script>
+</body>
+</html>

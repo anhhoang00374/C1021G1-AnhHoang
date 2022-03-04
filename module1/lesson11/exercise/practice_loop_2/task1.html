@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+</head>
+<body>
+<div>
+    <p>
+        Hiển thị ra dãy fibonacci.
+    </p>
+    <p>nhập vào số số hạng trong dãy fibonacci mà bạn muốn in ra</p>
+    <input type="number" id="input">
+    <button type="button" onclick="printNum()">In</button>
+    <p id="show"></p>
+</div>
+<script>
+    let showContent = document.getElementById("show");
+    let input = document.getElementById("input");
+
+    function printNum(){
+        let numOfNum = parseInt(input.value);
+        let firstNum = 0;
+        let secondNum = 1;
+        let thirdNum = 1
+        let content = "";
+        for(let i = 1;i<=numOfNum;i++){
+            content += thirdNum +" ";
+            thirdNum = firstNum + secondNum;
+            firstNum = secondNum;
+            secondNum = thirdNum;
+        }
+        showContent.innerHTML = content;
+    }
+</script>
+</body>
+</html>

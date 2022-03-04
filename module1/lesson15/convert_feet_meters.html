@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>convert dimension</title>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td><input type="number" placeholder=" input value(feet)" id="foot"></td>
+                <td><button type="button" onclick="footToMeter('foot')">Convert</button></td>
+                <td><p id="contentDisplay1"></p></td>
+            </tr>
+
+            <tr>
+                <td><input type="number" placeholder=" input value(meters)" id="meters"></td>
+                <td><button type="button" onclick="metersToFeet('meters')">Convert</button></td>
+                <td><p id="contentDisplay2"></p></td>
+            </tr>
+
+        </table>
+    </div>
+    <script>
+        function footToMeter(foot) {
+            let feet =document.getElementById("foot");
+            let contentDisplay = document.getElementById("contentDisplay1");
+            let value = feet.value;
+            contentDisplay.innerHTML = value +" feet to meters : " + value*0.305;
+        }
+        function metersToFeet(meters) {
+            let meter =document.getElementById("meters");
+            let contentDisplay = document.getElementById("contentDisplay2");
+            let value = meter.value;
+            contentDisplay.innerHTML = value +" meters to feet : " + value*3.279;
+        }
+    </script>
+</body>
+</html>

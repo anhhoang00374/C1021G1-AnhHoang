@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>leap year</title>
+</head>
+<body>
+    <div>
+      <p>Bài tập xác định năm nhuận</p>
+      <input type="text" placeholder="nhập số năm " id ="input"> <span id="show"></span>
+      <br> <br>
+      <button type="button" onclick="convert()">Convert</button>
+    </div>
+    <script>
+      function convert() {
+        let year = document.getElementById("input").value;
+        let show = document.getElementById("show");
+        let checkYear = year%4 == 0;
+        let isLeapYear = false;
+        if(checkYear){
+          checkYear = year%100 == 0;
+          if(checkYear){
+            checkYear = year%400 == 0;
+            if(checkYear){
+              isLeapYear = true
+            }
+          }else {
+            isLeapYear = true;
+          }
+        }
+        if(isLeapYear){
+            show.innerHTML = " Đây là năm nhuận";
+        }else{
+            show.innerHTML = " Đây không phải là năm nhuận";
+        }
+        input.value = "";
+      }
+    </script>
+</body>
+</html>

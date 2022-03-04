@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ternary operator</title>
+</head>
+<body>
+    <div>
+        <p>bài tập kiểm tra hai số có lớn hơn 4</p>
+        <button type="button" id="startBtn">Start</button>
+    </div>
+    <script>
+        let startBtn = document.getElementById("startBtn");
+        function check() {
+            let num1 = parseInt(prompt("nhập số thứ nhất",""));
+            let num2 = parseInt(prompt("nhập số thứ hai,"));
+            let result = (num1 + num2 < 4) ? "Below" : "over";
+            alert(result);
+        }
+        startBtn.addEventListener("click", check);
+    </script>
+</body>
+</html>

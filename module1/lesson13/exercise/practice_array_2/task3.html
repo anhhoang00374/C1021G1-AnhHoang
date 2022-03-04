@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+    <div>
+        <p>Viết một chương trình để đếm số từ trong một chuỗi
+        </p>
+        <label for="inputString">Input String </label> <br><br>
+        <input type="text" placeholder="add value" id = inputString><br><br>
+        <button type="button" onclick="countWords()">COUNT</button>
+        <div id="show"></div>
+
+    </div>
+    <script>
+        let inputString = document.getElementById("inputString");
+        let showContent = document.getElementById("show");
+        let arr = [];
+        function countWords() {
+            arr = inputString.value.split(" ");
+            showContent.innerHTML = "quantity of words in your array are: " + arr.length;
+            inputString.value = "";
+        }
+    </script>
+</body>
+</html>

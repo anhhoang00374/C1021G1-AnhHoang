@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task4</title>
+</head>
+<body>
+<div>
+    <p>
+        Hiển thị ra số đầu tiên chia hết cho 5 trong dãy fibonacci
+    </p>
+    <button type="button" onclick="printNum()">In</button>
+    <p id="show"></p>
+</div>
+<script>
+    let showContent = document.getElementById("show");
+    function printNum(){
+        let firstNum = 1;
+        let secondNum = 1;
+        let numMod5 = 0;
+        let flag = true;
+        while(flag){
+            firstNum = firstNum + secondNum;
+            secondNum = firstNum + secondNum;
+            if(firstNum%5==0){
+                numMod5 = firstNum;
+                flag = false
+            }
+            if(secondNum%5 == 0){
+                numMod5 = secondNum;
+                flag = false;
+            }
+
+
+        }
+        showContent.innerHTML = "Số đầu tiên chia hết cho 5 trong dãy fibonacci " +  numMod5;
+    }
+</script>
+</body>
+</html>

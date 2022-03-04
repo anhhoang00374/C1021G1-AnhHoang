@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my game puzzle</title>
+    <style>
+        div{
+            text-align: center;
+        }
+        img{
+
+            width: 150px;
+        }
+        #container{
+            width: 600px;
+            margin: 0 auto;
+        }
+        button{
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id ="container">
+        <img src="./image/girl.gif" alt="">
+        <div id ="container_image">
+            <div>
+                <button id="girl1" type="button"><img src="./image/girl2.jpg" alt=""></button>
+                <button id="girl2" type="button"><img src="./image/girl4.jpg" alt=""></button>
+                <button id="girl3" type="button"><img src="./image/girl9.jpg" alt=""></button>
+            </div>
+            <div>
+                <button id="girl4" type="button"><img src="./image/girl1.jpg" alt=""></button>
+                <button id="girl5" type="button"><img src="./image/girl3.jpg" alt=""></button>
+                <button id="girl6" type="button"><img src="./image/girl5.jpg" alt=""></button>
+            </div>
+            <div>
+                <button id="girl7" type="button"><img src="./image/girl8.jpg" alt=""></button>
+                <button id="girl8" type="button"><img src="./image/girl6.jpg" alt=""></button>
+                <button id="girl9" type="button"><img src="./image/girl7.jpg" alt=""></button>
+            </div>
+        </div>
+        <div >
+            <p>Hiện tại có <b><span id="score">0</span></b> hình chính xác</p>
+        </div>
+
+    </div>
+    <script>
+        let girl1 = document.getElementById("girl1");
+        let girl2 = document.getElementById("girl2");
+        let girl3 = document.getElementById("girl3");
+        let girl4 = document.getElementById("girl4");
+        let girl5 = document.getElementById("girl5");
+        let girl6 = document.getElementById("girl6");
+        let girl7 = document.getElementById("girl7");
+        let girl8 = document.getElementById("girl8");
+        let girl9 = document.getElementById("girl9");
+        let showScore = document.getElementById("score");
+        //let img1 = document.getElementById("img1");
+        let link ="";
+        let score;
+        let score1 = 0;
+        let score2 = 0;
+        let score3 = 0;
+        let score4 = 0;
+        let score5 = 0;
+        let score6 = 0;
+        let score7 = 0;
+        let score8 = 0;
+        let score9 = 0;
+        function setImage(){
+            let random = Math.ceil(Math.random()*9);
+            switch(random){
+                case 1:
+                    link ="./image/girl1.jpg";
+                    break;
+                case 2:
+                    link = "./image/girl2.jpg";
+                    break;
+                case 3:
+                    link = "./image/girl3.jpg";
+                    break;
+                case 4:
+                    link = "./image/girl4.jpg";
+                    break;
+                case 5 :
+                    link = "./image/girl5.jpg";
+                    break;
+                case 6:
+                    link = "./image/girl6.jpg";
+                    break;
+                case 7:
+                    link = "./image/girl7.jpg";
+                    break;
+                case 8:
+                    link = "./image/girl8.jpg";
+                    break;
+                case 9:
+                    link = "./image/girl9.jpg";
+                    break
+            }
+        }
+        function checkScore() {
+            score = score1+score2+score3+score4+score5+
+                score6+score7+score8+score9;
+            showScore.innerHTML = score;
+            if(score==9){
+                alert("Chúc mừng bạn đã vượt qua thử thách");
+            }
+        }
+        function changeImage1(){
+            setImage();
+            this.children[0].src = link;
+            if(link == "./image/girl1.jpg"){
+                if(score1<1){
+                    score1 =1;
+                }
+
+            }else {
+               if(score1==1){
+                   score1 = 0;
+               }
+            }
+            checkScore();
+        }
+        function changeImage2(){
+            setImage();
+            this.children[0].src = link;
+            if(link == "./image/girl2.jpg"){
+                if(score2<1){
+                    score2 =1;
+                }
+
+            }else {
+                if(score2==1){
+                    score2 = 0;
+                }
+            }
+            checkScore();
+        }
+        function changeImage3(){
+            setImage();
+            this.children[0].src = link;
+            if(link == "./image/girl3.jpg"){
+                if(score3<1){
+                    score3 =1;
+                }
+
+            }else {
+                if(score3==1){
+                    score3 = 0;
+                }
+            }
+            checkScore();
+        }
+        function changeImage4(){
+            setImage();
+            this.children[0].src = link;
+            if(link == "./image/girl4.jpg"){
+                if(score4<1){
+                    score4 =1;
+                }
+
+            }else {
+                if(score4==1){
+                    score4 = 0;
+                }
+            }
+            checkScore();
+        }
+        function changeImage5(){
+            setImage();
+            this.children[0].src = link;
+            if(link == "./image/girl5.jpg"){
+                if(score5<1){
+                    score5 =1;
+                }
+
+            }else {
+                if(score5==1){
+                    score5 = 0;
+                }
+            }
+            checkScore();
+        }
+        function changeImage6(){
+            setImage();
+            this.children[0].src = link;
+            if(link == "./image/girl6.jpg"){
+                if(score6<1){
+                    score6 =1;
+                }
+
+            }else {
+                if(score6==1){
+                    score6 = 0;
+                }
+            }
+            checkScore();
+        }
+        function changeImage7(){
+            setImage();
+            this.children[0].src = link;
+            if(link == "./image/girl7.jpg"){
+                if(score7<1){
+                    score7 =1;
+                }
+
+            }else {
+                if(score7==1){
+                    score7 = 0;
+                }
+            }
+            checkScore();
+        }
+        function changeImage8(){
+            setImage();
+            this.children[0].src = link;
+            if(link == "./image/girl8.jpg"){
+                if(score8<1){
+                    score8 =1;
+                }
+
+            }else {
+                if(score8==1){
+                    score8 = 0;
+                }
+            }
+            checkScore();
+        }
+        function changeImage9(){
+            setImage();
+            this.children[0].src = link;
+            if(link == "./image/girl9.jpg"){
+                if(score9<1){
+                    score9 =1;
+                }
+
+            }else {
+                if(score9==1){
+                    score9 = 0;
+                }
+            }
+            checkScore();
+        }
+        girl1.addEventListener("click", changeImage1);
+        girl2.addEventListener("click", changeImage2);
+        girl3.addEventListener("click", changeImage3);
+        girl4.addEventListener("click", changeImage4);
+        girl5.addEventListener("click", changeImage5);
+        girl6.addEventListener("click", changeImage6);
+        girl7.addEventListener("click", changeImage7);
+        girl8.addEventListener("click", changeImage8);
+        girl9.addEventListener("click", changeImage9);
+
+    </script>
+</body>
+</html>

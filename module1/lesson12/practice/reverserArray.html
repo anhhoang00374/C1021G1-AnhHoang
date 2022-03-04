@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reverser array</title>
+</head>
+<body>
+    <div>
+        <p>task: reverse array</p>
+        <input type="text" placeholder="input data" id="texInput">
+        <br> <br>
+        <button type="button" onclick="addArray()">Add</button>
+        <br> <br>
+        <button type="button" onclick="printArr()">Print</button>
+        <br> <br>
+        <div id = demo></div>
+    </div>
+    <script>
+        let valueArr = null;
+        let demo = null;
+        let arr = [];
+        let reverseArr = []
+        valueArr = document.getElementById("texInput");
+        demo = document.getElementById("demo");
+        function addArray() {
+            arr.push(valueArr.value);
+            valueArr.value = "";
+        }
+        function reverseArray(){
+            for(let i =0;i<arr.length;i++){
+                reverseArr[i] = arr[arr.length-1-i];
+            }
+        }
+        function printArr() {
+            reverseArray();
+            demo.innerHTML = "your array is " + arr.toString() + "<br>"
+                            + "reversed array is " + reverseArr.toString();
+            arr = [];
+            reverseArr =[];
+        }
+
+    </script>
+</body>
+</html>

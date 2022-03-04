@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task5</title>
+</head>
+<body>
+    <div>
+        <p>Bài tập  xếp loại học sinh</p>
+        <button type="button" onclick="check()">Start</button>
+        <p id="show"></p>
+    </div>
+    <script>
+        let showContent = document.getElementById("show");
+
+        function check() {
+            let content = "học sinh giỏi";
+            let score = parseInt(prompt("nhập vào số điểm"));
+            if(!isNaN(score)){
+                if (score<5){
+                    content = "học sinh trung bình"
+                }else if(score<8){
+                    content = "học sinh khá";
+                }
+            } else content = "vui lòng nhập số";
+            showContent.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

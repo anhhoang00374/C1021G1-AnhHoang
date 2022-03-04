@@ -1,0 +1,130 @@
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    padding: 10px;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+#header-button{
+    height: 70px;
+    display: flex;
+    background: #272525FF;
+    align-items: center;
+
+}
+#header-button img{
+    color: whitesmoke;
+    background: whitesmoke;
+    display: none;
+}
+#header{
+    display: flex;
+    background: #272525FF;
+    align-items: center;
+}
+.item{
+    padding:20px;
+}
+.item a{
+    color: #9F9B9BFF;
+    text-decoration: none;
+    padding: 20px;
+}
+.item a:hover{
+    background: black;
+    color: white;
+}
+.main{
+    display: flex;
+    align-items: flex-start;
+
+}
+.aside-content{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.aside ul{
+    list-style: none;
+}
+.aside li{
+    text-decoration: none;
+}
+.aside a{
+    text-decoration: none;
+}
+.main-right{
+    padding: 10px;
+}
+#footer{
+    height: 70px;
+    display: flex;
+    background: #272525FF;
+    align-items: center;
+}
+#footer{
+    color: #9F9B9BFF;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+@media only screen and (max-width: 1024px){
+    [class*="col-"] {
+        width: 100%;
+    }
+    .main{
+        display: block;
+    }
+}
+
+@media only screen
+and (max-width: 768px){
+   #header-button{
+       position: relative;
+   }
+    #header{
+        display: block;
+        position: absolute;
+        top: 72px;
+        display: none;
+
+    }
+    #header li{
+        width: 100%;
+    }
+    #header a{
+        background: black;
+        width: 100px;
+        display: inline-block;
+
+    }
+    #header li{
+        padding: 2px;
+    }
+    #header-button img{
+        display: inline-block;
+    }
+
+    #header-button:hover #header{
+        display: inline-block;
+    }
+    .item{
+        padding: 2px;
+    }
+}

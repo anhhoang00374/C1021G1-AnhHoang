@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>min of array</title>
+</head>
+<body>
+    <div>
+        <p>
+            Xây dựng hàm nhận vào một tham số là một mảng cho trước.
+            Hàm thực hiện tìm giá trị nhỏ nhất trong mảng và trả về giá trị đó
+        </p>
+            <table>
+                <tr>
+                    <td>
+                        <span>arr1: [3, 5, 1, 8, -3, 7, 8]   </span>
+                    </td>
+                    <td>
+                        <button type="button"
+                                onclick="showContent('show1',[3, 5, 1, 8, -3, 7, 8])">Get min</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p id = "show1"></p></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>arr2: [7, 12, 6, 9, 20, 56, 89]   </span>
+                    </td>
+                    <td>
+                        <button type="button"
+                                onclick="showContent('show2',[7, 12, 6, 9, 20, 56, 89])">Get min</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <p id = "show2"></p></p></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>arr1: arr3: []   </span>
+                    </td>
+                    <td>
+                        <button type="button"
+                                onclick="showContent('show3',[])">Get min</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <p id = "show3"></p></p></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>arr1:[0, 0, 0, 0, 0, 0]  </span>
+                    </td>
+                    <td>
+                        <button type="button"
+                                onclick="showContent('show4',[0, 0, 0, 0, 0, 0])">Get min</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p id = "show4"></p></p></td>
+                </tr>
+            </table>
+    </div>
+    <script>
+        let content = null;
+        function getMin(arr) {
+            if(arr.length>0){
+                let min = arr[0];
+                let index = 0;
+                for(let i = 1;i <arr.length;i++){
+                    if(min>arr[i]){
+                        min = arr[i];
+                        index = i;
+                    }
+                }
+                return index;
+            }else return -1
+        }
+        function showContent(id,arr) {
+            content = document.getElementById(id);
+            let index = getMin(arr);
+            if(index == -1){
+                content.innerHTML = "array is null";
+            }else {
+                content.innerHTML = "min of array is : " + arr[index];
+            }
+        }
+    </script>
+</body>
+</html>

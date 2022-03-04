@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <p>
+            Sử dụng hàm prompt() để lấy thông tin nhiệt độ hiện tại được nhập bởi người truy cập.
+            Nếu nhiệt độ nhập vào trên 100, yêu cầu người dùng giảm nhiệt độ.
+            Nếu nhiệt độ dưới 20, yêu cầu người dùng tăng nhiệt độ..
+        </p>
+        <button type="button" onclick="printNum()">Start</button>
+    </div>
+    <script>
+        function printNum(){
+            let content = "Nhiệt độ hiện tại là nhiệt độ tuyệt vời";
+            let temp = parseInt(prompt("nhập vào nhiệt độ hiện tại"));
+            if(!isNaN(temp)){
+                if(temp<20){
+                    content = "Nhiệt dộ hơi thấp , hãy tăng lên một xíu";
+                }else if(temp>100){
+                    content = " Nhiệt độ hơi cao, hãy  giảm xuống một xíu";
+                }
+            } else content = "Vui lòng nhập đúng dữ liệu";
+            alert(content);
+        }
+    </script>
+</body>
+</html>

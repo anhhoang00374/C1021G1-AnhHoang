@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>good fast cheap</title>
+
+<!--    css and html are copied from https://freetuts.net/huong-dan-tao-toggle-switch-voi-css-978.html-->
+
+
+    <style>
+        .container {
+            width: 200px;
+            margin: 0 auto;
+
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin: 0px;
+            top: 10px;
+        }
+
+        .switch input {display:none;}
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<!--    css and html are copied from https://freetuts.net/huong-dan-tao-toggle-switch-voi-css-978.html-->
+
+    <div class="container">
+        <h4>Ứng dụng Good Fast Cheap</h4>
+        <div>
+            <label class="switch" >
+                <input type="checkbox" id="good"  onclick="goodCheck()">
+                <span class="slider round" ></span>
+            </label>
+            <span>GOOD</span>
+        </div>
+
+        <br>
+        <div>
+            <label class="switch">
+                <input type="checkbox" onclick="fastCheck()" id="fast">
+                <span class="slider round"></span>
+            </label>
+            <span>FAST</span>
+        </div>
+
+        <br>
+        <div>
+            <label class="switch">
+                <input type="checkbox" id="cheap" onclick="cheapCheck()">
+                <span class="slider round"></span>
+            </label>
+            <span>CHEAP</span>
+        </div>
+
+    </div>
+    <script>
+        let good = document.getElementById("good");
+        let fast = document.getElementById("fast");
+        let cheap = document.getElementById("cheap");
+        function goodCheck() {
+            if(good.checked){
+                let checkFast = fast.checked +"";
+                let checkCheap = cheap.checked + "";
+                if(checkFast=="true"&&checkCheap=="true"){
+                    let random = Math.floor(Math.random()*2);
+                    if(random==1){
+                        fast.checked = false;
+                    } else cheap.checked = false;
+                }
+            }
+
+        }
+        function fastCheck() {
+            if(fast.checked){
+                let checkGood = good.checked +"";
+                let checkCheap = cheap.checked + "";
+                if(checkGood=="true"&&checkCheap=="true"){
+                    let random = Math.floor(Math.random()*2);
+                    if(random==1){
+                        good.checked = false;
+                    } else cheap.checked = false;
+                }
+            }
+
+        }
+        function cheapCheck() {
+            if(cheap.checked){
+                let checkGood = good.checked +"";
+                let checkFast = fast.checked + "";
+                if(checkGood=="true"&&checkFast=="true"){
+                    let random = Math.floor(Math.random()*2);
+                    if(random==1){
+                        good.checked = false;
+                    } else fast.checked = false;
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>

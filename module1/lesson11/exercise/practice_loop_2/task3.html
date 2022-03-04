@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+    <div>
+        <p>in hình tam giác</p>
+        <button type="button" onclick="printShape()">In</button>
+    </div>
+    <br>
+    <div id ="show"></div>
+    <script>
+        let show = document.getElementById("show");
+        function printShape() {
+            let shape1 = "";
+            for(let i = 1;i<=5;i++){
+                for(let j = 1;j<=i;j++){
+                    shape1 +="*";
+                }
+                shape1 +="<br>";
+            }
+            shape1 +="<br><br>";
+
+            let shape2 ="";
+            for(let i = 1;i<=5;i++){
+                for(let j =6-i;j>0;j--){
+                    shape2 +="*";
+                }
+                shape2 +="<br>";
+            }
+            shape2 += "<br><br>";
+
+            let shape3 ="";
+            for(let i = 0;i<5;i++){
+                shape3+="<pre>"
+                for(let j = 0;j<5-i;j++){
+                    shape3+=" ";
+                }
+                for(let j = 0;j<i+1;j++){
+                    shape3+="*";
+                }
+                shape3+="</pre>";
+            }
+            shape3 +="<br><br>";
+
+            let shape4 = "";
+            for(let i = 0;i<5;i++){
+                shape4 +="<pre>";
+                for(let j=0;j<i+1;j++){
+                    shape4+=" ";
+                }
+                for(let j=0;j<5-i;j++){
+                    shape4+="*";
+                }
+                shape4 +="</pre>";
+            }
+            show.innerHTML = shape1 + shape2 + shape3+shape4;
+        }
+
+    </script>
+</body>
+</html>

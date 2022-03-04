@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>case study</title>
+</head>
+<body>
+    <div style="text-align: center">
+        <p><b style="font-size: 40px">Game Bouncing</b></p>
+        <canvas id ="myCanvas"></canvas>
+    </div>
+    <script>
+        let widthCanvas = 500;
+        let heightCanvas = 500;
+        let myCanvas = document.getElementById("myCanvas");
+        let myCtx = myCanvas.getContext("2d");
+        let clearInterval;
+        class GameBoard {
+            constructor(width,height,border,background) {
+                this._width = width;
+                this._height = height;
+                this._border = border;
+                this._background = background;
+            }
+
+            getWidth() {
+                return this._width;
+            }
+
+            setWidth(value) {
+                this._width = value;
+            }
+
+            getHeight() {
+                return this._height;
+            }
+
+            setHeight(value) {
+                this._height = value;
+            }
+
+            getBorder() {
+                return this._border;
+            }
+
+            setBorder(value) {
+                this._border = value;
+            }
+
+            getBackground() {
+                return this._background;
+            }
+
+            setBackground(value) {
+                this._background = value;
+            }
+
+            createBoard(){
+                myCanvas.setAttribute("width",this._width+"");
+                myCanvas.setAttribute("height",this._height);
+                myCanvas.style.border = this._border;
+                myCtx.beginPath();
+                myCtx.rect(0,0,this._width,this._height);
+               // myCtx.fillStyle = this._background;
+                //myCtx.fill();
+
+            }
+        }
+
+        class Ball{
+            constructor(positionX,positionY,radius,speedX,speedY,color){
+                this._positionX = positionX;
+                this._positionY = positionY;
+                this._radius = radius;
+                this._speedX = speedX;
+                this._speedY = speedY;
+                this._color = color;
+            }
+            createBall(){
+                myCtx.beginPath();
+                myCtx.arc(this._positionX+this._radius,this._positionY+this._radius,this._radius,0,Math.PI*2);
+                myCtx.fillStyle = this._color;
+                myCtx.fill();
+            }
+            moving(gameBoard,bar){
+                this.collision(bar);
+                myCtx.clearRect(0,0,500,450);
+                //myCtx.clearRect(this._positionX+this._speedX-this._radius,this._positionY+this._speedY-this._radius,this._radius*2,this._radius*2);
+                myCtx.beginPath();
+                this._positionX += this._speedX;
+                this._positionY += this._speedY;
+                myCtx.arc(this._positionX+this._radius,this._positionY+this._radius,this._radius,0,Math.PI*2);
+                myCtx.fillStyle = this._color;
+                myCtx.fill();
+
+            }
+            collision(bar){
+                if((this._positionX+this._radius) > 485){
+                    this._speedX = -(this._speedX);
+                }
+                if(this._positionX-this._radius < 0){
+                    this._speedX = -(this._speedX);
+                }
+                if(this._positionY-this._radius < 0){
+                    this._speedY = -(this._speedY);
+                }
+                if((this._positionY-this._radius >410)&&
+                (this._positionX-this._radius<bar.getPositionX() ||
+                    this._positionX-this._radius> bar.getPositionX() + bar.getWidth())){
+                    console.log("game over");
+                    clearInterval(clearInterval);
+                    //myCtx.clearRect(0,0,500,450);
+                }
+                if(((this._positionY+this._radius) > 430)&&
+                    (this._positionX-this._radius>bar.getPositionX() &&
+                        this._positionX-this._radius< bar.getPositionX() + bar.getWidth())){
+                    this._speedY = -(this._speedY);
+                }
+
+            }
+
+        }
+
+        class Bar{
+            constructor(positionX,positionY,width,height,color){
+                this._positionX = positionX;
+                this._positionY = positionY;
+                this._width = width;
+                this._height = height;
+                this._color = color;
+            }
+
+            getPositionX() {
+                return this._positionX;
+            }
+
+            setPositionX(value) {
+                this._positionX = value;
+            }
+
+            getPositionY() {
+                return this._positionY;
+            }
+
+            setPositionY(value) {
+                this._positionY = value;
+            }
+
+            getWidth() {
+                return this._width;
+            }
+
+            setWidth(value) {
+                this._width = value;
+            }
+
+            getHeight() {
+                return this._height;
+            }
+
+            setHeight(value) {
+                this._height = value;
+            }
+
+            getColor() {
+                return this._color;
+            }
+
+            setColor(value) {
+                this._color = value;
+            }
+            createBar(){
+                myCtx.beginPath();
+                myCtx.rect(this._positionX,this._positionY,this._width,this._height);
+                myCtx.fillStyle = this._color;
+                myCtx.fill();
+            }
+            removeBar(){
+                myCtx.clearRect(this._positionX,this._positionY,this._width,this._height);
+            }
+        }
+
+        let gameBoard = new GameBoard(500,500,"4px solid black","gray");
+        gameBoard.createBoard();
+        let ballSpeedX = Math.random()*10+10;
+        let ballSpeedY = Math.random()*10+15;
+        let ball = new Ball(10,10,10,ballSpeedX,ballSpeedY,"black");
+        ball.createBall()
+        let bar = new Bar(250,450,100,20,"gray");
+        bar.createBar();
+        function movingball(){
+            ball.moving(gameBoard,bar);
+            console.log(123);
+        }
+        function changPosition(speed) {
+            bar.setPositionX(bar.getPositionX()+speed);
+        }
+
+        function movingBar(e){
+            switch (e.keyCode) {
+                case 37:
+                    bar.removeBar();
+                    if(bar.getPositionX()>0) {
+                        changPosition(-5);
+                    }
+                    bar.createBar();
+                    break;
+                case 39:
+                    bar.removeBar();
+                    if(bar.getPositionX()<400) {
+                        changPosition(5);
+                    }
+                    bar.createBar();
+                    break;
+            }
+        }
+        function setIntervalBall() {
+            clearInterval = setInterval(movingball,200);
+        }
+        setIntervalBall();
+        document.addEventListener("keydown",movingBar);
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <p>Viết script sử dụng vòng lặp while tạo ra bảng với số lượng hàng và cột theo ý người dùng,
+            giá trị trong ô bằng  tích giữa hàng và cột tại ô đó</p>
+        <button type="button" onclick="show()">Start</button>
+        <br>
+        <div id="showTable">
+
+        </div>
+    </div>
+    <script>
+        let showTable = document.getElementById("showTable");
+        function show() {
+            let row = parseInt(prompt("please input row"));
+            let col = parseInt(prompt("please input column"));
+            let table = "<table border = '1' width ='300px' cellspacing='0' cellpadding='3'>";
+            let i =1, j = 1;
+            while( i<=row){
+                table = table + "<tr>";
+                while (j<=col){
+                    table = table + "<td>"+j*i+"</td>";
+                    j++;
+                }
+                table = table + "</tr>"
+                j=1;
+                i++;
+            }
+            table = table +"</table>";
+            showTable.innerHTML = table;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>find item of array</title>
+</head>
+<body>
+    <div>
+        <p>task: find one element,then print value and index</p>
+        <label for="input">Add item into array</label>
+        <input type="text" placeholder="input value" id ="input">
+        <br><br>
+        <button type="button" onclick="addArray()">Add</button>
+        <br><br>
+        <button type="button" onclick="search()">Search</button>
+        <div id="demo"></div>
+    </div>
+    <script>
+        let input = null;
+        let showContent = null;
+        input = document.getElementById("input");
+        showContent = document.getElementById("demo");
+        let arr = [];
+        function addArray() {
+            arr.push(input.value);
+            input.value = "";
+        }
+        function search() {
+            let numSearch = prompt("input number you want to search");
+            let content = "";
+            arr.forEach(function (value,index){
+                if(value == numSearch){
+                    content = ("Value " + value  +  " found at " + index);
+                }
+                if(content==""){
+                    content += "value you want to find does not exist"
+                }
+            })
+            showContent.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

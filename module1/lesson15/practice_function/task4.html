@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task4</title>
+</head>
+<body>
+    <div>
+        <p>
+            Thêm các hàm alert() vào những vị trí thích hợp trong đoạn mã sau
+            để bạn có thể nhìn thấy giá trị của biến result trước và sau lời gọi hàm.
+            Đoạn mã có dạng như sau:
+        </p>
+        <pre>
+            function addNumbers() {
+                firstNum = 4;
+                secondNum = 8;
+                result = firstNum + secondNum;
+                return result;
+            }
+            result = 0;
+            result = addNumbers();
+        </pre>
+        <button type="button" onclick="perform()">Perform</button>
+    </div>
+    <script>
+        let result;
+        function perform() {
+            result = 0;
+            alert("before calling function, result = " + result);
+            result = addNumbers();
+            alert("after calling function result = " + result);
+        }
+        function addNumbers() {
+            let firstNum = 4;
+            let secondNum = 8;
+            result = firstNum + secondNum;
+            return result;
+        }
+
+    </script>
+</body>
+</html>

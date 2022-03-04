@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+</head>
+<body>
+    <div>
+        <p>bài tập kiểm tra số tuổi có đủ điều kiện vào lớp 10 không</p>
+        <button type="button" onclick="check()">Start</button>
+        <p id="show"></p>
+    </div>
+    <script>
+        let showContent = document.getElementById("show");
+        let content = "";
+        function check() {
+            let age = parseInt(prompt("nhập vào số tuổi của bạn"));
+            if(age<15){
+                content = "Bạn chưa đủ tuổi";
+            } else content = "bạn đủ tuổi";
+            showContent.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

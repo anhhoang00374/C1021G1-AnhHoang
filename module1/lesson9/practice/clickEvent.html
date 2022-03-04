@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>click event</title>
+</head>
+<body>
+    <div>
+        <img id="img" src="../image/ball.png" alt="this is a ball" width="100px">
+        <p>Click button below to move the ball to right</p>
+        <button id="moveBtn" type="button" onclick="moveRight()">Move</button>
+    </div>
+    <script>
+        let imgObj = null;
+        imgObj = document.getElementById("img");
+        function init() {
+            imgObj.style.position ="Relative";
+            imgObj.style.left = "0px";
+        }
+        function moveRight() {
+            imgObj.style.left = parseInt(imgObj.style.left) + 10 + "px";
+        }
+        window.onload = init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my basic game</title>
+</head>
+<body>
+    <div style ="text-align: center">
+        <span>Luật chơi: Di chuyển trong phạm vi đường nét đứt để lấy tiền,
+            bạn sẽ chết khi đâm phải vật cản hoặc các đường nét đứt.
+            tăng tốc bằng ctrl(Window)/command(Mac).
+        </span>
+        <span id ="money"></span>
+        <canvas id="canvas" style="border: 5px dashed rgba(158,83,83,0.47)"></canvas>
+    </div>
+
+    <script>
+        let myCanvas = document.getElementById("canvas");
+        let widthBackground = innerWidth;
+        let heightBackground = innerHeight;
+        let moneyShow = document.getElementById("money");
+        let money = 0;
+        let direction = "right";
+        myCanvas.setAttribute("border","1px solid green");
+        myCanvas.setAttribute("width",widthBackground-200+"");
+        myCanvas.setAttribute("height",heightBackground-200+"");
+        let ctx = myCanvas.getContext("2d");
+        let arrayBonus = [];
+        let arrayEnemy = [];
+        setMoney(money);
+        class Character {
+            constructor() {
+                this.bonus = 0;
+                this.heart = 0;
+                this.positionX = 0;
+                this.positionY = 0;
+            }
+
+            createCharacter(positionX,positionY){
+                 let img = new Image(200,200);
+                 img.src = "./image/motobike.png";
+                 img.setAttribute("border","1px solid black");
+                 img.onload = function(){
+                     ctx.drawImage(img,positionX,positionY,100,100);
+                 }
+            }
+            clearCharacter(positionX,positionY){
+                ctx.clearRect(positionX,positionY, 100, 100);
+            }
+            setPositionX(position){
+                this.positionX =  position;
+            }
+            setPositionY(position){
+                this.positionY =  position;
+            }
+            getPositionX(){
+                return this.positionX;
+            }
+            getPositionY(){
+               return this.positionY;
+            }
+            moveLeft(speed){
+                this.clearCharacter(this.positionX,this.positionY,100,100);
+                this.setPositionX(this.getPositionX() - speed);
+                this.createCharacter(this.positionX,this.positionY);
+                checkEnemy(this.getPositionX(),this.positionY);
+                checkBonus(this.getPositionX(),this.positionY);
+                direction = "left";
+
+            }
+            moveRight(speed){
+                this.clearCharacter(this.positionX,this.positionY,100,100);
+                this.setPositionX(this.getPositionX() + speed);
+                this.createCharacter(this.positionX,this.positionY);
+                checkEnemy(this.getPositionX(),this.positionY);
+                checkBonus(this.getPositionX(),this.positionY);
+                direction = "right";
+            }
+            moveTop(speed){
+                this.clearCharacter(this.positionX,this.positionY,100,100);
+                this.setPositionY(this.positionY - speed);
+                this.createCharacter(this.positionX,this.positionY);
+                checkEnemy(this.getPositionX(),this.positionY);
+                checkBonus(this.getPositionX(),this.positionY);
+                direction = "top";
+            }
+            moveBottom(speed){
+                this.clearCharacter(this.positionX,this.positionY,100,100);
+                this.setPositionY(this.positionY + speed);
+                this.createCharacter(this.positionX,this.positionY);
+                checkEnemy(this.getPositionX(),this.positionY);
+                checkBonus(this.getPositionX(),this.positionY);
+                direction = "bottom";
+            }
+        }
+        class Bonus {
+            constructor(positionX,positionY,radius) {
+                this.positionX = positionX;
+                this.positionY = positionY;
+                this.radius = radius;
+            }
+            getPositionX(){
+                return this.positionX;
+            }
+            getPositionY(){
+                return this.positionY;
+            }
+            getRadius(){
+                return this.radius;
+            }
+            createBonus(){
+                ctx.beginPath();
+                ctx.arc(this.positionX,this.positionY,this.radius,0,2*Math.PI);
+                ctx.font = "10px Arial";
+                ctx.fillStyle = "yellow";
+                ctx.fill();
+                ctx.fillStyle = "black";
+                ctx.fillText("Money", this.getPositionX()-15, this.getPositionY());
+            }
+             clearBonus(positionX,positionY){
+                 ctx.clearRect(positionX,positionY, this.radius*2, this.radius*2);
+             }
+        }
+        class Enemy{
+            constructor(positionX,positionY,width) {
+                this.positionX = positionX;
+                this.positionY = positionY;
+                this.width = width;
+            }
+            getPositionX(){
+                return this.positionX;
+            }
+            getPositionY(){
+                return this.positionY;
+            }
+            getWidth(){
+                return this.width;
+            }
+            createEnemy(){
+                ctx.beginPath();
+                ctx.rect(this.positionX,this.getPositionY(),this.width,this.width);
+                ctx.font = "10px Arial";
+                ctx.fillStyle = "black";
+                ctx.fill();
+                ctx.fillStyle = "white";
+                ctx.fillText("enemy", this.getPositionX()+this.width/2-15, this.getPositionY()+this.width/2-15);
+            }
+        }
+        function keyDown(e){
+            switch (e.keyCode) {
+                case 37:
+                    if(checkPosition(character)){
+                        character.moveLeft(10);
+                        break;
+                    }
+
+                case 38:
+                    if(checkPosition(character)){
+                        character.moveTop(10);
+                        break;
+                    }
+                case 39:
+                    if(checkPosition(character)){
+                        character.moveRight(10)
+                        break;
+                    }
+
+                case 40:
+                    if(checkPosition(character)){
+                        character.moveBottom(10);
+                        break;
+                    }
+                case 93:
+                case 91:
+                case 17:
+                    switch (direction) {
+                        case "left":
+                            if(checkPosition(character)){
+                                character.moveLeft(100);
+                                break;
+                            }
+                        case "right":
+                            if(checkPosition(character)){
+                                character.moveRight(100);
+                                break;
+                            }
+                        case "top":
+                            if(checkPosition(character)){
+                                character.moveTop(100);
+                                break;
+                            }
+                        case "bottom":
+                            if(checkPosition(character)){
+                                character.moveBottom(100);
+                                break;
+                            }
+                    }
+
+            }
+        }
+        function createMultiEnemy(){
+            for(let i=0;i<5;i++){
+                let radius = 100;
+                let width = Math.random()*(widthBackground-200-2*radius-10)+(radius+5);
+                let height = Math.random()*(heightBackground-200-2*radius-10)+(radius+5);
+                let enemy = new Enemy(width,height,radius);
+                arrayEnemy.push(enemy);
+                enemy.createEnemy();
+
+            }
+        }
+        function createMultiBonus(){
+            for(let i=0;i<5;i++){
+                let radius = 30;
+                let width = Math.random()*(widthBackground-200-2*radius-10)+(radius+5);
+                let height = Math.random()*(heightBackground-200-2*radius-10)+(radius+5);
+                let bonus = new Bonus(width,height,radius);
+                arrayBonus.push(bonus);
+                bonus.createBonus();
+
+            }
+        }
+        function setMoney(money){
+            moneyShow.innerHTML = `<h2>your money : ${money}</h2>`;
+        }
+        function checkEnemy(motoPositionX,motoPositionY) {
+            arrayEnemy.forEach(function(value,index){
+                if(((value.getPositionX()>motoPositionX) && (value.getPositionX()<motoPositionX+100))&&
+                    ((value.getPositionY()>motoPositionY) && (value.getPositionY()<motoPositionY+100))||
+                    ((value.getPositionX()+value.getWidth())>motoPositionX && (value.getPositionX()+value.getWidth()<motoPositionX + 100))&&
+                    ((value.getPositionY())>motoPositionY && (value.getPositionY()<motoPositionY + 100))||
+                    ((value.getPositionX()>motoPositionX) && (value.getPositionX()<motoPositionX+100))&&
+                    ((value.getPositionY()+value.getWidth()>motoPositionY) && (value.getPositionY()+value.getWidth()<motoPositionY+100))||
+                    ((value.getPositionX()+value.getWidth()>motoPositionX) && (value.getPositionX()+value.getWidth()<motoPositionX+100))&&
+                    ((value.getPositionY()+value.getWidth()>motoPositionY) && (value.getPositionY()+value.getWidth()<motoPositionY+100))
+                ){
+                    moneyShow.innerHTML=`<h2>GAME OVER</h2>`;
+                    document.removeEventListener('keydown',keyDown)
+                    arrayEnemy.splice(index,1);
+                }
+            })
+        }
+        function checkBonus(motoPositionX,motoPositionY){
+            arrayBonus.forEach(function(value,index){
+                if(((value.getPositionX()-value.getRadius()>motoPositionX) && (value.getPositionX()-value.getRadius()<motoPositionX+100))&&
+                    ((value.getPositionY()-value.getRadius()>motoPositionY) && (value.getPositionY()-value.getRadius()<motoPositionY+100))||
+                    ((value.getPositionX()+value.getRadius())>motoPositionX && (value.getPositionX()+value.getRadius()<motoPositionX + 100))&&
+                    ((value.getPositionY()-value.getRadius())>motoPositionY && (value.getPositionY()-value.getRadius()<motoPositionY + 100))||
+                    ((value.getPositionX()-value.getRadius()>motoPositionX) && (value.getPositionX()-value.getRadius()<motoPositionX+100))&&
+                    ((value.getPositionY()+value.getRadius()>motoPositionY) && (value.getPositionY()+value.getRadius()<motoPositionY+100))||
+                    ((value.getPositionX()+value.getRadius()>motoPositionX) && (value.getPositionX()+value.getRadius()<motoPositionX+100))&&
+                    ((value.getPositionY()+value.getRadius()>motoPositionY) && (value.getPositionY()+value.getRadius()<motoPositionY+100))
+                ){
+                    value.clearBonus(value.getPositionX()-value.getRadius(),value.getPositionY()-value.getRadius(),value.getRadius()*2,value.getRadius()*2);
+                    money++;
+                    setMoney(money);
+                    arrayBonus.splice(index,1);
+                }
+            })
+        }
+        function checkPosition(character){
+            if((character.getPositionX()<0||character.getPositionX()>innerWidth-300)||
+                character.getPositionY()<0||character.getPositionY()>innerHeight-300){
+                moneyShow.innerHTML = `<h2>GAME OVER</h2>`;
+                return false
+            }else return true
+        }
+        createMultiEnemy();
+        createMultiBonus();
+        let character = new Character();
+        character.createCharacter(character.getPositionX(),character.getPositionY());
+        document.addEventListener('keydown', keyDown);
+    </script>
+
+</body>
+</html>

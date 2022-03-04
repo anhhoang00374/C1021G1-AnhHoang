@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiplication table</title>
+</head>
+<body>
+    <div>
+        <p>Bài tập in ra bảng cưu chương</p>
+        <label for="number">Bạn muốn in ra tới bảng cửu chương mấy: </label> <br><br>
+        <input type="text" placeholder="1 đến 9 " id="number" > <br><br>
+        <button type="button" onclick="printTable()">In</button>
+        <br>
+        <br>
+        <div id ="showTable"></div>
+    </div>
+    <script>
+        let inputNum = document.getElementById("number");
+        let showTable = document.getElementById("showTable");
+        function printTable() {
+            let num =parseInt(inputNum.value);
+            if(num>0 || num<10){
+                let table = "<table border='1' cellpadding='10px' cellspacing='0'>";
+                for(let i = 1; i<=9;i++){
+                    table = table + "<tr>"
+                    for(let j = 1;j<=num;j++){
+                        table = table + "<td style='background: #5f6062; color: white'>" + j +" X " + i + " = " + i*j +"</td>";
+                    }
+                    table = table + "</tr>";
+                }
+                table = table + "</table>"
+                showTable.innerHTML = table;
+                inputNum.value = "";
+            } else showTable.innerHTML ="Vui lòng nhập giá trị từ 1 đến 9";
+        }
+    </script>
+</body>
+</html>

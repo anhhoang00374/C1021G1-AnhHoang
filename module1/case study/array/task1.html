@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+</head>
+<body>
+    <div>
+        <p>
+            Bài 1: Viết hàm tính tổng các số chẵn trong ma trận có kích thước m*n. Với m, n là các
+            số nhập từ bàn phím
+        </p>
+        <button type="button" onclick="calculate()">Start</button>
+        <p id ="showContent"></p>
+    </div>
+    <script>
+        function calculate() {
+            let showContent = document.getElementById("showContent");
+            let height = parseInt(prompt("input height"));
+            let width = parseInt(prompt("input width"));
+            let arr = [];
+            let sum=0;
+            for(let i = 0;i<height;i++){
+                arr[i] = new Array(width);
+            }
+            for(let i = 0;i<height;i++){
+                for(let j = 0;j<width;j++){
+                    arr[i][j] = parseInt(prompt("please input value a["+i+"]["+j+"]"));
+                    if(arr[i][j]%2==0){
+                        sum += arr[i][j];
+                    }
+                }
+            }
+            showContent.innerHTML  = "array is : " + arr.toString()+"<br>" + "sum is : "+ sum;
+        }
+    </script>
+</body>
+</html>

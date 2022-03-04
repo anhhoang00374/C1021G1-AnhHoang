@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mobie object</title>
+</head>
+<body>
+    <script>
+        class Mobile {
+            constructor(battery,name) {
+                if(battery<=100&&battery>0){
+                    this.battery = battery;
+                    this.name = name;
+                    this.draft = "";
+                    this.inbox = [];
+                    this.sent = [];
+                    this.isTurn = true;
+                }else alert("battery must be from 1 to 100");
+
+            }
+            reduceBattery(){
+                this.battery = this.battery-1;
+            }
+            turnOffMobile(){
+                this.isTurn = !this.isTurn;
+                this.reduceBattery();
+            }
+            isMobileTurn(){
+                return this.isTurn;
+                this.reduceBattery();
+            }
+            chargeBattery(){
+                this.battery = 100;
+                this.reduceBattery();
+            }
+            createMessage(){
+                if(this.isTurn){
+                    let content = prompt("inbox content: ");
+                    this.draft = content;
+                    let hasSend = confirm("do you want to send this message?");
+                    if(hasSend){
+                        let receiver = prompt("input receive: ");
+                        this.sendMessage(receiver,content);
+                    }
+                }else alert("please turn on this mobile");
+                this.reduceBattery();
+
+            }
+            sendMessage(receiver,content){
+                if(this.isTurn){
+                    receiver.inbox.push([this,content]);
+                    this.sent.push([receiver,content]);
+                }else alert("please turn on this mobile");
+                this.reduceBattery();
+            }
+            checkInbox(){
+                if(this.isTurn){
+                    this.inbox.forEach(function(value,index){
+                        index = parseInt(index+"")+1;
+                        document.write("inbox "+index+" from : "+value[0].name +"<br>&nbsp;&nbsp;&nbsp;&nbsp;" +
+                            "content: " + value[1]+"<br>");
+                    })
+                }else alert("please turn on this mobile");
+
+                this.reduceBattery();
+            }
+            checkSent(){
+                if(this.isTurn){
+                    this.sent.forEach(function(value,index){
+                        index = parseInt(index+"")+1;
+                        document.writeln("send "+index+" To : "+value[0].name +"<br>&nbsp;&nbsp;&nbsp;&nbsp;" +
+                            "content: " + value[1]+"<br><br>");
+                    })
+                } else alert("please turn on this mobile");
+
+                this.reduceBattery();
+            }
+        }
+
+        let nokia = new Mobile(100,"nokia");
+        let iphone = new Mobile(100,"iphone");
+        nokia.turnOffMobile();
+        nokia.turnOffMobile();
+        nokia.sendMessage(iphone,"hello,I am nokia");
+        nokia.sendMessage(iphone,"what are you doing");
+        nokia.checkSent();
+        iphone.checkInbox();
+
+    </script>
+</body>
+</html>

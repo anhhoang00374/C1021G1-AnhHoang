@@ -1,0 +1,15 @@
+body {
+    font-size: 150%;
+}
+.color1 {
+    color: black;
+    font-weight: bold;
+}
+.color2 {
+    color: blue;
+}
+.indention {
+    text-indent: 50px;
+    text-align: justify;
+    font-family: VnArial;
+}

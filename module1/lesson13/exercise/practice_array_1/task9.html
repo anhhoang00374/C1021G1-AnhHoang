@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task9</title>
+</head>
+<body>
+<div>
+    <p> Viết chương trình khởi tạo/nhập vào 2 mảng số nguyên gồm 10 phần tử,
+        gọi là mảng a và b. Mảng c là một mảng được khai báo gồm 20 phần tử số nguyên.
+        Chương trình sẽ lưu các phần tử được nối từ hai mảng b và a vào mảng c.
+        Hiển thị mảng c.
+    </p>
+    <label for="inputA">nhập vào 10 phần tử cho mảng thứ nhất</label> <br> <br>
+    <input type="text" id="inputA" placeholder=" input value"> <br> <br>
+    <button type="button" onclick="addNumberA()">ADD</button>
+    <br><br>
+    <label for="inputB">nhập vào 10 phần tử cho mảng thứ hai</label> <br> <br>
+    <input type="text" id="inputB" placeholder=" input value"> <br> <br>
+    <button type="button" onclick="addNumberB()">ADD</button>
+    <br><br>
+    <button type="button" onclick="printValue()">CONCAT</button>
+    <div id ="show"></div>
+</div>
+<script>
+    let inputA = null,inputB = null;
+    let showContent = null;
+    let arrNumA = [],arrNumB = [];
+    function addNumberA() {
+        inputA = document.getElementById("inputA");
+        let value = parseInt(inputA.value);
+        if(arrNumA.length<10){
+            if(!isNaN(value)){
+                arrNumA.push(value);
+            }else alert("please input number");
+        } else alert("now index is 10");
+        inputA.value = "";
+    }
+    function addNumberB() {
+        inputB = document.getElementById("inputB");
+        let value = parseInt(inputB.value);
+        inputB.value = "";
+        if(arrNumB.length<10){
+            if(!isNaN(value)){
+                arrNumB.push(value);
+            }else alert("please input number");
+        } else alert("now index is 10");
+
+    }
+    function printValue() {
+        showContent = document.getElementById("show");
+        let arrNum = arrNumA.concat(arrNumB);
+        showContent.innerHTML = "Your array after concatenating is : " + arrNum.toString() ;
+        arrNumA = [];
+        arrNumB = [];
+    }
+</script>
+</body>
+</html>

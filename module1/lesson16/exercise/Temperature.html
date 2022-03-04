@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>temperature</title>
+</head>
+<body>
+    <div id ="showTemperate"></div>
+    <script>
+        let showTemperate = document.getElementById("showTemperate");
+        class Temperature {
+            constructor(c) {
+                if(c>-273){
+                    this.temperature = c;
+                } else alert("min is -273");
+
+            }
+            toF(){
+                return this.temperature*9/5 +32 + "° F";
+            }
+            toK(){
+                return this.temperature + 273.15 + "K";
+            }
+        }
+        let tem = new Temperature(25);
+        showTemperate.innerHTML = tem.toF()+"</br>"+ tem.toK();
+    </script>
+</body>
+</html>

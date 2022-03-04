@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faking Textarea on Typing</title>
+</head>
+<body>
+    <div style="width: 50%; margin: 0 auto;text-align: center" >
+        <h2>Faking Textarea on Typing</h2>
+        <textarea name="" id="text" cols="30" rows="10" onkeyup="press()"></textarea>
+    </div>
+    <script>
+        let textarea = null;
+        let arrString = [
+                        "Chào","mừng","bạn","đến","với", "trò","chơi","của",
+                        "tôi.","Chúc","bạn","một","ngày","tốt","lành"
+                        ];
+        let result = "";
+        let quantity = 0;
+        function press() {
+
+            textarea = document.getElementById("text");
+            textarea.value ="";
+            result += arrString[quantity]+ " ";
+            quantity++;
+            textarea.value += result +" ";
+            if(quantity==arrString.length) quantity = 0;
+        }
+    </script>
+</body>
+</html>

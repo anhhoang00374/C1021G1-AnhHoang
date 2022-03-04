@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task</title>
+</head>
+<body>
+<div>
+    <p>
+        Cho hai xâu kí tự, tìm số lượng kí tự chung giữa chúng.
+    </p>
+    <button onclick="count()">Start</button>
+    <p id ="showContent"></p>
+    <script>
+        function count() {
+            let showContent = document.getElementById("showContent");
+            let str1 = prompt("please input the first string");
+            let str2 = prompt("please input the second string");
+            let arr1 = str1.split("");
+            let arr2 = str2.split("");
+            let tempArr1 = [];
+            let tempArr2 = [];
+            let content = "";
+            for(let i = 0 ;i<arr1.length;i++){
+                let check = true;
+                for(let j = 0;j<=tempArr1.length;j++){
+                    if(arr1[i]==tempArr1[j]){
+                        check = false;
+                    }
+                }
+                if(check){
+                    tempArr1.push(arr1[i]);
+                }
+
+            }
+
+            for(let i = 0 ;i<arr2.length;i++){
+                let check = true;
+                for(let j = 0;j<=tempArr2.length;j++){
+                    if(arr2[i]==tempArr2[j]){
+                        check = false;
+                    }
+                }
+                if(check){
+                    tempArr2.push(arr2[i]);
+                }
+            }
+
+            for(let i = 0;i <tempArr1.length;i++){
+                let check = false;
+                for(let j = 0; j<tempArr2.length;j++){
+                    if(tempArr1[i]==tempArr2[j]){
+                        content += tempArr1[i]+ " ";
+                    }
+                }
+            }
+            showContent.innerHTML ="the first array is : "+arr1 +"<br>"+
+                                    "the second array is : "+arr2 +"<br>"+
+                                    "same character is : " + content;
+        }
+    </script>
+</div>
+</body>
+</html>

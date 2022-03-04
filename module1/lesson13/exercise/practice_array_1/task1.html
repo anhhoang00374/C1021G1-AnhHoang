@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+</head>
+<body>
+    <div>
+        <p>Viết chương trình khởi tạo mảng số nguyên gồm 10 phần tử.
+            Chương trình thực hiện tính và
+            hiển thị xem có bao nhiêu số nguyên lớn hơn hoặc bằng 10.</p>
+        <label for="input">nhập vào 10 phần tử cho mảng</label> <br> <br>
+        <input type="text" id="input" placeholder=" nhập số"> <br> <br>
+        <button type="button" onclick="addNumber()">ADD</button>
+        <br><br>
+        <button type="button" onclick="printNumber()">PRINT</button>
+        <div id ="show"></div>
+    </div>
+    <script>
+        let input = null, showContent = null,content="";
+        let arrNumber = [];
+        function addNumber() {
+            input = document.getElementById("input");
+            let value = parseInt(input.value);
+            if(!isNaN(value)){
+                arrNumber.push(value);
+            } else alert("vui lòng nhập vào giá trị số");
+            input.value = "";
+        }
+        function printNumber() {
+            showContent = document.getElementById("show");
+            let newArray = arrNumber.filter(function(value){
+                return value >= 10;
+            })
+            newArray.forEach(function(value){
+                content += value + " ";
+            })
+            showContent.innerHTML = content;
+        }
+
+    </script>
+</body>
+</html>

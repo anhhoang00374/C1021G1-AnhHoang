@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rectangle object</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="showDimension"></div>
+    <script>
+        let dimension = document.getElementById("showDimension");
+        class Rec {
+            constructor(width,height) {
+                this.width = Math.floor(width);
+                this.height = Math.floor(height);
+            }
+            getArea(){
+                return this.width*this.height;
+            }
+            setWidth(width){
+                this.width = Math.floor(width);
+            }
+            setHeight(height){
+                this.height = Math.floor(height);
+            }
+            getHeight(){
+                return this.height
+            }
+            getWidth(){
+                return this.width;
+            }
+            getPerimeter(){
+                return (this.height + this.width)*2;
+            }
+            paintRect(){
+                let canvas = document.getElementById("canvas");
+                let ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.rect(0,0,this.height,this.width);
+                ctx.fillStyle = "green";
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+        let rectangle = new Rec(100,200);
+        rectangle.paintRect();
+        rectangle.setHeight(200.5);
+        rectangle.setWidth(400.5);
+        dimension.innerHTML = "current width is: " + rectangle.getWidth() + " and current height is: " + rectangle.getHeight();
+    </script>
+</body>
+</html>

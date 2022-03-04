@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user register form</title>
+</head>
+<body>
+     <form action="http://demo.codegym.vn/6/registration_form/register.php" method="post">
+         <div>
+             <div><label for="name"><b>Họ và tên</b></label></div>
+             <div><input type="text" name="name" placeholder="vui lòng nhập tên" id="name"></div>
+         </div>
+         <div>
+             <div><label for="mail"><b>Email</b></label></div>
+             <div><input type="email" name="email" placeholder="vui lòng nhập email" id="email"></div>
+         </div>
+         <div>
+             <div><label for="phone"><b>Số điện thoại</b></label></div>
+             <div><input type="tel" name="phone" placeholder="vui lòng nhập số điện thoai" id="phone"></div>
+         </div>
+         <div>
+             <div><label for=""><b>Giới tính</b></label></div>
+             <div>
+                 <input type="radio" name="gender" checked value="male" id="male"> <label for="male"><b>Nam</b></label>
+                 <input type="radio" name="gender"  value="female" id="female"> <label for="female"><b>Nữ</b></label>
+             </div>
+         </div>
+         <div>
+             <input type="submit" value="Đăng ký" name="submit">
+         </div>
+     </form>
+</body>
+</html>

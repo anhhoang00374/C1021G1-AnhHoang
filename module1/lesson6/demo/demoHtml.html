@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<body>
+  <h2 id="demo" onclick="var x=2;alert(x)">click me</h2>
+  <select name="cars" id="car" >
+    <option value="yamaha">yamaha</option>
+    <option value="honda">honda</option>
+    <option value="suzuki">suzuki</option>
+  </select>
+  <p id=""></p>
+  <script>
+    var car = document.getElementById("car");
+   function change() {
+     var value = document.getElementById("car").value;
+     alert(value);
+   }
+  car.addEventListener("change", change)
+  </script>
+</body>
+</html>

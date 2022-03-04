@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task4</title>
+</head>
+<body>
+    <div>
+        <p>
+            Viết một chương trình nhập một số từ bàn phím và in ra màn hình bằng chữ. Ví dụ
+            1234, kết quả in ra màn hình là một hai ba bốn
+        </p>
+        <button onclick="convert()">Start</button>
+        <p id="showContent"></p>
+    </div>
+    <script>
+        let showContent = document.getElementById("showContent");
+        let arrNum = [0,1,2,3,4,5,6,7,8,9];
+        let arrString = ["không","một","hai","ba","bốn","năm","sáu","bảy","tám","chín"];
+        let tempArray = [];
+        function convert() {
+            let content = "";
+            let input = prompt("please input number");
+            let inputArray = input.split("");
+            for(let i = 0;i<inputArray.length;i++){
+                for(let j = 0;j<arrNum.length;j++){
+                    if(arrNum[j]==inputArray[i]){
+                        content += arrString[j] + " ";
+                        break;
+                    }
+                }
+            }
+            showContent.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

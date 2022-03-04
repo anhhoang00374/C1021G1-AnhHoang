@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/task4.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    </head>
+<body>
+<div id="container-header">
+    <div id="fixed-header">
+        <div id="header">
+            <a id="header-content" href="#">
+                Phim
+                <span>
+            Hoạt Hình
+        </span>
+            </a>
+
+        </div>
+        <div id="nav">
+            <div id="nav-bar">
+                <img src="icon/list.png" width="30px" alt="">
+                <ul>
+                    <li>
+                        <a href="#">Phim hoạt hình</a>
+                    </li>
+                    <li>
+                        <a href="#">Phim hoat hình yêu thích</a>
+                    </li>
+                    <li>
+                        <a href="#">Nhân vật hoạt hình</a>
+                    </li>
+                    <li>
+                        <a href="#" id="none-border">Góp ý</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<div id="main" class="row">
+    <div class="col-4 aside">
+        <video src="video/noi_oan_cua_xoai.mp4" width="100%" controls
+        poster="poster/noi_oan_cua_xoai.png"></video>
+        <a href="#" onclick="displayStory1()">nỗi oan của xoài</a>
+        <br>
+        <br>
+        <video src="video/chua_benh_theo_sach.mp4" width="100%" controls
+               poster="poster/chua_benh_bang_sach.png"></video>
+        <a href="#" onclick="displayStory2()">Chữa bệnh bằng sách</a>
+        <br>
+        <br>
+        <video src="video/noi_oan_cua_xoai.mp4" width="100%" controls
+               poster="poster/noi_oan_cua_xoai.png"></video>
+        <a href="#" onclick="displayStory3()">nỗi oan của xoài</a>
+    </div>
+
+    <div class="col-8 main-right">
+        <div class="row story1" id="story1">
+            <video src="video/noi_oan_cua_xoai.mp4" width="100%" controls
+                   poster="poster/noi_oan_cua_xoai.png"></video>
+            <br>
+            <br>
+            <a href="#" class="bold" onclick="displayStory1()">nỗi oan của xoài</a>
+            <br>
+            <br>
+            <p class="align-left">Lorem Alias aliquam asperiores assumenda atque beatae cum cupiditate dolorum ea, eaque eveniet excepturi exercitationem fugiat id illo ipsum iste iure laborum magni maiores minima minus nobis odit optio perspiciatis porro praesentium quae quia quos sint soluta suscipit, totam veniam vitae. Aut delectus dolor, impedit iure minima minus perferendis praesentium quas, repellendus reprehenderit sed similique vero voluptates? Aspernatur dolor eligendi incidunt ipsa tenetur ullam velit. A ab eum, ex fugiat laborum placeat voluptate. Commodi culpa delectus deleniti, eligendi esse et libero neque nihil nostrum optio provident qui quibusdam quisquam rerum veniam, vitae voluptate!</p>
+        </div>
+        <div class="row story2" id="story2">
+            <video src="video/chua_benh_theo_sach.mp4" width="100%" controls
+                   poster="poster/chua_benh_bang_sach.png"></video>
+            <br>
+            <br>
+            <a class="bold" href="#" onclick="displayStory2()">Chữa bệnh bằng sách</a>
+            <br>
+            <br>
+            <p class="align-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, aspernatur autem, commodi consectetur delectus distinctio ducimus earum eveniet ex fuga id labore laborum minima molestiae non ratione reprehenderit, saepe. Architecto aut blanditiis consectetur consequuntur dolore exercitationem illum laboriosam libero mollitia nemo nesciunt nostrum provident quia, quis quisquam quod veniam. A adipisci alias aperiam beatae blanditiis commodi consequatur, cumque deserunt dicta, dignissimos dolorem eaque enim exercitationem fuga magni natus nesciunt nostrum possimus provident quam saepe similique sint sit tempora temporibus velit veritatis vitae voluptas voluptatibus voluptatum? Modi obcaecati officiis pariatur rerum sed totam. Alias cumque dignissimos dolor esse est harum porro quis quo repellendus sed. Deleniti, dolorum nulla! Harum minima pariatur quaerat quisquam! Ab corporis, cumque ducimus eos eum facere fugit impedit odit quia quisquam quo ut vel voluptatum! Animi cum dolorem et, eveniet impedit modi recusandae. Ad architecto commodi cumque dolor, et ex fugit impedit itaque libero magni, quos sit?</p>
+        </div>
+        <div class="row story3" id="story3">
+            <video src="video/noi_oan_cua_xoai.mp4" width="100%" controls
+                   poster="poster/noi_oan_cua_xoai.png"></video>
+            <br>
+            <br>
+            <a href="#" class="bold" onclick="displayStory1()">nỗi oan của xoài</a>
+            <br>
+            <br>
+            <p class="align-left">Lorem  consectetur adipisicing elit. Accusamus, aspernatur autem, commodi consectetur delectus distinctio ducimus earum eveniet ex fuga id labore laborum minima molestiae non ratione reprehenderit, saepe. Architecto aut blanditiis consectetur consequuntur dolore exercitationem illum laboriosam libero mollitia nemo nesciunt nostrum provident quia, quis quisquam quod veniam. A adipisci alias aperiam beatae blanditiis commodi consequatur, cumque deserunt dicta, dignissimos dolorem eaque enim exercitationem fuga magni natus nesciunt nostrum possimus provident quam saepe similique sint sit tempora temporibus velit veritatis vitae voluptas voluptatibus voluptatum? Modi obcaecati officiis pariatur rerum sed totam. Alias cumque dignissimos dolor esse est harum porro quis quo repellendus sed. Deleniti, dolorum nulla! Harum minima pariatur quaerat quisquam! Ab corporis, cumque ducimus eos eum facere fugit impedit odit quia quisquam quo ut vel voluptatum! Animi cum dolorem et, eveniet impedit modi recusandae. Ad architecto commodi cumque dolor, et ex fugit impedit itaque libero magni, quos sit?</p>
+        </div>
+    </div>
+</div>
+<br>
+
+<div id="footer">
+    <p>thông tin chủ quyền</p>
+</div>
+<script>
+    let story1 = document.getElementById("story1");
+    let story2 = document.getElementById("story2");
+    let story3 = document.getElementById("story3");
+    let video1 = document.getElementById("video1");
+    let video2 = document.getElementById("video2");
+    let video3 = document.getElementById("video3");
+    function displayStory1(){
+        story1.style.display = "block";
+        story2.style.display = "none";
+        story3.style.display = "none";
+        video1.play();
+        video2.pause();
+        video3.pause();
+    }
+    function displayStory2(){
+        story2.style.display = "block";
+        story1.style.display = "none";
+        story3.style.display = "none";
+        video2.play();
+        video1.pause();
+        video3.pause();
+    }
+    function displayStory3(){
+        story3.style.display = "block";
+        story1.style.display = "none";
+        story2.style.display = "none";
+        video3.play();
+        video1.pause();
+        video2.pause();
+    }
+</script>
+</body>
+</html>

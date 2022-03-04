@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>caro game</title>
+</head>
+<body>
+    <div style="width: 200px;margin: 0 auto;">
+        <div id ="show" style="margin: 0 auto; text-align: center" ></div>
+    </div>
+
+    <script>
+        let arr =[];
+        let changedArr =[];
+        let content  = "";
+        let showContent = null;
+        showContent = document.getElementById("show");
+        for(let i = 0;i <5;i++){
+            arr[i] = [];
+            for(let j = 0;j<5;j++){
+                arr[i][j] = "O";
+                content+=arr[i][j]+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            };
+            content += "<br><br>";
+        }
+        content += "<button type='button' onclick='changePosition()'>Change</button>"
+        content += "<br><br>";
+        showContent.innerHTML = content;
+        function changePosition() {
+            let col = parseInt(prompt("X: "));
+            let row = parseInt(prompt("Y: "));
+            changedArr.push([col,row]);
+            for(let i = 0;i <5;i++){
+                arr[i] = [];
+                for(let j = 0;j<5;j++){
+                    arr[i][j] = "O";
+                    changedArr.forEach(function(value,index){
+                        if(i == value[0] && j ==value[1]){
+                            arr[i][j] = "X";
+                        }
+                    })
+                    content+=arr[i][j]+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                };
+                content += "<br><br>";
+            }
+            content += "<button type='button' onclick='changePosition()'>Change</button>"
+            content += "<br><br>"
+            showContent.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

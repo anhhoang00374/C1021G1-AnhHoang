@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flash lamp</title>
+</head>
+<body>
+    <script>
+        class Battery {
+            constructor(energy) {
+                this._energy = energy;
+            }
+            setEnergy(energy){
+                this._energy = energy;
+            }
+            getEnergy(){
+                return this._energy;
+            }
+            decreaseEnergy(){
+                if(this._energy>-0){
+                    this._energy--;
+                }
+            }
+        }
+        class FlashLamp{
+            constructor(status,battery) {
+                this._status = status;
+                this._battery = battery;
+            }
+
+            getStatus() {
+                return this._status;
+            }
+
+            setStatus(value) {
+                this._status = value;
+            }
+
+            getBattery() {
+                return this._battery;
+            }
+
+            setBattery(value) {
+                this._battery = value;
+            }
+            light(){
+                if(this._status){
+                    console.log("Lighting");
+                }else console.log("Not Light");
+            }
+            turnOn(){
+                if(this._battery.getEnergy()>0){
+                    this.setStatus(true);
+                    this._battery.decreaseEnergy();
+                }else console.log("energy is not enough");
+            }
+            turnOff(){
+                this.setStatus(false);
+            }
+        }
+        let battery = new Battery(10);
+        let flashLamp = new FlashLamp(false,battery);
+        console.log("Battery info:" + battery.getEnergy());
+        flashLamp.light();
+
+        console.log("Turn on")
+        flashLamp.turnOn();
+        flashLamp.light();
+        console.log("Battery info:" + battery.getEnergy());
+
+        console.log("Turn off");
+        flashLamp.turnOff();
+        flashLamp.light();
+    </script>
+</body>
+</html>

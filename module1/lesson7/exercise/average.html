@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>average</title>
+</head>
+<body>
+    <div>
+        <p>tính điểm trung bình của 3 môn toán lý hoá</p>
+        <button type="button" onclick="calculate()">Start</button>
+    </div>
+    <script>
+        function calculate() {
+            let math = prompt("vui lòng nhập điểm toán");
+            let physics = prompt("vui lòng nhập điểm lý");
+            let chemistry = prompt("vui lòng nhập điểm hoá");
+            let average = (parseInt(math) + parseInt(physics) + parseInt(chemistry))/3;
+            alert("điểm trung bình 3 môn của bạn là :" + average);
+        }
+    </script>
+</body>
+</html>

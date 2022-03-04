@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+</head>
+<body>
+<div>
+    <p>Bài 2: Viết chương trình kiểm tra một ký tự trong bảng chữ cái tiếng anh là nguyên âm
+        hay phụ âm. Ký tự là bất kỳ được nhập từ bàn phím. Các ký tự nguyên âm bao gồm: 'o',
+        'u', 'i', 'a', 'e' hoặc 'O', 'U', 'I', 'A', 'E'
+    </p>
+    <button onclick="check()">Check</button>
+    <p id="showContent"></p>
+</div>
+<script>
+    let showContent = document.getElementById("showContent");
+    let arr = ["o","u","i","a","e"];
+
+    function check() {
+        let isFundamental = false;
+       let character = prompt("please input character that you want to check: ")
+        switch (character.toLowerCase()) {
+            case "o":
+            case "u":
+            case "i":
+            case "a":
+            case "e":
+                isFundamental = true;
+                break;
+        }
+        if(isFundamental){
+            showContent.innerHTML = `this is a fundamental`;
+        }else showContent.innerHTML = `this is not a fundamental`;
+    }
+
+</script>
+</body>
+</html>

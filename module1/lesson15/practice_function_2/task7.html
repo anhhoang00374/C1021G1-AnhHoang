@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task7</title>
+</head>
+<body>
+<div>
+    <p>
+        Viết hàm truyền vào 2 số nguyên bất kì, thực hiện đổi chỗ hai số nguyên đó.
+    </p>
+    <button type="button" onclick="changIndex()"> Perform</button>
+</div>
+<script>
+    function changIndex() {
+        let num1 = parseInt(prompt("please input the first number"));
+        let num2 = parseInt(prompt("please input the second number"));
+        if(!isNaN(num1*num2)){
+           alert("the first number is " + num2 + " and the second number is " + num1);
+        }else alert("please input number")
+    }
+</script>
+</body>
+</html>

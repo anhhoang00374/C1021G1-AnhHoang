@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+<div>
+    <p>
+        Bài 3: Viết hàm tìm giá trị lớn nhất, nhỏ nhất trong mảng 2 chiều
+    </p>
+    <button type="button" onclick="calculate()">Start</button>
+    <p id ="showContent"></p>
+</div>
+<script>
+    function calculate() {
+        let showContent = document.getElementById("showContent");
+        let height = parseInt(prompt("input height"));
+        let arr = [];
+        let max = -Infinity;
+        let min = Infinity
+        for (let i = 0; i < height; i++) {
+            let width = parseInt(prompt("input width a[" + i + "]"));
+            arr[i] = new Array(width);
+            for (let j = 0; j < width; j++) {
+                arr[i][j] = parseInt(prompt("please input value a[" + i + "][" + j + "]"));
+                if(arr[i][j]>max){
+                    max = arr[i][j];
+                }
+                if(arr[i][j]<min){
+                    min = arr[i][j];
+                }
+            }
+        }
+        showContent.innerHTML  ="array is : "+arr.toString()+"<br>"+ "max is : " +max + ", min is :" + min ;
+    }
+</script>
+</body>
+</html>

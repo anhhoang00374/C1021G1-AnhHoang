@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+<div>
+    <p>
+        Viết hàm tính giai thừa của một số nguyên bất kỳ được đưa vào.
+        Gọi hàm vừa xây dựng được.
+    </p>
+    <button type="button" onclick="checkNumber()"> Perform</button>
+</div>
+<script>
+    function checkNumber() {
+        let num = prompt("please input number");
+        let factorial = 1;
+        if(!isNaN(parseInt(num))){
+            for(let i = 1;i<=num;i++ ){
+                factorial*=i;
+            }
+            alert("the factorial of this number is : " + factorial);
+        } else alert("this is not a number");
+    }
+</script>
+</body>
+</html>

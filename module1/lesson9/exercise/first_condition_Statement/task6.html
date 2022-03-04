@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task6</title>
+</head>
+<body>
+    <div>
+        <p>bài tập tính hoa hồng nhận được tuỳ theo doanh số bán hàng</p>
+        <p>yêu cầu: dưới 200k thì nhận được 3%,dưới 500k thì nhận được 5%, trên 700k thì nhận được 10%</p>
+        <button type="button" onclick="check()">Start</button>
+        <p id="show"></p>
+    </div>
+    <script>
+        let showContent = document.getElementById("show");
+        function check() {
+
+            let content = "";
+            let bonus = 0;
+            let money = parseInt(prompt("nhập vào doanh thu bán hàng của bạn"));
+            if(!isNaN(money)){
+                if(money<200000){
+                    bonus = money*0.03 ;
+                } else if(money<500000){
+                    bonus = 200000*0.03 + (money-200000)*0.05;
+
+                } else {
+                    bonus = 200000*0.03 + 300000*0.05 + (money-500000)*0.1;
+                }
+                content = "hoa hồng bạn nhận được là " + bonus;
+            } else content = " vui lòng nhập số";
+            showContent.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

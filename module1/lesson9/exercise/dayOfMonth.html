@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>day of month</title>
+</head>
+<body>
+    <div>
+        <p>Tính số ngày trong tháng</p>
+        <label for="month">Nhập vào tháng bạn muốn đếm số ngày</label><br><br>
+        <input type="text" id="month" placeholder="nhập vào số tháng"><br><br>
+        <button type="button" id="calBtn">Tính số ngày</button><br>
+        <p id="showContent"></p>
+        <script>
+            let input = document.getElementById("month");
+            let calBtn = document.getElementById("calBtn");
+            let showContent = document.getElementById("showContent");
+
+            function calcutation() {
+                let month = parseInt(input.value);
+                let content = "";
+                let checkMonth = (month>0&&month<13);
+                if(checkMonth){
+                    switch (month) {
+                        case 1:
+                        case 3:
+                        case 5:
+                        case 7:
+                        case 8:
+                        case 10:
+                        case 12:
+                            {
+                                content = "Tháng " + month + " có 31 ngày";
+                                break;
+                            }
+                        case 2:
+                            {
+                                content = "Tháng " + month + " có 28 hoặc 29 ngày";
+                                break;
+                            }
+
+                        default:
+                            {
+                                content = "Tháng " + month + " có 30 ngày";
+                                break;
+                            }
+
+                    }
+                } else {
+                    content = "Dữ liệu đầu vào bị lỗi, vui lòng nhập lại";
+                }
+                showContent.innerHTML =content;
+            }
+            calBtn.addEventListener("click", calcutation);
+        </script>
+    </div>
+</body>
+</html>

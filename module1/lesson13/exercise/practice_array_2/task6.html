@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task6</title>
+</head>
+<body>
+<div>
+    <p>Viết chương trình nhập vào một mảng ký tự,
+        tìm tất cả các ký tự trong mảng là (-) và
+        thay thế các ký tự này bởi ký tự ( _ )
+    </p>
+    <label for="input">Input value to add in Array </label> <br><br>
+    <input type="text" placeholder="add value" id = input><br><br>
+    <button type="button" onclick="addValue()">ADD</button>
+    <button type="button" onclick="convertValue()">CONVERT</button>
+    <div id="show"></div>
+
+</div>
+<script>
+    let input = null;
+    let showContent = null;
+    let arr = [];
+    function addValue() {
+        input = document.getElementById("input");
+        arr= input.value.split("");
+        input.value = "";
+    }
+    function convertValue() {
+        showContent = document.getElementById("show");
+        for(let i = 0;i < arr.length; i++){
+            if(arr[i] =="-"){
+                arr[i] = "_";
+            }
+        }
+        showContent.innerHTML = arr.join("");
+        arr = [];
+    }
+</script>
+</body>
+</html>

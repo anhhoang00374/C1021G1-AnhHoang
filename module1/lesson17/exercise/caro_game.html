@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>game caro</title>
+</head>
+<body>
+    <div style="text-align: center">
+        <button type="button" id="button" style="padding: 10px;background: green;color: white" >Start</button>
+    </div>
+
+    <div style="position: relative;background: darkgrey; margin: 0 auto" id="container">
+    </div>
+    <script>
+        let container = document.getElementById("container");
+        let btnReset = document.getElementById("button");
+        let content = "";
+        let arrChess;
+        let player = true;
+        class BoardChess{
+            constructor(width,height,size,color) {
+                this._width = width;
+                this._height = height;
+                this._size = size;
+                this._color = color;
+            }
+            getWidth() {
+                return this._width;
+            }
+
+            setWidth(value) {
+                this._width = value;
+            }
+
+            getHeight() {
+                return this._height;
+            }
+
+            setHeight(value) {
+                this._height = value;
+            }
+
+            getSize() {
+                return this._size;
+            }
+
+            setSize(value) {
+                this._size = value;
+            }
+
+            getColor() {
+                return this._color;
+            }
+
+            setColor(value) {
+                this._color = value;
+            }
+            setMemory(){
+                arrChess = new Array(this._height);
+                for(let i = 0;i<this._height;i++){
+                    arrChess[i] = new Array(this._width);
+                    for(let j = 0;j<this._width;j++){
+                        arrChess[i][j] = "";
+                    }
+                }
+            }
+            createChess(){
+                //let that = this;
+                for(let i = 0; i<this._height;i++){
+                    for(let j = 0;j<this._width;j++){
+                        content +=
+                            `<div style="position: absolute;
+                                        width: ${this._size}px;
+                                        height: ${this._size}px;
+                                         left: ${(j+1)*this._size}px;
+                                         top :${(i+1)*this._size}px;
+                                         border: 1px solid ${this._color};
+                                         text-align: center;
+                                         line-height: ${this._size}px;
+                                         "
+                                onclick="playing(${i},${j})"
+
+                            >${arrChess[i][j]}</div>`
+                    }
+                }
+                container.innerHTML  = content;
+            }
+
+        }
+
+        let boardChess = new BoardChess(20,20,30,"green");
+
+        function playing(i,j){
+            if(arrChess[i][j]==""){
+                if(player){
+                    arrChess[i][j]="O";
+                    player = !player;
+                    boardChess.createChess();
+                    checkWin(i,j);
+                }else{
+                    arrChess[i][j]= "X";
+                    player = !player;
+                    boardChess.createChess();
+                    checkWin(i,j);
+                }
+            }else alert("this is selected!!!");
+
+        }
+        function checkWin(i,j){
+            let isWin = false;
+            for(let x = 0;x<arrChess.length;x++){
+                for(let y = 0; y<arrChess[x].length;y++){
+                    if(         (arrChess[x][y]==arrChess[i][j]&&
+                                arrChess[x][y+1]==arrChess[i][j]&&
+                                arrChess[x][y+2]==arrChess[i][j]&&
+                                arrChess[x][y+3]==arrChess[i][j]&&
+                                arrChess[x][y+4]==arrChess[i][j])||
+                                (arrChess[x][y]==arrChess[i][j]&&
+                                arrChess[x+1][y]==arrChess[i][j]&&
+                                arrChess[x+2][y]==arrChess[i][j]&&
+                                arrChess[x+3][y]==arrChess[i][j]&&
+                                arrChess[x+4][y]==arrChess[i][j])||
+                                (arrChess[x][y]==arrChess[i][j]&&
+                                arrChess[x+1][y+1]==arrChess[i][j]&&
+                                arrChess[x+2][y+2]==arrChess[i][j]&&
+                                arrChess[x+3][y+3]==arrChess[i][j]&&
+                                arrChess[x+4][y+4]==arrChess[i][j])||
+                                (arrChess[x][y]==arrChess[i][j]&&
+                                    arrChess[x+1][y-1]==arrChess[i][j]&&
+                                    arrChess[x+2][y-2]==arrChess[i][j]&&
+                                    arrChess[x+3][y-3]==arrChess[i][j]&&
+                                    arrChess[x+4][y-4]==arrChess[i][j])
+                        ){
+                            alert("you are winner");
+                            isWin = true;
+
+                        }
+                }
+            }
+            if(isWin){
+                content = "";
+                boardChess.setMemory();
+                boardChess.createChess();
+            }
+
+        }
+
+        function startGame() {
+            content = "";
+            container.style.width = boardChess.getWidth()*boardChess.getSize() +"px";
+            container.style.margin = "0 auto";
+            boardChess.setMemory();
+            boardChess.createChess();
+            btnReset.style.background = "red";
+            btnReset.innerText  = "Reset";
+        }
+        btnReset.addEventListener("click", startGame);
+
+    </script>
+</body>
+</html>

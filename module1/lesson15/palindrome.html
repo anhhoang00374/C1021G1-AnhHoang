@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>palindrome</title>
+</head>
+<body>
+    <div>
+        <p>
+            Kiểm tra từ đối xứng
+        </p>
+        <input type="text" placeholder="input text" id="textInput">
+        <button type="button" onclick="check()">Check</button>
+        <div id="contentDisplay"></div>
+    </div>
+    <script>
+        let text = null;
+        let contentDisplay = null;
+        function check() {
+            text = document.getElementById("textInput");
+            contentDisplay = document.getElementById("contentDisplay");
+            let arr = text.value.split("");
+            let result = true;
+            for(let i = 0;i<arr.length/2;i++){
+                if(arr[i].toLowerCase() !== arr[arr.length-i-1].toLowerCase()){
+                    result = false;
+                    break;
+                }
+            }
+            contentDisplay.innerHTML = result ? "this is a palindrome string" : "this is not a palindrome string";
+
+        }
+    </script>
+</body>
+</html>

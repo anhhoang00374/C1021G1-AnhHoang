@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+    <div>
+      <p>
+          Hiển thị ra 20 số trong dãy fibonacci đầu tiên.
+      </p>
+      <button type="button" onclick="printNum()">In</button>
+        <p id="show"></p>
+    </div>
+    <script>
+        let showContent = document.getElementById("show");
+      function printNum(){
+          let firstNum = 1;
+          let secondNum = 1;
+          let content = "";
+        for(let i = 1;i<=10;i++){
+            content +=" " + firstNum +" " + secondNum;
+            firstNum = firstNum + secondNum;
+            secondNum = firstNum + secondNum;
+        }
+        showContent.innerHTML = content;
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+</head>
+<body>
+    <div>
+        <p>Viết một chương trình nhận một số nhập vào và chèn dấu (-) giữa 2  số chẵn</p>
+        <input type="text" placeholder="thêm phần tử vào mảng" id="input">
+        <br>
+        <br>
+        <button type="button" onclick="convertNum()">Convert</button>
+        <br>
+        <div id="show"></div>
+    </div>
+    <script>
+        let input = null,showContent = null;
+
+        function convertNum(){
+            input = document.getElementById("input");
+            show = document.getElementById("show");
+            if(!isNaN(input.value)){
+                let arr = Array.from(input.value.toString());
+                let content = "";
+                arr.forEach(function(value,index){
+                    content+=value;
+                    if((parseInt(arr[index])%2===0)&&(parseInt(arr[index+1])%2===0)){
+                        content+="-";
+                    }
+                })
+                show.innerHTML = content;
+                input.value = "";
+            }else {
+                alert("Please input number");
+                input.value = "";
+            }
+
+        }
+    </script>
+</body>
+</html>

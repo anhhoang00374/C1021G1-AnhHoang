@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>practice</title>
+</head>
+<body>
+    <div>
+        <p> Viết chương trình nhận vào một số từ hộp thoại, việc nhập kết thúc khi người dùng nhập vào giá trị -1. Mỗi giá trị nhập được sẽ được hiển thị ra và thực hiện tính tổng các giá trị đó. </p>
+        <button type="button"  onclick="printSum()">Start</button>
+        <p id="show"></p>
+    </div>
+    <script>
+        let showContent = document.getElementById("show");
+        let sum = 0;
+        let inputNum = 0;
+        function printSum() {
+            while (inputNum != -1){
+                sum+=inputNum;
+                inputNum = parseInt(prompt("Please input your number"));
+
+            }
+            showContent.innerHTML = " Sum is " + sum;
+        }
+
+    </script>
+</body>
+</html>

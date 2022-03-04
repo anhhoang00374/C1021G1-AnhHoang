@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task7</title>
+</head>
+<body>
+    <div>
+        <p>phí bắt buộc 25k 600VND cho 50p đầu tiên 400VND cho 150p tiếp 200VND cho 200p đầu tiên</p>
+        <label for="input"> Nhập vào số phút bạn đã gọi</label>
+        <input type="text" id = "input" placeholder="nhập số phút">
+        <button type="button" onclick="checkPrice()">Tính tiền</button>
+        <p id = "showContent"></p>
+    </div>
+    <script>
+        let input = document.getElementById("input");
+        let showContent = document.getElementById("showContent");
+        let content = "";
+        function checkPrice() {
+            let price = 25000;
+            let time = parseInt(input.value);
+            if(!isNaN(time)){
+                if(time<50){
+                    price = price + time*600;
+                }else if(time<200){
+                    price = price + 50*600 + (time-50)*400
+                }else {
+                    price = price + 50*600 + 150*400 + (time-200)*200;
+                }
+            } else content = "Vui lòng nhập số";
+            showContent.innerHTML = "số tiền bạn phải đóng là " + price + "vnd";
+            input.value = "";
+        }
+    </script>
+</body>
+</html>

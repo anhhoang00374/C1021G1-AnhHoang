@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task3</title>
+</head>
+<body>
+        <div>
+          <p>Viết chương trình khởi tạo mảng số nguyên.
+            Hiển hiện giá trị lớn nhất trong mảng đó.
+            In ra giá trị trung bình của các phần tử trong mảng.
+          </p>
+          <label for="input">nhập vào 10 phần tử cho mảng</label> <br> <br>
+          <input type="text" id="input" placeholder=" nhập số"> <br> <br>
+          <button type="button" onclick="addNumber()">ADD</button>
+          <br><br>
+          <button type="button" onclick="printAva()">PRINT</button>
+          <div id ="show"></div>
+        </div>
+        <script>
+          let input = null;
+          let showContent = null;
+          let arrNum = []
+          function addNumber() {
+            input = document.getElementById("input");
+            if(!isNaN(parseInt(input.value))){
+              arrNum.push(parseInt(input.value));
+            }else alert("please input number");
+            input.value = "";
+          }
+          function printAva() {
+            let total = 0 ;
+            let max =arrNum[0];
+            showContent = document.getElementById("show");
+            arrNum.forEach(function(value,index){
+              total += value;
+              if(max<=value){
+                max = value;
+              }
+            })
+            showContent.innerHTML ="Max and Average of your array is " + max +" and " + total/arrNum.length;
+            arrNum = [];
+          }
+        </script>
+</body>
+</html>

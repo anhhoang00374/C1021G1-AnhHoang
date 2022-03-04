@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task6</title>
+</head>
+<body>
+<div>
+    <p>
+        tính tổng 30 số đầu tiên chia hết cho 7 trong dãy số tự nhiên
+    </p>
+    <button type="button" onclick="printNum()">In</button>
+    <p id="show"></p>
+</div>
+<script>
+    let showContent = document.getElementById("show");
+
+    function printNum(){
+        let numOfNum = 0;
+        let sum = 0;
+        let currentNum = 0;
+        while(numOfNum<7){
+            if(currentNum%7==0){
+                sum += currentNum;
+                numOfNum++;
+            }
+            currentNum++;
+        }
+        showContent.innerHTML = "tính tổng 30 số đầu tiên chia hết cho 7 trong dãy số tự nhiên " + sum;
+        }
+
+</script>
+</body>
+</html>

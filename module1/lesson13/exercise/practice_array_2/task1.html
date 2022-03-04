@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+</head>
+<body>
+    <div>
+        <p>
+            Viết chương trình khởi tạo mảng 2 chiều,
+            gồm một bộ các phần tử có sẵn,
+            in ra các phần tử trong mảng.
+        </p>
+        <pre>
+            mảng hai chiều đã cho
+            [
+                [1, 2, 1, 24],
+                [8, 11, 9, 4],
+                [7, 0, 7, 27],
+                [7, 4, 28, 14],
+                [3, 10, 26, 7]
+            ]
+        </pre>
+        <button type="button" onclick="printValue()">PRINT</button>
+        <div id="show"></div>
+    </div>
+    <script>
+        let array = [
+            [1, 2, 1, 24],
+            [8, 11, 9, 4],
+            [7, 0, 7, 27],
+            [7, 4, 28, 14],
+            [3, 10, 26, 7]
+        ]
+        let show = null;
+        let showContent = "";
+        function printValue() {
+            show = document.getElementById("show");
+            for(let i = 0;i<array.length;i++){
+                //alert(123);
+                showContent += '"row ' + i +'"'+"<br>";
+                //alert(showContent);
+                for(let j = 0; j< array[i].length;j++){
+                    //alert(j);
+                    showContent += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '"' + array[i][j] + '"' +'<br>';
+                }
+            }
+            show.innerHTML = showContent;
+        }
+    </script>
+</body>
+</html>

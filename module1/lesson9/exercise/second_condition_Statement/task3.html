@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+    <div>
+        <p>Bài tập tính diện tích hình vuông</p>
+        <input type="text" placeholder="Nhập vào độ dài cạnh(m)" id="input">
+        <input type="button" value ="Convert" id="btn">
+        <p id="show"></p>
+    </div>
+    <script>
+        let btn = document.getElementById("btn");
+        let input = document.getElementById("input");
+        let showContent = document.getElementById("show");
+        btn.addEventListener("click", convert);
+        function convert(){
+            let width = parseInt(input.value);
+            let area = 0;
+            let content = "";
+            if(!isNaN(width)){
+                area = width*width;
+                content = "diện tích hình vuông là " + area + "m"+"<sup>2</sup>";
+
+            } else content = "vui lòng nhập số";
+
+            showContent.innerHTML = content;
+            input.value = "";
+        }
+    </script>
+</body>
+</html>

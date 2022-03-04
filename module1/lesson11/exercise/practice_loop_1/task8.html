@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task8</title>
+</head>
+<body>
+    <div style="width: 100px;height:100px;margin: 20% auto ;">
+        <button type = "button" id ="button" style="padding: 20px;display: inline-block;
+         background: green;color:white" onclick="startGame()">Start Game</button>
+    </div>
+    <script>
+        let btn = document.getElementById("button");
+        function startGame() {
+            let min = parseInt(prompt("nhập giá trị nhỏ nhất trong giới hạn"));
+            let max = parseInt(prompt("nhập giá trị lớn nhất trong giới hạn"));
+            let random = Math.floor(Math.random()*(max-min+1))+min;
+            let flag = 3;
+            while(flag>0){
+                let guess = parseInt(prompt("nhập số bạn đoán"));
+                if(guess == random){
+                    alert("thật tuyệt vời, bạn đã đoán chính xác");
+                    flag-=5;
+                } else {
+                    flag--;
+                    if(flag>0){
+                        if(guess>random){
+                            alert("số bạn nhập lớn hơn đáp án, bạn còn " + flag + " lần nhập");
+                        }else  alert("số bạn nhập nhỏ hơn đáp án, bạn còn " + flag + " lần nhập");
+
+                    }
+                }
+                    if(flag==0){
+                        alert("bạn đã đoán sai quá 3 lần ,trò chơi kết thúc");
+                        btn.innerText = "GameOver";
+                        btn.id ="change";
+                        let gameOverBtn = document.getElementById("change");
+                        change.style.background="red";
+                        change.onclick ="";
+                    }
+                }
+        }
+    </script>
+</body>
+</html>

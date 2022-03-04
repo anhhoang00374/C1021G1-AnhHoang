@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prime number</title>
+</head>
+<body>
+    <div>
+        <p>Bài tập in số nguyên tố</p>
+        <label for="input"> Nhập vào số lượng số nguyên tố bạn muốn in ra</label> <br><br>
+        <input type="text" id="input" placeholder="nhập vào số"><br><br>
+        <button type="button" onclick="printNum()">In</button>
+        <p id ="showPrime"></p>
+    </div>
+    <script>
+        let input = document.getElementById("input");
+        let showContent = document.getElementById("showPrime");
+        function printNum() {
+
+            let num = parseInt(input.value);
+            let currentNum = 0;
+            let allNumber = "";
+            let minNum = 2;
+
+            if (num > 0) {
+                while (currentNum < num) {
+                    let checkPrime = 0;
+                    for (let i = 1; i <= minNum; i++) {
+
+                        if (minNum % i == 0) {
+                            checkPrime ++;
+                        }
+                        if (checkPrime>2) {
+                            break;
+                        }
+                    }
+                    if(checkPrime==2){
+                        allNumber +=" " + minNum ;
+                        currentNum++;
+
+                    }
+                    minNum++;
+                }
+
+            } else allNumber = " Vui lòng nhập giá trị là số lớn hơn 0";
+            showContent.innerHTML = allNumber;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tic tac toe</title>
+</head>
+<body>
+
+    <div style="width: 50%;margin: 0 auto; text-align: center">
+        <div id="chessBoard"></div>
+        <br>
+        <button type="button" onclick="hitChess()" id ="changePlayer">PLAYER 1</button>
+    </div>
+    <script>
+        let chessBoard = null,changPlayer = null;
+        let col = null, row = null;
+        let player1 = [];
+        let player2 = [];
+        let turn = 0;
+        let isWinner = false;
+        let isCheck = null;
+        chessBoard = document.getElementById("chessBoard");
+        changPlayer = document.getElementById("changePlayer");
+        let chess = "";
+        creatBoard();
+
+        //tạo bàn cờ lúc bắt đầu
+        function creatBoard() {
+            for(let i = 0;i <10;i++){
+                for(let j = 0;j<10;j++){
+                    chess+="&nbsp;&nbsp;●&nbsp&nbsp; "
+                }
+                chess+="<br><br>";
+            }
+            chessBoard.innerHTML = chess;
+        }
+
+        //khi người chơi kích vào button để chơi cờ
+        function hitChess() {
+            //kiểm tra xong đã có người thắng hay chưa
+            isWinner = false;
+            // cho người dùng nhập vị trí muốn đánh
+            do{
+                col = parseInt(prompt("X is : "));
+                row = parseInt(prompt("Y is : "));
+                if((col>=0&&col<10)&&(row>=0&&row<10)&&!isNaN(col*row)){
+                    checkHit(col,row);
+                }else{
+                    isCheck = true;
+                    alert("dữ liệu đầu vào phải là vị trí số cột và số hàng");
+                }
+
+            }while(isCheck);
+
+            if(turn%2==0){
+                checkWin(player1);
+                player1.push([col,row]);
+                changPlayer.innerText = "PLAYER 2";
+            } else {
+                checkWin(player2);
+                player2.push([col,row]);
+                changPlayer.innerText = "PLAYER 1";
+            }
+            if(isWinner){
+                alert("you are winner,game over");
+                changPlayer.innerText = "Game Over";
+                changPlayer.disabled = true;
+            }
+            printChess();
+            turn++;
+        }
+
+        //kiểm tra vị trị người chơi vừa đánh đã được đánh chưa.
+        function checkHit(col,row) {
+            let check = false;
+            player1.forEach(function(value){
+                if (value[0]==col&&value[1]==row){
+                    alert("vị trí này đã được chọn 1");
+                    check = true;
+                }
+            })
+
+            player2.forEach(function(value1){
+                if (value1[0]==col&&value1[1]==row){
+                    alert("vị trí này đã được chọn 2");
+                    check = true;
+                }
+            })
+            if(check) isCheck =true;
+            else isCheck = false;
+        }
+        //làm mới bàn cờ mỗi khi người chơi đánh
+        function printChess() {
+            chess = "";
+            for(let i = 0;i<10;i++){
+                for(let j = 0;j<10;j++){
+                    let checkChess = 1;
+                    player1.forEach(function (value){
+                        if(value[0]==i&&value[1]==j){
+                            checkChess = 2;
+                        }
+                    })
+                    player2.forEach(function (value){
+                        if(value[0]==i&&value[1]==j){
+                            checkChess = 3;
+                        }
+                    })
+                    if (checkChess ==1){
+                        chess+="&nbsp;&nbsp;●&nbsp&nbsp; "
+                    }else if(checkChess ==2){
+                        chess+="&nbsp;&nbsp;O&nbsp&nbsp; "
+                    }else  chess+="&nbsp;&nbsp;X&nbsp&nbsp; "
+                }
+                chess+="<br><br>";
+            }
+            chessBoard.innerHTML = chess;
+        }
+
+        //kiểm tra xem có người chơi nào đã giành chiến thắng hay chưa
+        function checkWin(arr) {
+            let tempArr = [];
+            arr.forEach(function(value,index){
+                if((value[0] == col-1)&&value[1]==row){
+                         tempArr =[];
+                         tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                        tempArr.forEach(function (tempValue) {
+                            if(((tempValue[0]==col-2)&&(tempValue[1] == row))||
+                                ((tempValue[0])==col+1)&&(tempValue[1]==row)){
+                                isWinner =true;
+                            }
+                        })
+                }else if((value[0] == col+1)&&value[1]==row){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if(((tempValue[0]==col+2)&&(tempValue[1] == row))||
+                            ((tempValue[0])==col-1)&&(tempValue[1]==row)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col-2)&&value[1]==row){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if((tempValue[0]==col-1)&&(tempValue[1] == row)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col+2)&&value[1]==row){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if((tempValue[0]==col+1)&&(tempValue[1] == row)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col)&&value[1]==row-1){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if(((tempValue[0]==col)&&(tempValue[1] == row-2))||
+                            ((tempValue[0])==col)&&(tempValue[1]==row+1)){
+                            isWinner =true;
+                        }
+                    })
+                }
+                else if((value[0] == col+1)&&value[1]==row+1){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if(((tempValue[0]==col)&&(tempValue[1] == row+2))||
+                            ((tempValue[0])==col)&&(tempValue[1]==row-1)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col)&&value[1]==row+2){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if((tempValue[0]==col)&&(tempValue[1] == row+1)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col)&&value[1]==row-2){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if((tempValue[0]==col)&&(tempValue[1] == row-1)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col-1)&&value[1]==row-1){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if(((tempValue[0]==col-2)&&(tempValue[1] == row-2))||
+                            ((tempValue[0])==col+1)&&(tempValue[1]==row+1)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col+1)&&value[1]==row+1){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if(((tempValue[0]==col+2)&&(tempValue[1] == row+2))||
+                            ((tempValue[0])==col-1)&&(tempValue[1]==row-1)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col-2)&&value[1]==row-2){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if((tempValue[0]==col-1)&&(tempValue[1] == row-1)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col+2)&&value[1]==row+2){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if((tempValue[0]==col+1)&&(tempValue[1] == row+1)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col+1)&&value[1]==row-1){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if(((tempValue[0]==col+2)&&(tempValue[1] == row-2))||
+                            ((tempValue[0])==col-1)&&(tempValue[1]==row+1)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col-1)&&value[1]==row+1){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if(((tempValue[0]==col+1)&&(tempValue[1] == row-1))||
+                            ((tempValue[0])==col-2)&&(tempValue[1]==row+2)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col+2)&&value[1]==row-2){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if((tempValue[0]==col+1)&&(tempValue[1] == row-1)){
+                            isWinner =true;
+                        }
+                    })
+                }else if((value[0] == col-2)&&value[1]==row+2){
+                    tempArr =[];
+                    tempArr = arr.slice(0,index).concat(arr.slice((index+1)));
+                    tempArr.forEach(function (tempValue) {
+                        if((tempValue[0]==col-1)&&(tempValue[1] == row+1)){
+                            isWinner =true;
+                        }
+                    })
+                }
+
+            })
+        }
+    </script>
+</body>
+</html>

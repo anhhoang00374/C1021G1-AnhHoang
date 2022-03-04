@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>practice_nested_loop</title>
+</head>
+<body>
+    <div>
+        <p>Viết script sử dụng vòng lặp For tạo ra bảng với số lượng hàng và cột theo ý người dùng,
+            giá trị trong ô bằng  tích giữa hàng và cột tại ô đó</p>
+        <button type="button" onclick="show()">Start</button>
+        <br>
+        <div id="showTable">
+
+        </div>
+    </div>
+    <script>
+        let showTable = document.getElementById("showTable");
+        function show() {
+            let row = parseInt(prompt("please input row"));
+            let col = parseInt(prompt("please input column"));
+            let table = "<table border = '1' width ='300px' cellspacing='0' cellpadding='3'>";
+            for(let i = 1; i<=row; i++){
+                table = table + "<tr>";
+                for (let j = 1; j<=col;j++){
+                    table = table + "<td>"+j*i+"</td>";
+                }
+                table = table + "</tr>"
+            }
+            table = table +"</table>";
+            showTable.innerHTML = table;
+        }
+    </script>
+</body>
+</html>

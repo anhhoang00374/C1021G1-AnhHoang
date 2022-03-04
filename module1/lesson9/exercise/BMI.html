@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI</title>
+</head>
+<body>
+    <form>
+        <p>Tính chỉ số cơ thể</p>
+        <table>
+            <tr>
+                <td><label for="height">Chiều cao:</label></td>
+                <td><input type="text" id="height" placeholder="please input your height (kg)" required></td>
+            </tr>
+            <tr>
+                <td><label for="weight">Cân nặng:</label></td>
+                <td><input type="text" id="weight" placeholder="please input your weight (m)" required></td>
+            </tr>
+            <tr>
+                <td><button type="button" id="startBtn">Start</button></td>
+                <td></td>
+            </tr>
+        </table>
+        <p id="showContent"></p>
+    </form>
+    <script>
+        let height = document.getElementById("height");
+        let weight = document.getElementById("weight");
+        let startBtn = document.getElementById("startBtn");
+        let showContent = document.getElementById("showContent");
+        startBtn.addEventListener("click", checkBmi);
+        function checkBmi() {
+            let bmiValue = weight.value/(height.value*height.value);
+            if(bmiValue){
+                let bmi = "Obese";
+                if(bmiValue<18.5){
+                    bmi = "UnderWeight";
+                }else if(bmiValue<25){
+                    bmi = "Normal";
+                }else  if(bmiValue<30){
+                    bmi = "Overweight"
+                }
+                showContent.innerHTML ="Chỉ số BMI của bạn là " + bmiValue + ":" + bmi;
+                height.value = "";
+                weight.value = "";
+
+            } else {
+                showContent.innerHTML = "Dữ liệu bạn nhập bị lỗi ,vui lòng nhập lại"
+                height.value = "";
+                weight.value = "";
+            }
+        }
+    </script>
+</body>
+</html>

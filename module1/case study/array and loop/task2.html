@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+</head>
+<body>
+<div>
+    <p>
+        Bài 2: Cho 2 mảng A và B chứa số nguyên. Tìm ra một mảng đã được sắp xếp chứa các
+        phần tử xuất hiện trong mảng B nhưng lại không xuất hiện A
+        Chú ý các phần tử giống nhau chỉ tính là 1 lần xuất hiện
+    </p>
+    <button onclick="convert()">Start</button>
+    <p id="showContent"></p>
+</div>
+<script>
+    function convert() {
+        let showContent = document.getElementById("showContent");
+        let arrayA = [];
+        let arrayB = [];
+        let resultArray = [];
+        let lengthOfArrayA = parseInt(prompt("please input length of arrayA"));
+        for(let i = 0; i<lengthOfArrayA;i++){
+            arrayA.push(parseInt(prompt("input value ")));
+        }
+        let lengthOfArrayB = parseInt(prompt("please input length of arrayB"));
+        for(let i = 0; i<lengthOfArrayB;i++){
+            arrayB.push(parseInt(prompt("input value ")));
+        }
+        for(let i = 0;i<lengthOfArrayB;i++){
+            let check = true;
+            for(let j = 0;j<lengthOfArrayA;j++){
+                if(arrayB[i]==arrayA[j]){
+                    check = false;
+                    break;
+                }
+            }
+            if(check){
+                resultArray.push(arrayB[i]);
+            }
+        }
+        for(let i = 0;i<resultArray.length;i++){
+            for(let j = i+1;j<resultArray.length;j++){
+                if(resultArray[i]==resultArray[j]){
+                    resultArray.splice(i,1);
+                }
+            }
+        }
+        resultArray.sort(function(a,b){
+            return a-b;
+        })
+        showContent.innerHTML = "arrayA:"+arrayA.join(" ")+"<br>" +
+                                "arrayB :"+ arrayB.join(" ") +"<br>" +
+                                "resultArray :"+ resultArray.join(" ");
+    }
+
+</script>
+</body>
+</html>

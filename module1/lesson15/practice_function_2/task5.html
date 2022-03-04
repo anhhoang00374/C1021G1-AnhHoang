@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task4</title>
+</head>
+<body>
+    <div>
+        <p>
+            Viết hàm nhận vào 3 số nguyên bất kỳ,
+            trả về số nguyên có giá trị nhỏ nhất.
+        </p>
+        <button type="button" onclick="checkMin()"> Perform</button>
+    </div>
+    <script>
+        function checkMin() {
+            let arr =[];
+            for(let i = 0;i<3;i++){
+                let num ;
+                num = parseInt(prompt("please input number"));
+                while(isNaN(num)){
+                    num = parseInt(prompt("please input number"));
+                }
+                arr.push(num);
+            }
+            alert("min is : "+Math.min(arr[0],arr[1],arr[2]));
+        }
+    </script>
+</body>
+</html>

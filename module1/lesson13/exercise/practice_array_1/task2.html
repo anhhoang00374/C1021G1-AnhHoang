@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+</head>
+<body>
+    <div>
+        <p>Viết chương trình khởi tạo mảng số nguyên gồm 10 phần tử khác nhau.
+            Chương trình hiển thị ra được phần tử có giá trị lớn nhất trong mảng và
+            vị trí của phần tử đó.
+        </p>
+        <label for="input">nhập vào 10 phần tử cho mảng</label> <br> <br>
+        <input type="text" id="input" placeholder=" nhập số"> <br> <br>
+        <button type="button" onclick="addNumber()">ADD</button>
+        <br><br>
+        <button type="button" onclick="printNumber()">PRINT</button>
+        <div id ="show"></div>
+    </div>
+    <script>
+        let input = null;
+        let showContent = null;
+        let arrNum = []
+        function addNumber() {
+            input = document.getElementById("input");
+            arrNum.push(input.value);
+            input.value = "";
+        }
+        function printNumber() {
+            let max = arrNum[0];
+            let indexMax ;
+            showContent = document.getElementById("show");
+            arrNum.forEach(function(value,index){
+                if (max <= value){
+                    max = value;
+                    indexMax = index;
+                }
+            })
+            showContent.innerHTML ="Max is : " + max + " and index of max is : " + indexMax;
+        }
+    </script>
+</body>
+</html>

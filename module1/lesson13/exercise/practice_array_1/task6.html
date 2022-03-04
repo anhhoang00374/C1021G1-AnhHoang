@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task6</title>
+</head>
+<body>
+    <div>
+        <p> Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử,
+            nhập/tạo phần tử số nguyên V.
+            Chương trình tìm xem V có nằm trong mảng số nguyên không?
+            Nếu V thuộc mảng số nguyên thì in ra "V is in the array"
+            còn lại in ra "V is not in the array".
+        </p>
+        <label for="input">nhập vào 10 phần tử cho mảng</label> <br> <br>
+        <input type="text" id="input" placeholder=" input value"> <br> <br>
+        <button type="button" onclick="addNumber()">ADD</button>
+        <br><br>
+        <button type="button" onclick="printValue()">CHECK</button>
+        <div id ="show"></div>
+    </div>
+    <script>
+        let input = null;
+        let showContent = null;
+        let arrNum = []
+        function addNumber() {
+            input = document.getElementById("input");
+            if(!isNaN(parseInt(input.value))){
+                arrNum.push(parseInt(input.value));
+            }else alert("please input number");
+            input.value = "";
+        }
+        function printValue() {
+            showContent = document.getElementById("show");
+            let number = parseInt(prompt("input your word you want to find:"));
+            let output = "";
+            let isExist = false;
+            for(let i = 0;i<arrNum.length;i++){
+                if(arrNum[i] == number){
+                    isExist = true;
+                    break;
+                }
+            }
+          output = isExist ? "V is in the array" : "V is not in the array" ;
+            showContent.innerHTML = output;
+            arrNum = [];
+        }
+    </script>
+</body>
+</html>

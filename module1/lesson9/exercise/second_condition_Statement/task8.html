@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task8</title>
+</head>
+<body>
+<div>
+    <p>Bài tập kiểm tra tuổi một người</p>
+    <input type="text" placeholder="Nhập vào số tuổi" id="input">
+    <input type="button" value ="Convert" id="btn">
+    <p id="show"></p>
+</div>
+<script>
+    let btn = document.getElementById("btn");
+    let input = document.getElementById("input");
+    let showContent = document.getElementById("show");
+    btn.addEventListener("click", convert);
+    function convert(){
+        let age = parseFloat(input.value);
+        let ageInt = parseInt(age);
+        let content = "";
+        if((age-ageInt)==0){
+            if(age>0&&age<120){
+                content = "đây là tuổi của một người";
+            } else content = "đây không phải là số tuổi của một người"
+        } else content = "vui lòng nhập số nguyên";
+
+        showContent.innerHTML = content;
+        input.value = "";
+    }
+</script>
+</body>
+</html>

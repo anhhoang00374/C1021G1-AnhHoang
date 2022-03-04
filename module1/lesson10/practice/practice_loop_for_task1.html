@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>practice loop for</title>
+</head>
+<body>
+    <div>
+        <p>Viết chương trình hiển thị chuỗi “The number is N” 5 lần sử dụng vòng lặp for. Với N sẽ hiển thị từ 0 đến 4.</p>
+        <button type="button" onclick="printNum()">Start</button>
+        <p id="show"></p>
+    </div>
+    <script>
+        let showContent = document.getElementById("show");
+        function printNum() {
+            let content = "";
+            for(let i = 0;i<5;i++){
+                content += "The number is " + i + "<br>";
+            }
+            showContent.innerHTML = content;
+        }
+
+    </script>
+</body>
+</html>

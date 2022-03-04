@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my funny circle</title>
+</head>
+<body>
+    <canvas id="canvas" width="px" height="100px"></canvas>
+    <script>
+        let canvas = document.getElementById("canvas");
+            canvas.style.border = "1px solid black";
+            canvas.setAttribute("width",innerWidth+"px");
+             canvas.setAttribute("height",innerHeight + "px");
+        class Circle {
+            constructor(x,y,r) {
+                this.x = x;
+                this.y = y;
+                this.radius = r;
+            }
+        }
+        function getRandomColor(){
+            let red = Math.floor(Math.random()*255);
+            let blue = Math.floor(Math.random()*255);
+            let green = Math.floor(Math.random()*255);
+            return "rgb("+red+","+blue+","+green+")";
+        }
+        function createCircle(){
+            let ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            let radiusRandom = Math.floor(Math.random()*80);
+            let x = Math.random()*(innerWidth-2*radiusRandom)+radiusRandom;
+            let y = Math.random()*(innerHeight-2*radiusRandom)+radiusRandom;
+            let circle = new Circle(x,y,radiusRandom);
+            console.log(circle.radius);
+            ctx.arc(circle.x,circle.y,circle.radius,0,2*Math.PI);
+            let fillColor = getRandomColor();
+            ctx.fillStyle =fillColor;
+            ctx.fill();
+            let strokeColor = getRandomColor();
+            ctx.strokeStyle = strokeColor;
+            ctx.stroke();
+
+        }
+        function createMultipleCircle(){
+            for(let i = 0; i < 30; i++){
+                createCircle();
+            }
+        }
+        createMultipleCircle();
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+</head>
+<body>
+<div>
+    <p>
+        Bài 2: Viết hàm liệt kê các số nguyên tố trong mảng 2 chiều, đếm các số nguyên tố có
+        trong mảng đó.
+    </p>
+    <button type="button" onclick="calculate()">Start</button>
+    <p id ="showContent"></p>
+</div>
+<script>
+    function calculate() {
+        let showContent = document.getElementById("showContent");
+        let height = parseInt(prompt("input height"));
+        let arr = [];
+        let primeArr = [];
+        for (let i = 0; i < height; i++) {
+            let width = parseInt(prompt("input width a[" + i + "]"));
+            arr[i] = new Array(width);
+            for (let j = 0; j < width; j++) {
+                arr[i][j] = parseInt(prompt("please input value a[" + i + "][" + j + "]"));
+                if (isPrime(arr[i][j])) {
+                    primeArr.push(arr[i][j]);
+                }
+            }
+        }
+        showContent.innerHTML  = "prime of array are : " +primeArr.toString() ;
+    }
+
+    function isPrime(n){
+        let count = 0;
+        for(let i = 1;i<=n;i++){
+            if(n%i==0){
+                count++;
+            }
+        }
+        if(count==2){
+            return true;
+        }else return  false;
+    }
+</script>
+</body>
+</html>

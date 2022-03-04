@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+<div>
+    <p>
+        Tạo hàm nhận vào hai tham số.
+        Nếu giá trị của tham số thứ nhất lớn hơn tham số thứ hai,
+        hiển thị hộp thoại thông báo cho người dùng.
+        Nếu giá trị của tham số thứ nhất nhỏ hơn hoặc bằng tham số thứ hai,
+        trả về tổng của hai tham số.
+    </p>
+    <input type="number" placeholder="input first number" id="value1">
+    <input type="number" placeholder="input second number" id="value2">
+    <button type="button" onclick="add('value1','value2')">Add</button>
+    <p id="contentDisplay"></p>
+</div>
+<script>
+    function add(id1,id2) {
+        let value1 = parseInt(document.getElementById(id1).value);
+        let value2 = parseInt(document.getElementById(id2).value);
+        if(value1>value2){
+            alert("the first number is bigger than the second number");
+        }else {
+            let contentDisplay = document.getElementById("contentDisplay");
+            contentDisplay.innerHTML = "Sum of two numbers is : " + (value1+value2);
+        }
+
+    }
+</script>
+</body>
+</html>

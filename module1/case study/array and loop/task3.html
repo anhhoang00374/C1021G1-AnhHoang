@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+<div>
+    <p>
+        Bài 3: Cho một danh sách các phân số,
+        hãy tìm chỉ số của phân số lớn nhất (đếm từ 0)
+    </p>
+    <button onclick="convert()">Start</button>
+    <p id="showContent"></p>
+</div>
+<script>
+    function convert() {
+        let showContent = document.getElementById("showContent");
+        let length = parseInt(prompt("input length of array "));
+        let firstArray =[];
+        let secondArray =[];
+        let count = 0;
+        for(let i = 0; i<length;i++){
+            firstArray.push(parseInt(prompt("input value of firstArray ")));
+        }
+        for(let i = 0; i<length;i++){
+            secondArray.push(parseInt(prompt("input value of secondArray ")));
+        }
+        let max = firstArray[0]/secondArray[0];
+        for(let i = 1;i<length;i++){
+            if(firstArray[i]/secondArray[i]>max){
+                max = firstArray[i]/secondArray[i];
+                count = i;
+                console.log(max + " "+ count);
+            }
+        }
+        showContent.innerHTML ="firstArray is "+firstArray.join(" ")+"<br>" +
+                                "secondArray is "+secondArray.join(" ")+"<br>" +
+                                "max is : " + firstArray[count] + "/" + secondArray[count] + " at index " + count;
+    }
+
+</script>
+</body>
+</html>

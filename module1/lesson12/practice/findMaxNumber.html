@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>find largest number in number</title>
+</head>
+<body>
+    <div>
+        <p>find largest number in array</p>
+        <label for="input">input value to create array</label>
+        <input type="text" id="input" placeholder="input value">
+        <button type="button" onclick="addValue()">ADD</button>
+        <br>
+        <br>
+        <button type="button" onclick="findMax()">FIND</button>
+        <br>
+        <br>
+        <div id="show"></div>
+    </div>
+    <script>
+        let input = null;
+        let showContent = null;
+        let arr = [];
+        input = document.getElementById("input");
+        showContent = document.getElementById("show");
+        function addValue() {
+            let value = parseInt(input.value);
+            if(!isNaN(value)){
+                arr.push(value);
+                input.value = "";
+            } else {
+                alert("please input a number !!!");
+                input.value = "";
+            }
+        }
+        function findMax() {
+            let max = arr[0];
+            let position = 0;
+            arr.forEach(function (value,index) {
+                if(value>max) {
+                    max = value;
+                    position = index;
+                }
+            })
+            showContent.innerHTML = "max: " + max + " at position " + position;
+            arr = [];
+        }
+
+    </script>
+</body>
+</html>

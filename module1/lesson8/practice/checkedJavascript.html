@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>check javascript</title>
+</head>
+<body>
+    <div>
+        <p>Nhập và kiểm tra tên chính thức của Javascript</p>
+        <button type="button" id="button">Start</button>
+    </div>
+    <script>
+        let button = document.getElementById("button");
+        function check() {
+            let input = prompt('What is the "official" name of JavaScript?', '');
+            if (input == 'ECMAScript') {
+                alert('Right!');
+            } else {
+                alert("You don't know? ECMAScript!");
+            }
+        }
+        button.addEventListener("click", check);
+    </script>
+</body>
+</html>

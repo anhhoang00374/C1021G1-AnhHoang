@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task7</title>
+</head>
+<body>
+<div>
+    <p> Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử,
+        nhập/tạo phần tử số nguyên V.
+        Chương trình kiểm tra xem V có thuộc mảng đã cho không,
+        nếu V thuộc mảng đã cho xoá V khỏi mảng
+    </p>
+    <label for="input">nhập vào 10 phần tử cho mảng</label> <br> <br>
+    <input type="text" id="input" placeholder=" input value"> <br> <br>
+    <button type="button" onclick="addNumber()">ADD</button>
+    <br><br>
+    <button type="button" onclick="printValue()">CHECK</button>
+    <div id ="show"></div>
+</div>
+<script>
+    let input = null;
+    let showContent = null;
+    let arrNum = []
+    function addNumber() {
+        input = document.getElementById("input");
+        if(!isNaN(parseInt(input.value))){
+            arrNum.push(parseInt(input.value));
+        }else alert("please input number");
+        input.value = "";
+    }
+    function printValue() {
+        showContent = document.getElementById("show");
+        let number = parseInt(prompt("input your word you want to find:"));
+         let newArray = arrNum.filter(function(value,index){
+            return value != number;
+        })
+        alert(newArray + " " + arrNum);
+        showContent.innerHTML = "your array is : " + arrNum.toString()+ "<br>" +
+                                "your array after deleting is : " + newArray.toString();
+        arrNum = [];
+    }
+</script>
+</body>
+</html>

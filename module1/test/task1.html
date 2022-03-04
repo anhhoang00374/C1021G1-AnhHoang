@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let arrNum =[];
+  let avgNumbersModThree = 0;
+
+  inputNumToArray();
+  document.write(avgNumsModThree());
+
+  function checkValue(num){
+    if(num>50){
+      return true;
+    }
+    if(isNaN(num)){
+      return true;
+    }
+    return  false;
+  }
+
+  function numModThree(num) {
+    if((num%3==0)){
+      return true;
+    }
+  }
+
+  function inputNumToArray(){
+    let num;
+    do{
+       num = parseInt(prompt("input number < 50"));
+    }while (checkValue(num));
+
+    for(let i=0;i<num;i++){
+      let value = parseInt(prompt("input value"));
+      if(!isNaN(value)){
+        arrNum.push(value);
+      }else alert("please input a number");
+    }
+
+  }
+
+  function avgNumsModThree() {
+    let sum = 0;
+    let arrNumbersModThree = [];
+    arrNum.forEach(function(value){
+      if(numModThree(value)){
+        sum += value;
+        arrNumbersModThree.push(value);
+      }
+    })
+    avgNumbersModThree = sum/arrNumbersModThree.length;
+    if(!isNaN(avgNumbersModThree)){
+        return `mảng đã nhập là:${arrNum} <br> trung bình cộng các số chia hết cho 3 là:${avgNumbersModThree}`;
+    }else return `không có số nào chia hết cho 3`;
+
+  }
+
+</script>
+</body>
+</html>

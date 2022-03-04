@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my caculator</title>
+    <style>
+        table input{
+            color: blue;
+        }
+        table{
+            width:100%;
+            height:80%;
+            border: 2px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 200px;height:200px; text-align: center"><br>
+        <input type="text" size="25px" id="input">
+        <br>
+        <br>
+        <table>
+            <tr>
+                <td><input  type="button" value="1"  onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="2" onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="3"  onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="+"  onclick="inputValue(this.value)"></td>
+
+            </tr>
+            <tr>
+                <td><input  type="button" value="4"  onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="5"  onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="6"  onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="-"  onclick="inputValue(this.value)"></td>
+
+            </tr>
+            <tr>
+                <td><input  type="button" value="7"  onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="8" onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="9"  onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="*"  onclick="inputValue(this.value)"></td>
+            </tr>
+            <tr>
+                <td><input  type="button" value="C" id="btnCancel" ></td>
+                <td><input  type="button" value="0"  onclick="inputValue(this.value)"></td>
+                <td><input  type="button" value="=" id="btnResult"></td>
+                <td><input  type="button" value="/"  onclick="inputValue(this.value)"></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        let input = document.getElementById("input");
+        let btnCancel = document.getElementById("btnCancel");
+        let btnResult = document.getElementById("btnResult");
+        let value = "";
+        function inputValue(val) {
+            value += val;
+            input.value = value;
+        }
+        function showResult() {
+            if(value!=""){
+                value = eval(input.value);
+                input.value = value;
+                value = "";
+            }
+
+        }
+        function cancel() {
+            value = "";
+            input.value = value;
+        }
+        btnCancel.addEventListener("click", cancel);
+        btnResult.addEventListener("click", showResult);
+    </script>
+</body>
+</html>

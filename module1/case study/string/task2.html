@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task</title>
+</head>
+<body>
+<div>
+    <p>
+        Bài 2: Cho xâu kí tự.
+        Hãy đếm số lượng kí tự khác nhau trong xâu đó
+    </p>
+    <button onclick="count()">Start</button>
+    <p id ="showContent"></p>
+    <script>
+        function count() {
+            let showContent = document.getElementById("showContent");
+            let string = prompt("input string");
+            let arrString = string.split("");
+            let result  =[];
+            for(let i = 0;i<arrString.length;i++){
+                let check = true;
+                for(let j = 0;j<=result.length;j++){
+                        if(arrString[i]==result[j]){
+                            check = false;
+                            break;
+                        }
+                }
+                if(check){
+                    result.push(arrString[i]);
+                }
+            }
+            showContent.innerHTML = string + "<br>" + result.join("") + "<br>" + result.length;
+        }
+    </script>
+</div>
+</body>
+</html>

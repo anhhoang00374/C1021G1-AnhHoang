@@ -1,0 +1,18 @@
+Java không hỗ trợ sẵn phương thức nào để copy file. Tuy nhiên, bạn có thể tự tạo ra chức năng này. Để copy file trong java, bạn phải chuyển đổi file thành dạng byte stream với FileInputStream và ghi các bytes đó vào một file khác với FileOutputStream.
+Java không hỗ trợ sẵn phương thức nào để copy file. Tuy nhiên, bạn có thể tự tạo ra chức năng này. Để copy file trong java, bạn phải chuyển đổi file thành dạng byte stream với FileInputStream và ghi các bytes đó vào một file khác với FileOutputStream.
+Java không hỗ trợ sẵn phương thức nào để copy file. Tuy nhiên, bạn có thể tự tạo ra chức năng này. Để copy file trong java, bạn phải chuyển đổi file thành dạng byte stream với FileInputStream và ghi các bytes đó vào một file khác với FileOutputStream.
+Java không hỗ trợ sẵn phương thức nào để copy file. Tuy nhiên, bạn có thể tự tạo ra chức năng này. Để copy file trong java, bạn phải chuyển đổi file thành dạng byte stream với FileInputStream và ghi các bytes đó vào một file khác với FileOutputStream.
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt
+/Users/nguyenhoang/Desktop/codegym/C1021G1/module2/src/code_gym/io_binary_file_serialization/data/dest.txt

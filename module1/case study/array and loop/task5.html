@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task4</title>
+</head>
+<body>
+<div>
+  <p>
+    Bài 5: Giả sử menu của chúng ta có các loại thức uống như sau:
+    Cafe
+    Cam vắt
+    Nước ép cà rốt
+    Nước ép cà chua
+    Nước lọc
+    Nước dừa
+    Viết một chương trình gọi thức uống đơn giản.
+     1 (cafe), 2 (cam vắt), 3(nước ép cà rốt), 4(nước ép cà chua), 5(nước
+    lọc), 6(nước dừa), 7(thoát gọi món)
+  </p>
+  <p id ="price"></p>
+  <button onclick="convert()">Order</button>
+  <p id="showList"></p>
+  <p id="showMoney"></p>
+</div>
+<script>
+  let showList = document.getElementById("showList");
+  let showMoney = document.getElementById("showMoney");
+  let listPrice = document.getElementById("price");
+  let arrJuice = ["Cafe","orange","carrot","tomato","water","coconut"];
+  let arrPrice = ["7000VND","10000VND","10000VND","12000VND","5000VND","15000VND"]
+  let arrMoney = [7000,10000,10000,12000,5000,15000];
+  let menu = "menu :";
+  for(let i = 0;i<arrJuice.length;i++){
+    menu += `<br> ${arrJuice[i]}  <br>`;
+    listPrice.innerHTML = menu;
+  }
+  function convert() {
+    let listOrdered = "";
+    let money = 0;
+    let quantity;
+    let num;
+    do{
+      num = parseInt(prompt("input position:\n1 (cafe)7K, 2 (cam vắt)10k, 3(nước ép cà rốt)10k, 4(nước ép cà chua)12k, 5(nước\n" +
+              "    lọc)5k, 6(nước dừa), 7(thoát gọi món)15k"));
+      switch (num) {
+        case 1:
+          quantity = parseInt(prompt("input quantity"));
+          listOrdered += `${arrJuice[num-1]} : ${quantity} <br>`;
+          money += arrMoney[num-1]*quantity;
+          showList.innerHTML = listOrdered;
+          showMoney.innerHTML = "Total is :" + money;
+          break;
+        case 2:
+          quantity = parseInt(prompt("input quantity"));
+          listOrdered += `${arrJuice[num-1]} : ${quantity} <br>`;
+          money += arrMoney[num-1]*quantity;
+          showList.innerHTML = listOrdered;
+          showMoney.innerHTML = "Total is :" + money;
+          break;
+        case 3:
+          quantity = parseInt(prompt("input quantity"));
+          listOrdered += `${arrJuice[num-1]} : ${quantity} <br>`;
+          money += arrMoney[num-1]*quantity;
+          showList.innerHTML = listOrdered;
+          showMoney.innerHTML = "Total is :" + money;
+          break;
+        case 4:
+          quantity = parseInt(prompt("input quantity"));
+          listOrdered += `${arrJuice[num-1]} : ${quantity} <br>`;
+          money += arrMoney[num-1]*quantity;
+          showList.innerHTML = listOrdered;
+          showMoney.innerHTML = "Total is :" + money;
+          break;
+        case 5:
+          quantity = parseInt(prompt("input quantity"));
+          listOrdered += `${arrJuice[num-1]} : ${quantity} <br>`;
+          money += arrMoney[num-1]*quantity;
+          showList.innerHTML = listOrdered;
+          showMoney.innerHTML = "Total is :" + money;
+          break;
+        case 6:
+          quantity = parseInt(prompt("input quantity"));
+          listOrdered += `${arrJuice[num-1]} : ${quantity} <br>`;
+          money += arrMoney[num-1]*quantity;
+          showList.innerHTML = listOrdered;
+          showMoney.innerHTML = "Total is :" + money;
+          break;
+
+      }
+    }while (num>0&&num<7);
+
+    }
+    showContent.innerHTML = content;
+</script>
+</body>
+</html>

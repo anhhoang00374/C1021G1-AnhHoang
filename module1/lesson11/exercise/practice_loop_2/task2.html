@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+</head>
+<body>
+    <div>
+        <p>Tính giai thừa của một số nguyên dương</p>
+        <button type="button" onclick="calcu()">Start</button>
+    </div>
+    <script>
+
+        function calcu() {
+            mul = 1;
+            let num = parseInt(prompt("nhập vào số nguyên dương bạn muốn tính giai thừa"));
+            for(let i = 1;i<=num;i++){
+                mul = mul*i;
+            }
+            alert("giai thừa số bạn đã nhập là "+ mul);
+        }
+
+
+    </script>
+</body>
+</html>

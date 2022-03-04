@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ternary operator</title>
+</head>
+<body>
+    <div>
+        <p>checking login</p>
+        <button type="button" id ="checkBtn">Start</button>
+    </div>
+    <script>
+        let checkBtn = document.getElementById("checkBtn");
+        function check() {
+            let user = prompt("please input text","");
+            let message = (user == "Employee")?
+                "Hello":((user == "Director")?
+                    "Greetings":((user == "")?
+                        "No log" : ""));
+            alert(message);
+        }
+        checkBtn.addEventListener("click", check);
+    </script>
+</body>
+</html>

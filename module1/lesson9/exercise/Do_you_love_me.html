@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DO you love me</title>
+</head>
+<body>
+    <div style="width: 200px; margin: 0 auto">
+       <table>
+           <tr>
+               <td colspan="2"><h2>Do you love me?</h2></td>
+           </tr>
+           <tr style="text-align: center">
+               <td><button type="button" onclick="anwserYes()">Yes</button></td>
+               <td id="noBtn" ><button type="button" onmouseover="anwserNo()">No</button></td>
+           </tr>
+       </table>
+    </div>
+    <script>
+        let noBtn = document.getElementById("noBtn");
+        function anwserYes() {
+            alert("Thank you, me too");
+        }
+        function anwserNo() {
+            noBtn.style.position = "absolute";
+            let screenWidth = window.innerWidth;
+            let screenHeight = window.innerHeight;
+            let width = Math.random()*screenWidth;
+            let height = Math.random()*screenHeight;
+            noBtn.style.left = width + "px";
+            noBtn.style.top = height + "px";
+
+        }
+    </script>
+</body>
+</html>

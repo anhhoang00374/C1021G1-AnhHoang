@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+</head>
+<body>
+<div>
+    <p>Bài tập chuyển đổi từ mét sang feet</p>
+    <input type="text" placeholder="Nhập vào độ dài (m)" id="input">
+    <input type="button" value ="Convert" id="btn">
+    <p id="show"></p>
+</div>
+    <script>
+        let btn = document.getElementById("btn");
+        let input = document.getElementById("input");
+        let showContent = document.getElementById("show");
+        btn.addEventListener("click", convert);
+        function convert(){
+            let m = parseInt(input.value);
+            let f = 0;
+            let content = "";
+            if(!isNaN(m)){
+                f = m*3.2808;
+                content = m + " mét = " + f + " feet";
+
+            } else content = "vui lòng nhập số";
+
+            showContent.innerHTML = content;
+            input.value = "";
+        }
+    </script>
+</body>
+</html>

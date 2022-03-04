@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>adam and eva</title>
+</head>
+<body>
+    <script>
+        class Apple {
+            constructor() {
+                this._weight = 10;
+            }
+            getWeight(){
+                return this._weight;
+            }
+           decrease(){
+                this._weight = this._weight - 1;
+           }
+        }
+        class Human {
+            constructor(name,gender,weight) {
+                this._name = name;
+                this._gender = gender;
+                this._weight = weight;
+            }
+
+            getName() {
+                return this._name;
+            }
+
+            setName(value) {
+                this._name = value;
+            }
+
+            getGender() {
+                return this._gender;
+            }
+
+            setGender(value) {
+                this._gender = value;
+            }
+
+            getWeight() {
+                return this._weight;
+            }
+
+            setWeight(value) {
+                this._weight = value;
+            }
+            speaking(content){
+                console.log(content);
+            }
+            eatingApple(apple){
+                if(apple.getWeight()>0){
+                    this._weight ++;
+                    console.log("weight of apple is : "+apple.getWeight());
+                    console.log("i have ate a apple. my current weight is : "+ this._weight);
+                    apple.decrease();
+                    console.log("current weight of apple is : "+apple.getWeight());
+
+                }
+            }
+        }
+        let apple = new Apple();
+        let adam = new Human("adam","man",20);
+        adam.speaking("hello,i am adam");
+        adam.eatingApple(apple);
+    </script>
+</body>
+</html>

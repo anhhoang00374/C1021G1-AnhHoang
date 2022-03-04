@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>JS Bin</title>
+    <style>
+        body {padding-top:50px}
+    </style>
+</head>
+
+<body>
+    <input type="text" id="txtValue" placeholder="input your favourite number" size ="25"/>
+    <input type="button" id="btnAdd" value="Add" onclick="add_element_to_array();"/>
+    <input type="button" id="btnDisplay" value="Display" onclick="display_array();"/>
+    <div id="result"></div>
+    <script>
+        let input = null;
+        let result = null;
+        let arrNum = [];
+        input = document.getElementById("txtValue");
+        result = document.getElementById("result");
+        function add_element_to_array() {
+            arrNum.push(parseInt(input.value));
+            input.value ="";
+        }
+        function display_array() {
+            let content = "";
+            arrNum.forEach(function (value,index) {
+                content += "Element "+ index + " = " + value + "<br>";
+            })
+            result.innerHTML = content;
+        }
+
+    </script>
+</body>
+
+</html>

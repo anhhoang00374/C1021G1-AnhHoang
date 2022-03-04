@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task11</title>
+</head>
+<body>
+    <div>
+        <p>cách tính thuế thư nhập cá nhân</p>
+        <p>công thức tính:</p>
+        <p>
+            Dưới 5tr-5 % ,5tr đến 10tr -10%,10tr đến 18tr - 15%, 18tr đến 32tr -20%,
+            32tr - 52tr -25%,52tr đến 80tr - 30%, trên 80tr - 35%;
+        </p>
+        <input type="text" placeholder="nhập vào thu nhập của bạn (triệu vnd)" id="input" size="33px">
+        <input type="button" value="Tính thuế" onclick="calculation()">
+        <p id="show"></p>
+    </div>
+    <script>
+        let input = document.getElementById("input");
+        let showContent = document.getElementById("show");
+        function calculation() {
+            let content = "";
+            let money = input.value;
+            let tax = 0;
+            if(!isNaN(money)){
+                if(money<5){
+                    tax = money*0.05;
+                }else if(money <10){
+                    tax = 5*0.05 + (money-5)*0.1;
+                }else if(money < 18){
+                    tax = 5*0.05 + 5*0.1 + (money-10)*0.15;
+                }else if(money <32){
+                    tax = 5*0.05 + 5*0.1 + 8*0.15 + (money-18)*0.2;
+                }else if(money < 52){
+                    tax = 5*0.05 + 5*0.1 + 8*0.15 + 14*0.2 + (money-32)*0.25;
+                }else if (money < 80){
+                    tax = 5*0.05 + 5*0.1 + 8*0.15 + 14*0.2 + 20*0.25 + (money-52)*0.3;
+                }else {
+                    tax = 5*0.05 + 5*0.1 + 8*0.15 + 14*0.2 + 20*0.25 + 28*0.3 + (money-80)*0.35;
+                }
+                content = "số tiền thuế bạn phải đóng là : " + tax;
+            } else content = "vui lòng nhập số";
+            showContent.innerHTML = content;
+            input.value = "";
+        }
+
+    </script>
+</body>
+</html>

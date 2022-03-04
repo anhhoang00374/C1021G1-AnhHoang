@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task8</title>
+</head>
+<body>
+<div>
+    <p> Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử.
+        Chương trình sắp xếp mảng theo thứ tự giảm dần và
+        hiển thị ra mảng đã được sắp xếp.
+    </p>
+    <label for="input">nhập vào 10 phần tử cho mảng</label> <br> <br>
+    <input type="text" id="input" placeholder=" input value"> <br> <br>
+    <button type="button" onclick="addNumber()">ADD</button>
+    <br><br>
+    <button type="button" onclick="printValue()">CHECK</button>
+    <div id ="show"></div>
+</div>
+<script>
+    let input = null;
+    let showContent = null;
+    let arrNum = []
+    function addNumber() {
+        input = document.getElementById("input");
+        if(!isNaN(parseInt(input.value))){
+            arrNum.push(parseInt(input.value));
+        }else alert("please input number");
+        input.value = "";
+    }
+    function printValue() {
+        showContent = document.getElementById("show");
+        for(let i = 0;i <arrNum.length; i++){
+            for( let j = 0; j<arrNum.length; j++){
+                if(arrNum[i]>arrNum[j]){
+                    let temp = arrNum[i];
+                    arrNum[i] = arrNum[j];
+                    arrNum[j] = temp ;
+                }
+            }
+
+        }
+        showContent.innerHTML = "Your array after sorting is : " + arrNum.toString() ;
+        arrNum = [];
+    }
+</script>
+</body>
+</html>

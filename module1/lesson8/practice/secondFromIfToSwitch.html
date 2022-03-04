@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>from if to switch</title>
+</head>
+<body>
+    <div>
+        <p>bài tập switch case</p>
+        <button type="button" id="button">Start</button>
+    </div>
+    <script>
+        let checkButton =document.getElementById("button");
+        function check() {
+            let a = parseInt(prompt("a",""));
+            switch (a) {
+                case 0:
+                    alert(0);
+                    break;
+                case 1:
+                    alert(1);
+                    break;
+                case 2:
+                case 3:
+                    alert('2,3');
+                    break;
+                    default:
+                        alert("vui lòng nhập lại");
+            }
+        }
+        checkButton.addEventListener("click", check);
+
+
+    </script>
+</body>
+</html>

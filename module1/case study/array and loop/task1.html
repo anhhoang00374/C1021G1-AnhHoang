@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task1</title>
+</head>
+<body>
+    <div>
+        <p>
+            Cho mảng a chỉ chứa các số nguyên
+            Xây dựng mảng b là prefix sums của mảng a
+        </p>
+        <button onclick="convert()">Start</button>
+        <p id="showContent"></p>
+    </div>
+    <script>
+        function convert() {
+            let showContent =document.getElementById("showContent");
+            let arr = [];
+            let prefixArr = []
+            let quantity = prompt("please input length of Array: ");
+            for(let i=0;i<quantity;i++){
+                let num = prompt("input number");
+                if(!isNaN(parseInt(num))){
+                    arr.push(parseInt(num));
+                }else alert("please input a number");
+            }
+            for(let i=0;i<arr.length;i++){
+                let sum = 0;
+                for(let j = 0;j<=i;j++){
+                    sum+=arr[j];
+                }
+                prefixArr.push(sum);
+            }
+            showContent.innerHTML = arr.join(" ")+"<br>"+prefixArr.join(" ");
+
+        }
+
+    </script>
+</body>
+</html>

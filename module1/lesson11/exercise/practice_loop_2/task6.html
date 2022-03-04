@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task6</title>
+</head>
+<body>
+    <div>
+        <p> In hình trái tim</p>
+        <button type="button" onclick="printHeart()">In</button>
+        <p id="show"></p>
+    </div>
+    <script>
+        let show = document.getElementById("show");
+
+        let content = "";
+        function printHeart() {
+            content+="<pre>"
+            for(let i = 1;i<10;i++){
+                for(let j = 0;j<9;j++){
+                    if((i==1&&j==0)||
+                        (i==1&&j==1)||
+                        (i==1&&j==4)||
+                        (i==1&&j==7)||
+                        (i==1&&j==8)||
+                        (i==2&&j==0)||
+                        (i==2&&j==8)||
+                        (i==6&&j==0)||
+                        (i==6&&j==8)||
+                        (i==7&&j==0)||
+                        (i==7&&j==1)||
+                        (i==7&&j==7)||
+                        (i==7&&j==8)||
+                        (i==8&&j==0)||
+                        (i==8&&j==1)||
+                        (i==8&&j==2)||
+                        (i==8&&j==6)||
+                        (i==8&&j==7)||
+                        (i==8&&j==8)||
+                        (i==9&&j==0)||
+                        (i==9&&j==1)||
+                        (i==9&&j==2)||
+                        (i==9&&j==3)||
+                        (i==9&&j==5)||
+                        (i==9&&j==6)||
+                        (i==9&&j==7)||
+                        (i==9&&j==8)
+
+                    ){
+                        content +="   ";
+
+                    }else {
+                        content +=" ＊ ";
+                    }
+
+                }
+                content+="<br><br>";
+            }
+            content+="</pre>";
+            show.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

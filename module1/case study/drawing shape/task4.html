@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>task2</title>
+</head>
+<body>
+<div>
+  <p>Bài 2: Vẽ tam giác cân rỗng có chiều cao h</p>
+  <button onclick="draw()">Draw</button>
+  <p id="showContent"></p>
+</div>
+<script>
+  function draw() {
+    let showContent = document.getElementById("showContent");
+    let width = parseInt(prompt("please input width: "));
+    let content = "";
+    for(let i = 0;i<width;i++){
+      for(let j = 0;j<2*width-1;j++){
+        if(j==((2*width-1)-2*i+1)/2||j==((2*width-1)-2*i+1)/2+2*i||i==width-1){
+          content += " &nbsp;*";
+        }else content += "&nbsp;&nbsp;&nbsp;";
+      }
+      content += "<br><br>";
+    }
+    showContent.innerHTML = content;
+  }
+</script>
+</body>
+</html>

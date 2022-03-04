@@ -1,0 +1,50 @@
+
+html {
+    font-size: 16px;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.black{
+    color:black;
+}
+.font-size-xs{
+    font-size: 0.75rem;
+}
+.font-size-big{
+    font-size: 2rem;
+}
+.font-size-md{
+    font-size: 1.5rem;
+}
+.menu-dropdown{
+    position: absolute;
+    display: none;
+    width: 150vh;
+}
+.dropdowm-computer:hover .menu-dropdown{
+    display: flex;
+    justify-content: space-between;
+
+}
+.business:hover .menu-dropdown{
+    display: flex;
+    justify-content: space-between;
+}
+.white-color{
+    color: whitesmoke;
+}
+#header-md{
+    display: none;
+}
+@media all and (max-width: 1024px){
+    #header-lg{
+        display: none;
+    }
+    #header-md{
+        display: block;
+    }
+
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task3</title>
+</head>
+<body>
+    <div>
+        <p>bài tập kiểm tra số có lớn hơn không hay không</p>
+        <button type="button" onclick="check()">Start</button>
+        <p id="show"></p>
+    </div>
+    <script>
+        let showContent = document.getElementById("show");
+
+        function check() {
+            let content = "số đã nhập là số nhỏ hớn không";
+            let num = parseInt(prompt("nhập vaò số bạn muốn kiểm tra"));
+            if(!isNaN(num)){
+                if(num>0){
+                    content = "số đã nhập là số lớn hơn không";
+                } else if(num == 0){
+                    content = "số đã nhập bằng không";
+                }
+            } else content = "vui lòng nhập một số";
+            showContent.innerHTML = content;
+        }
+    </script>
+</body>
+</html>

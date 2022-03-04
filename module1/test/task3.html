@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    document.write(countDates());
+
+    function setMonthAndYear(month,year){
+        let date = new Date(year,month,);
+        return date;
+    }
+    function checkValue(month,year) {
+        if(year<0){
+            return true;
+        }
+        if(month<0||month>12){
+            return true;
+        }
+        if(isNaN(month*year)){
+            return true
+        }
+        return false;
+    }
+
+    function checkDays(date) {
+        let days = date.getMonth();
+        switch (days+1) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                return `31`;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                return `30`;
+                break;
+            case 2:
+                if(leapYear(date.getFullYear())){
+                    return `29`
+                }else return `28`;
+                break;
+
+        }
+    }
+
+     function leapYear(year){
+        if ((year % 4===0 &&year%100 !==0 && year % 400 !==0)||(year%100===0 && year % 400===0)){
+            return true
+        } else{
+            return false
+        }
+    }
+
+
+    function countDates(){
+        let year;
+        let month;
+        let date;
+        do{
+            year = parseInt(prompt("input year that a number >0"));
+            month = parseInt(prompt("input month that a number >0 and <13"));
+        }while(checkValue(month,year));
+        date = setMonthAndYear(month-1,year);
+
+         let dayOfMonth = checkDays(date);
+        return `số ngày trong tháng đã nhập là ${dayOfMonth}`;
+
+
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>remote tivi</title>
+</head>
+<body>
+    <script>
+        class Tivi {
+            constructor(channel,volume,isTurn) {
+                this._channel = channel;
+                this._volume = volume;
+                this._isTurn = isTurn;
+            }
+
+            getChannel() {
+                return this._channel;
+            }
+
+            setChannel(value) {
+                this._channel = value;
+            }
+
+            getVolume() {
+                return this._volume;
+            }
+
+            setVolume(value) {
+                this._volume = value;
+            }
+
+            getIsTurn() {
+                return this._isTurn;
+            }
+
+            setIsTurn(value) {
+                this._isTurn = value;
+            }
+            turnOnOff(){
+                this._isTurn = !this._isTurn;
+                if(this._isTurn) console.log("now tivi is turn on")
+                else console.log("now tivi is turn off");
+            }
+            changeChanel(channel){
+                this._channel = channel;
+                console.log("current channel is : "+ channel);
+            }
+
+            changeVolume(volume){
+                this._volume = volume;
+                console.log("current volume is : "+ volume);
+            }
+        }
+
+        class Remote {
+            constructor(tivi) {
+                this._tivi = tivi;
+            }
+
+            getTivi() {
+                return this._tivi;
+            }
+
+            setTivi(value) {
+                this._tivi = value;
+            }
+            changeChannel(channel){
+                if(this._tivi.getIsTurn()){
+                    this._tivi.setChannel(channel);
+                    console.log("current channel is : "+ channel)
+                }else console.log("please turn on the Tivi");
+            }
+
+            changeVolume(volume){
+                if(this._tivi.getIsTurn()){
+                    this._tivi.setVolume(volume);
+                    console.log("current volume is : "+ volume);
+                }else console.log("please turn on the Tivi");
+            }
+            turnOffOnTivi(){
+                this._tivi.setIsTurn(!this._tivi.getIsTurn());
+                if(this._tivi.isTurn) console.log("now tivi is turn on")
+                else console.log("now tivi is turn off");
+            }
+        }
+        let tivi = new Tivi(0,5,false);
+        let remote = new Remote(tivi);
+        tivi.turnOnOff();
+        tivi.changeChanel(7);
+        console.log("current volume is : "+tivi.getVolume());
+        remote.changeChannel(3);
+        remote.changeVolume(tivi.getVolume()+2);
+        remote.turnOffOnTivi();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task 9</title>
+</head>
+<body>
+    <div>
+        <p>
+            Viết hàm truyền vào một mảng ký tự, và một ký tự bất kỳ,
+            kiểm tra xem ký tự bất kỳ đó có nằm trong mảng không.
+            Nếu có trả về số lần xuất hiện của ký tự đó, nếu không trả về -1.
+        </p>
+        <input type="text" placeholder="input string" id="stringInput">
+        <button type="button" onclick="add()">Add</button>
+        <br>
+        <br>
+        <button type="button" onclick="findCharacter()">Find</button>
+        <div id="contentDisplay"></div>
+    </div>
+    <script>
+        let string = null;
+        let arrString = [];
+        let contentDisplay = document.getElementById("contentDisplay");
+        function add() {
+            string = document.getElementById("stringInput");
+            arrString = string.value.split("");
+            string.value = "";
+        }
+        function findCharacter() {
+            let character = prompt("input character")
+            let quantity = 0;
+            arrString.forEach(function(value){
+                if(value.toLowerCase() == character.toLowerCase()){
+                    quantity++;
+                }
+            })
+            if(quantity == 0){
+                contentDisplay.innerHTML = -1+"";
+            } else contentDisplay.innerHTML = quantity+"";
+            arrString = [];
+
+        }
+
+    </script>
+</body>
+</html>

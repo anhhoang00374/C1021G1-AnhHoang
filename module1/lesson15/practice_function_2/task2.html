@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task2</title>
+</head>
+<body>
+    <div>
+        <p>
+            Bài 2: Viết hàm tính diện tích,
+            hàm tính chu vi hình tròn. Gọi hàm vừa xây dựng được
+        </p>
+        <button type="button" onclick="areaOfCircle()"> Area of circle</button>
+        <button type="button" onclick="perimeter()"> Perimeter of circle</button>
+    </div>
+    <script>
+        function areaOfCircle() {
+            let r = prompt("please input number");
+            if(!isNaN(parseInt(r))){
+                alert("the area of circle is : " + Math.PI*r*r);
+            } else alert("this is not a number");
+        }
+        function perimeter() {
+            let r = prompt("please input number");
+            if(!isNaN(parseInt(r))){
+                alert("the perimeter of circle is : " + Math.PI*r*2);
+            } else alert("this is not a number");
+        }
+    </script>
+</body>
+</html>

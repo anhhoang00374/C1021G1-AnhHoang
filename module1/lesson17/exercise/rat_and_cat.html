@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rat and cat</title>
+</head>
+<body>
+    <script>
+        class Rat {
+            constructor(name ,weight,speed,isAlive) {
+                this._name = name;
+                this._weight = weight;
+                this._speed = speed;
+                this._isAlive = isAlive;
+            }
+
+            getName() {
+                return this._name;
+            }
+
+            setName(value) {
+                this._name = value;
+            }
+
+            getWeight() {
+                return this._weight;
+            }
+
+            setWeight(value) {
+                this._weight = value;
+            }
+
+            getSpeed() {
+                return this._speed;
+            }
+
+            setSpeed(value) {
+                this._speed = value;
+            }
+
+            getIsAlive() {
+                return this._isAlive;
+            }
+
+            setIsAlive(value) {
+                this._isAlive = value;
+            }
+            saying(){
+                console.log("I am a cute Rat, chit chit");
+            }
+        }
+
+        class Cat {
+            constructor(name,weight,speed) {
+                this._name = name;
+                this._weight = weight;
+                this._speed = speed;
+            }
+
+            getName() {
+                return this._name;
+            }
+
+            setName(value) {
+                this._name = value;
+            }
+
+            getWeight() {
+                return this._weight;
+            }
+
+            setWeight(value) {
+                this._weight = value;
+            }
+
+            getSpeed() {
+                return this._speed;
+            }
+
+            setSpeed(value) {
+                this._speed = value;
+            }
+            saying(){
+                console.log("I am a strong Cat. meo meo");
+            }
+            catchMouse(mouse){
+                if(this._speed > mouse.getSpeed()){
+                    console.log("the Cat have caught the mouse");
+                    this.eatMouse(mouse);
+                }else console.log("This mouse is very fast");
+            }
+            eatMouse(mouse){
+                if(mouse.getIsAlive()){
+                    console.log("this mouse is delicious");
+                    mouse.setIsAlive(false);
+                    this._weight = this._weight + mouse.getWeight();
+                    console.log("Cat's current weight is : "+ this._weight);
+                }else console.log("I don't eat dead mouse");
+            }
+        }
+        let rat = new Rat("rat",10,10,true);
+        let cat = new Cat("cat",20,20);
+        rat.saying();
+        cat.saying();
+        cat.catchMouse(rat);
+        cat.catchMouse(rat);
+    </script>
+</body>
+</html>
