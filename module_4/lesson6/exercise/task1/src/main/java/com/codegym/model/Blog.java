@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
+@NamedQuery(name = "findByName",query = "select c from Blog as c where  c.title =: name")
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

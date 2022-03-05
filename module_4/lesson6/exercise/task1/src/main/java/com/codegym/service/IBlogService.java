@@ -13,4 +13,6 @@ public interface IBlogService {
     void remove(Long id);
 
     void edit(Blog blog);
+
+    List<Blog> search();
 }

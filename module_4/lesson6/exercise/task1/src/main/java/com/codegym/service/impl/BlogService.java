@@ -36,4 +36,9 @@ public class BlogService implements IBlogService {
     public void edit(Blog blog) {
         iBlogRepository.edit(blog);
     }
+
+    @Override
+    public List<Blog> search() {
+        return iBlogRepository.search();
+    }
 }
