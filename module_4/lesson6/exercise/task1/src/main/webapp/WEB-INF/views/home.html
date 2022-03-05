@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/assert/bootstrap413/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<br>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <h2>Welcome to my Blog</h2>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row d-flex justify-content-center ">
+        <a href="/show-create-form" class="button p-2 " style="background: green; color: white;border-radius: 100px">Create new Blog</a>
+    </div>
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+            <div class="col-sm-4 p-2" th:each="blog,status:${listBlog}" >
+                <div  style="background: #d2cbcb">
+                    <div class="d-flex justify-content-around">
+                        <a th:href="@{/edit/{id}(id=${blog.getId()})}"><i class='far fa-edit' style='font-size:24px'></i></a>
+                        <h3 th:text="${status.count}"></h3>
+                        <a th:href="@{/cancel/{id}(id=${blog.getId()})}" style="color: red">X</a>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a th:href="@{/view/{id}(id=${blog.getId()})}" th:text="${blog.title}"></a>
+                    </div>
+
+                    <p th:text="${blog.summary}"></p>
+                </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script src="/assert/jquery/jquery-3.5.1.min.js"></script>
+<script src="/assert/bootstrap413/js/popper.min.js"></script>
+<script src="/assert/bootstrap413/js/bootstrap.min.js"></script>
+<script src="/assert/bootstrap413/js/bootstrap.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
