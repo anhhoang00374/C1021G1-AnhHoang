@@ -9,9 +9,6 @@
 <p>
     <a href="/customers">Customer list</a>
 </p>
-<th:block th:if="${message}">
-    <p th:text="${message}"></p>
-</th:block>
 <form th:action="@{/create-customer}" th:object="${customer}" method="post">
     <table>
         <tr>
@@ -21,6 +18,14 @@
         <tr>
             <td>Last name:</td>
             <td><input type="text" th:field="*{lastName}"/></td>
+        </tr>
+        <tr>
+            <td>Province:</td>
+            <td>
+                <select th:field="*{province.province_id}">
+                    <option th:each="p : ${provinces}" th:value="${p.province_id}" th:text="${p.name}"></option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td></td>

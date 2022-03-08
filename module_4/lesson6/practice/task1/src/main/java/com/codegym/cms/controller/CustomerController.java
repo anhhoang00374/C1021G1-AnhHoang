@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -18,6 +19,13 @@ public class CustomerController {
     @Autowired
     private ICustomerService customerService;
 
+    @GetMapping
+    public ModelAndView showList(){
+        ModelAndView modelAndView = new ModelAndView("/customer/list","customers",customerService.findAll());
+        System.out.println(customerService.findAll().size());
+        return modelAndView;
+    }
+
     @GetMapping("/create-customer")
     public ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("/customer/create");
@@ -26,12 +34,14 @@ public class CustomerController {
     }
 
     @PostMapping("/create-customer")
-    public ModelAndView saveCustomer(@ModelAttribute("customer") Customer customer) {
+    public String saveCustomer(Customer customer, RedirectAttributes redirectAttributes) {
         customerService.save(customer);
-        ModelAndView modelAndView = new ModelAndView("/customer/create");
-        modelAndView.addObject("customer", new Customer());
-        modelAndView.addObject("message", "New customer created successfully");
-        return modelAndView;
+       // redirectAttributes.addFlashAttribute("customers",customerService.findAll());
+       // System.out.println(customerService.findAll().size());
+//        ModelAndView modelAndView = new ModelAndView("/customer/list");
+//        modelAndView.addObject("customer", new Customer());
+        redirectAttributes.addFlashAttribute("message", "New customer created successfully");
+        return ("redirect:/");
     }
 
     @GetMapping("/customers")
