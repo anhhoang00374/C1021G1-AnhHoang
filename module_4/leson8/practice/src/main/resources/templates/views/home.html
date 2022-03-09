@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{create}" th:object="${user}" method="post">
+    <p th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></p>
+    <input type="text" placeholder="input name" th:field="*{name}"> <br>
+    <p th:errors="*{age}" th:if="${#fields.hasErrors('age')}"></p>
+    <input type="text" placeholder="input age" th:field="*{age}"><br>
+    <input type="submit" th:value="send">
+</form>
+</body>
+</html>
