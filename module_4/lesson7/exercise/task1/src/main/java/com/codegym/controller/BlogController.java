@@ -28,7 +28,7 @@ public class BlogController {
     ICategoryService categoryService;
     private  boolean isSortByTime = false;
     @RequestMapping
-    public String display(@RequestParam(required = false) String title,@RequestParam(required = false,defaultValue = "abc") String sort, @PageableDefault(value = 6)Pageable pageable, Model model){
+    public String display(@RequestParam(required = false,defaultValue = "abc") String sort , Model model){
         //        if(isSortByTime){
         ////            @PageableDefault(value = 6,sort = "time",direction = Sort.Direction.ASC)
         ////                pageable.getSortOr()
@@ -37,32 +37,42 @@ public class BlogController {
         //        }
 //                    pageable.getSortOr(Sort.by(Sort.Direction.DESC,"title"));
 //                    PageRequest.of()
-//        Pageable sortedByPriceDesc =
-//                PageRequest.of(0, 3, Sort.by("time").descending());
-//        Pageable sortedByPriceAsc =
-//                PageRequest.of(0, 3, Sort.by("time").ascending());
+        Pageable sortedByPriceDesc =
+                PageRequest.of(0, 3, Sort.by("time").descending());
+        Pageable sortedByPriceAsc =
+                PageRequest.of(0, 3, Sort.by("time").ascending());
         if(!sort.contains("abc")){
           isSortByTime = !isSortByTime;
         }
-        if(title!= null){
-            Page<Blog> blogList = iBlogService.search(title,pageable);
-            model.addAttribute("listBlog",blogList);
-            return "/home";
-        }else{
+
+//        if(title!= null){
+//
+//            Page<Blog> blogList = iBlogService.search(title,pageable);
+//            model.addAttribute("listBlog",blogList);
+//            return "/home";
+//        }else{
             if(isSortByTime){
                 model.addAttribute("sort","true");
             }else{
                 model.addAttribute("sort","false");
             }
-            Page<Blog> blogList = iBlogService.findAll(pageable);
-            model.addAttribute("listBlog",blogList);
+            if(isSortByTime){
+                Page<Blog> blogList = iBlogService.findAll(sortedByPriceDesc);
+                model.addAttribute("listBlog",blogList);
+            }else{
+                Page<Blog> blogList = iBlogService.findAll(sortedByPriceAsc);
+                model.addAttribute("listBlog",blogList);
+            }
+
+//            Page<Blog> blogList = iBlogService.findAll(pageable);
+//            model.addAttribute("listBlog",blogList);
 //            if("ok".equals(name)){
 //                Page<Blog> blogList = iBlogService.findAll(sortedByPriceDesc);
 //                model.addAttribute("listBlog",blogList);
 //            }else{
 //                Page<Blog> blogList = iBlogService.findAll(sortedByPriceAsc);
 //                model.addAttribute("listBlog",blogList);
-            }
+            //}
 
             return "/home";
        // }
@@ -111,12 +121,13 @@ public class BlogController {
         return "redirect: /";
     }
 
-//    @GetMapping("/search")
-//    public String search(@RequestParam String name,@PageableDefault(5) Pageable pageable){
-//        Page<Blog> blogList = iBlogService.search(name,pageable);
-//        System.out.println(blogList.size());
-//        return "";
-//    }
+    @GetMapping("/search")
+    public String search(@RequestParam String title,@PageableDefault(5) Pageable pageable,Model model){
+        Page<Blog> blogList = iBlogService.search(title,pageable);
+        model.addAttribute("listBlog",blogList);
+      //  System.out.println(blogList.size());
+        return "search";
+    }
 
 //    private String setSortByTimeAsc(@RequestParam(required = false) String title,@PageableDefault(value = 6,sort = "time",direction = Sort.Direction.ASC)Pageable pageable, Model model){
 //            if(title!= null){
