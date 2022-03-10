@@ -13,7 +13,7 @@ public class Blog {
     private String body;
     private String summary;
     private Long time;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name ="category_id",referencedColumnName = "id")
     private Category category;
 

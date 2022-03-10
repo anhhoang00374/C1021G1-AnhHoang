@@ -9,12 +9,12 @@
 <body>
 <div class="container">
     <h2>Create blog form</h2>
-    <form action="/create-topic" th:object="${category}" method="post">
+    <form action="/topic/create-topic" th:object="${category}" method="post">
         <div class="form-group">
             <label for="header">Title:</label>
             <input type="text" class="form-control" id="header" placeholder="Enter header" th:field="*{topic}" >
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Add</button>
     </form>
 </div>
 

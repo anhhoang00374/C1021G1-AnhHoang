@@ -14,6 +14,14 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Blog> blogList;
 
+    public Set<Blog> getBlogList() {
+        return blogList;
+    }
+
+    public void setBlogList(Set<Blog> blogList) {
+        this.blogList = blogList;
+    }
+
     public Category() {
     }
 

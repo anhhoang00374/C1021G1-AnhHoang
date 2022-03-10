@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ICategoryService {
     void add(Category category);
-    List<Category> findAll();
+    Page<Category> findAll(Pageable pageable);
 
     Category findById(Long id);
 
