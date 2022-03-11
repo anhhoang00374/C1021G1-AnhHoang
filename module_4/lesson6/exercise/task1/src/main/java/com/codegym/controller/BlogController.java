@@ -30,13 +30,15 @@ public class BlogController {
     }
 
     @PostMapping("/create")
-    public String create(Blog blog){
+    public String create(Blog blog,Model model){
+        model.addAttribute("message","add new successfully");
         iBlogService.add(blog);
         return ("redirect:/");
     }
 
     @GetMapping("/cancel/{id}")
-    public String cancel(@PathVariable Long id){
+    public String cancel(@PathVariable Long id,Model model){
+        model.addAttribute("message","delete successfully");
         iBlogService.remove(id);
         return ("redirect:/");
     }
@@ -55,8 +57,9 @@ public class BlogController {
     }
 
     @PostMapping("/edit")
-    public String edit(Blog blog){
+    public String edit(Blog blog,Model model){
         iBlogService.edit(blog);
+        model.addAttribute("message","edit successfully");
         System.out.println(blog.getId());
         return "redirect: /";
     }
