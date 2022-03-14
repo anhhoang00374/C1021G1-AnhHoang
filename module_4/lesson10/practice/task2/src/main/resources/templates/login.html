@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/login" method="post" th:object="${user}">
+    <label >email:</label>
+    <input type="text" th:field="*{email}" th:value="${email.getValue()}">
+    <label >password:</label>
+    <input type="password" th:field="*{password}" >
+    <input type="submit" value="login">
+</form>
+<p th:if="${email.getValue().equals('')}" th:text="${message}"></p>
+<p th:if="${!email.getValue().equals('')}" th:text="${email.getValue()}"></p>
+</body>
+</html>
