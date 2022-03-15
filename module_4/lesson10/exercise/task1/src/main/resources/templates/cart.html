@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/assert/bootstrap413/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assert/datatables/css/dataTables.bootstrap4.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <a href="/" class="btn" style="background: green;color: white">Đi đến shop</a>
+        </div>
+
+        <div class="col-12">
+            <span>Giỏ hàng</span>
+            <span th:text="${cart.countItemQuantity()}"></span>
+        </div>
+<!--        <div class="col-12">-->
+<!--            <table class="table table-dark" th:if="${cart!=null}">-->
+<!--                <h2>Giỏ hàng của bạn</h2>-->
+<!--                <span>Tổng sản phẩm : </span><span th:text="${cart.countItemQuantity()}"></span>-->
+<!--                <tr>-->
+<!--                    <th>Tên sản phẩm</th>-->
+<!--                    <th>giá</th>-->
+<!--                    <th>Số lượng</th>-->
+<!--                    <th>Thành tiền</th>-->
+<!--                </tr>-->
+<!--                <tr th:each="entry:${cart.productList}">-->
+<!--                    <td th:text="${entry.getKey().name}"></td>-->
+<!--                    <td th:text="${entry.getKey().price}"></td>-->
+<!--                    <td th:text="${entry.getValue()}"></td>-->
+<!--                    <td th:text="${entry.getKey().price*entry.getValue()}"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Tổng tiền</td>-->
+<!--                    <td th:text="${cart.countTotalPayment()}"></td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--        <div class="col-4" th:each="entry:${cart.productList}" style="padding: 10px">-->
+<!--            <div class="card" style="width:400px;background: #979797">-->
+<!--                <img class="card-img-top" th:src="${entry.getKey().getSource()}" alt="Card image" style="width:100%">-->
+<!--                <div class="card-body">-->
+<!--                    <h4 class="card-title" th:text="${entry.getKey().name}"></h4>-->
+<!--                    <p class="card-text" th:text="${entry.getKey().price}"></p>-->
+<!--                    <p class="card-text" th:text="${entry.getKey().description}"></p>-->
+<!--                    <a href="#" class="btn btn-primary">Mua</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<script src="/assert/jquery/jquery-3.5.1.min.js"></script>
+<script src="/assert/bootstrap413/js/popper.min.js"></script>
+<script src="/assert/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/assert/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assert/bootstrap413/js/bootstrap.min.js"></script>
+<script src="/assert/bootstrap413/js/bootstrap.bundle.js"></script>
+</body>
+</html>
