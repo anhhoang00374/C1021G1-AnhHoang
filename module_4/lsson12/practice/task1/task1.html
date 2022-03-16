@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>If you click on the "Hide" button, I will disappear.</p>
+<button id="hide">Hide</button>
+<button id="show">Show</button>
+<br>
+<button id="animation"> start animation</button>
+<div style="background:#98bf21;height:100px;width:200px;position:absolute;">HELLO</div>
+
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+    $("#hide").click(function () {
+        $("p").hide();
+    });
+    $("#show").click(function () {
+        $("p").show();
+    });
+    $("#animation").click(function(){
+        var div = $("div");
+        div.animate({left: '100px'}, "slow");
+        div.animate({fontSize: '50px'}, "slow");
+    });
+</script>
+</body>
+</html>

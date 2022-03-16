@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/jquery-3.5.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".deleteSmartphone").click(function (event){
+                //alert(132);
+                let a=$(this);
+                let smartPhoneId = a.prev().val();
+                // alert(smartPhoneId)
+                $.ajax({
+                    type:"DELETE",
+                    url:"/smartphone/api/1.0/"+smartPhoneId,
+                    success: function (data) {
+                        a.parent().parent().parent().remove();
+                    }
+                });
+                event.preventDefault();
+            });
+        });
+    function addNewSmartPhone() {
+    //lay du lieu
+    let producer = $('#producer').val();
+    let model = $('#model').val();
+    let price = $('#price').val();
+    let newSmartphone = {
+    producer: producer,
+    model: model,
+    price: price
+    };
+    // goi ajax
+    $.ajax({
+    headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+    },
+    type: "POST",
+    data: JSON.stringify(newSmartphone),
+    //tên API
+    url: "/smartphone/api/1.0",
+    //xử lý khi thành công
+    success: successHandler
+
+    });
+    //chặn sự kiện mặc định của thẻ
+    event.preventDefault();
+    }
+
+    function successHandler() {
+    $.ajax({
+    type: "GET",
+    //tên API
+    url: "/smartphone/api/1.0/list",
+    //xử lý khi thành công
+    success: function (data) {
+    // hien thi danh sach o day
+    let content = '    <tr>\n' +
+    '        <td>Producer</td>\n' +
+    '        <td>Model</td>\n' +
+    '        <td>Price</td>\n' +
+    '        <td>Delete</td>\n' +
+    '    </tr>';
+    for (let i = 0; i < data.length; i++) {
+    content += getSmartphone(data[i]);
+    }
+    document.getElementById('smartphoneList').innerHTML = content;
+    }
+    });
+    }
+
+    function getSmartphone(smartphone) {
+    return `<tr><td >${smartphone.producer}</td><td >${smartphone.model}</td><td >${smartphone.price}</td>` +
+    `<td>
+        <form action="">
+             <input type="hidden" th:value="${smartphone.id}">
+            <input type="submit" id="abc" onclick="{
+                //alert(132);
+                //alert(${smartphone.id});
+                let a = $(this);
+                 //console.log(smartPhoneId);
+                $.ajax({
+                    type:'DELETE',
+                    url:'/smartphone/api/1.0/'+${smartphone.id},
+                    success: function (data) {
+                        a.parent().parent().parent().remove();
+                    }
+                });
+                event.preventDefault();
+            }"
+             value="delete">
+        </form>
+         </td>
+    </tr>`;
+    }
+
+
+    </script>
+</head>
+<body>
+<form id="add-smartphone">
+    <table>
+        <tr>
+            <td>Producer:</td>
+            <td><input type="text" id="producer" placeholder="producer"></td>
+        </tr>
+        <tr>
+            <td>Model:</td>
+            <td><input type="text" id="model" placeholder="model"></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" id="price" placeholder="price"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add" onclick="addNewSmartPhone()"></td>
+        </tr>
+    </table>
+</form>
+<h1>Smartphone List</h1>
+<table id="smartphoneList">
+    <tr>
+        <td>Producer</td>
+        <td>Model</td>
+        <td>Price</td>
+        <td>Delete</td>
+    </tr>
+    <th:block th:each="smartphone: ${smartphones}">
+        <tr>
+            <td th:text="${smartphone.producer}"></td>
+            <td th:text="${smartphone.model}"></td>
+            <td th:text="${smartphone.price}"></td>
+            <td>
+                <form action="">
+                    <input type="hidden" th:value="${smartphone.getId()}">
+                    <input type="submit" class="deleteSmartphone" value="delete">
+                </form>
+<!--                    <a class="deleteSmartphone" th:href="@{/smartphone/api/1.0/__${smartphone.getId()}__}">Delete</a>-->
+            </td>
+
+
+        </tr>
+    </th:block>
+</table>
+<!--    <script type="text/javascript">-->
+<!--        function addNewSmartPhone(){-->
+<!--            let producer = $('#producer').val();-->
+<!--            let model = $('#model').val();-->
+<!--            let price = $('#price').val();-->
+<!--            let newSmartphone = {-->
+<!--                producer: producer,-->
+<!--                model: model,-->
+<!--                price: price-->
+<!--            };-->
+<!--            console.log(JSON.stringify(newSmartphone));-->
+<!--            $.ajax({-->
+<!--                headers:{-->
+<!--                    "Accept":"application/json",-->
+<!--                    'Content-Type':'application/json'-->
+<!--                },-->
+<!--                type: "POST",-->
+<!--                data: JSON.stringify(newSmartphone),-->
+<!--                url:"http://localhost:8080/smartphone/api/1.0",-->
+<!--                success:successHandle()-->
+<!--            });-->
+<!--            event.preventDefault()-->
+<!--        }-->
+
+<!--        function getSmartphone(smartPhone) {-->
+<!--            console.log(smartPhone.producer);-->
+<!--            return"<tr>"+-->
+<!--                "<td >"+smartPhone.producer+"</td>"+-->
+<!--                "<td >"+smartPhone.model+"</td>"+-->
+<!--                "<td >"+smartPhone.price+"</td>" +-->
+<!--        "<td><a class=deleteSmartphone href="+smartPhone.id+">Delete</a></td></tr>";-->
+<!--        }-->
+
+<!--        function successHandle(){-->
+<!--            $.ajax({-->
+<!--                type: "GET",-->
+<!--                url:"/smartphone/api/1.0/list",-->
+<!--                success:function(data){-->
+<!--                    let content = `-->
+<!--                    <tr>+-->
+<!--                    <td>Producer</td>-->
+<!--                    <td>Model</td>-->
+<!--                    <td>Price</td>-->
+<!--                    <td>Delete</td>-->
+<!--                    </tr>-->
+<!--                    `;-->
+<!--                    for(let i = 0;i<data.length;i++){-->
+<!--                        content += getSmartphone(data[i]);-->
+<!--                    }-->
+
+<!--                    $("#smartphoneList").empty();-->
+<!--                    $("#smartphoneList").append(content);-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<form id="add-smartphone" >-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>Producer:</td>-->
+<!--            <td><input type="text" id="producer" placeholder="producer"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Model:</td>-->
+<!--            <td><input type="text" id="model" placeholder="model"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Price:</td>-->
+<!--            <td><input type="text" id="price" placeholder="price"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td></td>-->
+<!--            <td><input type="submit" value="Add" onclick="addNewSmartPhone()"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+
+
+<!--<h1>Smartphone List</h1>-->
+<!--<table id="smartphoneList">-->
+<!--    <tr>-->
+<!--        <td>Producer</td>-->
+<!--        <td>Model</td>-->
+<!--        <td>Price</td>-->
+<!--        <td>Delete</td>-->
+<!--    </tr>-->
+<!--    <th:block th:each="smartphone: ${smartphones}">-->
+<!--        <tr>-->
+<!--            <td th:text="${smartphone.producer}"></td>-->
+<!--            <td th:text="${smartphone.model}"></td>-->
+<!--            <td th:text="${smartphone.price}"></td>-->
+<!--            <td><a class="deleteSmartphone" th:href="${smartphone.getId()}">Delete</a></td>-->
+<!--        </tr>-->
+<!--    </th:block>-->
+<!--</table>-->
+</body>
+</html>
