@@ -1,39 +1,136 @@
 package com.example.case_study.model;
 
 
-import com.example.case_study.model.abstract_class.Person;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-public class Employee extends Person {
-    private static int autoIndex = 0;
-    private int index;
+import javax.persistence.*;
+
+@Entity
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private float salary;
-    private String position;
-    private String division;
-    private String educationDegree;
-    private String userName;
-    private int position_id;
-    private int education_id;
-    private int division_id;
+    private String code;
+    private String name;
+    private String birthday;
+    private String phone;
+    private String idCard;
+    private String address;
+    private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "position_id",referencedColumnName = "id")
+    @JsonBackReference
+    private Position position;
+
+    @ManyToOne
+    @JoinColumn(name = "division_id",referencedColumnName = "id")
+    @JsonBackReference
+    private Division division;
+
+    @ManyToOne
+    @JoinColumn(name = "education_id",referencedColumnName = "id")
+    @JsonBackReference
+    private Education education;
+
+    @OneToOne
+    @JoinColumn(name = "user_name",referencedColumnName = "userName")
+    private User user;
 
     public Employee() {
-        autoIndex++;
-        this.index = autoIndex;
+
     }
 
-    public static int getAutoIndex() {
-        return autoIndex;
+
+    public Employee(Long id, float salary, String code, String name, String birthday,
+                    String phone, String idCard, String address, String email, Position position,
+                    Division division, Education education, User user) {
+        this.id = id;
+        this.salary = salary;
+        this.code = code;
+        this.name = name;
+        this.birthday = birthday;
+        this.phone = phone;
+        this.idCard = idCard;
+        this.address = address;
+        this.email = email;
+        this.position = position;
+        this.division = division;
+        this.education = education;
+        this.user = user;
     }
 
-    public static void setAutoIndex(int autoIndex) {
-        Employee.autoIndex = autoIndex;
+    public User getUser() {
+        return user;
     }
 
-    public int getIndex() {
-        return index;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public float getSalary() {
@@ -44,81 +141,27 @@ public class Employee extends Person {
         this.salary = salary;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
-    public String getDivision() {
+    public Division getDivision() {
         return division;
     }
 
-    public void setDivision(String division) {
+    public void setDivision(Division division) {
         this.division = division;
     }
 
-    public String getEducationDegree() {
-        return educationDegree;
+    public Education getEducation() {
+        return education;
     }
 
-    public void setEducationDegree(String educationDegree) {
-        this.educationDegree = educationDegree;
+    public void setEducation(Education education) {
+        this.education = education;
     }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public Employee(int id, String code, String name, String birthday,
-                    String phone, String id_card, String address, String email, float salary,
-                    String position, String division, String educationDegree,
-                    String userName, int position_id, int education_id, int division_id) {
-        super(id, code, name, birthday, phone, id_card, address, email);
-        this.salary = salary;
-        this.position = position;
-        this.division = division;
-        this.educationDegree = educationDegree;
-        this.userName = userName;
-        this.position_id = position_id;
-        this.education_id = education_id;
-        this.division_id = division_id;
-        autoIndex++;
-        this.index = autoIndex;
-    }
-
-    public static void reStartAutoIndex(){
-        autoIndex = 0;
-    }
-    public int getPosition_id() {
-        return position_id;
-    }
-
-    public void setPosition_id(int position_id) {
-        this.position_id = position_id;
-    }
-
-    public int getEducation_id() {
-        return education_id;
-    }
-
-    public void setEducation_id(int education_id) {
-        this.education_id = education_id;
-    }
-
-    public int getDivision_id() {
-        return division_id;
-    }
-
-    public void setDivision_id(int division_id) {
-        this.division_id = division_id;
-    }
-
-
 }

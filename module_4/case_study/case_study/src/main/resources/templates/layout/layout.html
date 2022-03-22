@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head th:fragment="boostrapCssSource" >
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link rel="stylesheet" href="/assert/bootstrap413/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+<div th:fragment="logo(name)" class="container-fluid pl-5 pr-5 mb-2">
+    <div class="row">
+        <div class="col-12 justify-content-between d-flex align-items-center">
+            <img src="/img/furama-logo.png" width="100px" alt="">
+            <div class="col-9 position-relative overflow-hidden">
+                <p class="position-absolute " id="textDiamond">welcome to furama's product management website</p>
+            </div>
+            <a class="menu" id="login" th:text="${name!=null?name:'Login'}"></a>
+        </div>
+
+    </div>
+</div>
+<div th:fragment="line" id="line" class="m-1"></div>
+<div th:fragment="menu" class="container-fluid pl-5 pr-5" >
+    <div class="row">
+        <div class="col-12 d-flex justify-content-between">
+            <div class="mb-3 mt-3">
+                <a class="menu item1" href="/">Home</a>
+                <a class="menu item2" href="/employee">Employee</a>
+                <a class="menu item3" href="/customer">Customer</a>
+                <a class="menu item4" href="/service">Service</a>
+                <a class="menu item5" href="/contract">Contract</a>
+            </div>
+            <div class="mb-3 mt-3">
+                <form action="">
+                    <input type="text" id="search" placeholder=" Input to search">
+                    <input type="submit" value="search" class="pt-1 pb-1" id="searchButton">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:fragment="footer" class="container-fluid pr-5 pl-5 ">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-around footer">
+            <div>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a>
+            </div>
+            <div>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a>
+            </div>
+            <div>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a><br>
+                <a href="#">Lorem ipsum dolor.</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="boostrapScriptSource">
+    <script src="/assert/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/assert/bootstrap413/js/popper.min.js"></script>
+    <script src="/assert/bootstrap413/js/bootstrap.min.js"></script>
+    <script src="/assert/bootstrap413/js/bootstrap.bundle.js"></script>
+</div>
+</body>
+</html>

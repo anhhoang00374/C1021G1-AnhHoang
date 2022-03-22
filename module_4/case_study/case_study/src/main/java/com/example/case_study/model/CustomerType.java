@@ -1,30 +1,48 @@
 package com.example.case_study.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class CustomerType {
-    private int customer_type_id ;
-    private String customer_type_name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String customerType;
+    @OneToMany(mappedBy = "customerType",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Customer> customerList;
 
     public CustomerType() {
     }
 
-    public CustomerType(int customer_type_id, String customer_type_name) {
-        this.customer_type_id = customer_type_id;
-        this.customer_type_name = customer_type_name;
+    public Long getId() {
+        return id;
     }
 
-    public int getCustomer_type_id() {
-        return customer_type_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setCustomer_type_id(int customer_type_id) {
-        this.customer_type_id = customer_type_id;
+    public List<Customer> getCustomerList() {
+        return customerList;
     }
 
-    public String getCustomer_type_name() {
-        return customer_type_name;
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
     }
 
-    public void setCustomer_type_name(String customer_type_name) {
-        this.customer_type_name = customer_type_name;
+    public CustomerType(String customerType) {
+        this.customerType = customerType;
+    }
+
+    public String getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
     }
 }

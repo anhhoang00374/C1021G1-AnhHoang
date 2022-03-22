@@ -1,0 +1,27 @@
+<tr xmlns:th = "http://www.thymeleaf.org" th:each="customer,status:${customerList}">
+    <td th:text="${status.count}"></td>
+    <td th:text="${customer.gender==1?'Man':'Woman'}"></td>
+    <td th:text="${customer.code}"></td>
+    <td th:text="${customer.name}"></td>
+    <td th:text="${customer.birthday}"></td>
+    <td th:text="${customer.phone}"></td>
+    <td th:text="${customer.idCard}"></td>
+    <td th:text="${customer.address}"></td>
+    <td th:text="${customer.email}"></td>
+    <td th:text="${customer.customerType.customerType}"></td>
+    <td>
+        <button >Edit</button>
+    </td>
+    <td>
+        <button>Delete</button>
+    </td>
+</tr>
+<tr>
+    <td colspan="12">
+        <button id="previous" th:value="${customerList.number}-1" th:if="${customerList.hasPrevious()}">Previous</button>
+        <span th:text="${customerList.number}+1"></span>
+        <span>/</span>
+        <span th:text="${customerList.totalPages}"></span>
+        <button id="next" th:value="${customerList.number}+1" th:if="${customerList.hasNext()}">Next</button>
+    </td>
+</tr>

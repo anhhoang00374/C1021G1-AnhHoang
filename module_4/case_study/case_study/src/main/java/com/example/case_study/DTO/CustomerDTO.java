@@ -1,36 +1,28 @@
-package com.example.case_study.model;
+package com.example.case_study.DTO;
 
-
+import com.example.case_study.model.CustomerType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class CustomerDTO {
     private boolean gender;
     private String code;
     private String name;
-    @Column(columnDefinition = "DATE")
     private String birthday;
     private String phone;
     private String idCard;
     private String address;
     private String email;
+    private Long customerType;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id",referencedColumnName = "id")
-    @JsonBackReference
-    private CustomerType customerType;
-
-    public Customer() {
+    public CustomerDTO() {
     }
 
-    public Customer(boolean gender, String code, String name, String birthday,
-                    String phone, String idCard, String address, String email,
-                    CustomerType customerType) {
+    public CustomerDTO(boolean gender, String code, String name, String birthday,
+                       String phone, String idCard, String address, String email, Long customerType) {
         this.gender = gender;
         this.code = code;
         this.name = name;
@@ -40,14 +32,6 @@ public class Customer {
         this.address = address;
         this.email = email;
         this.customerType = customerType;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public boolean isGender() {
@@ -114,19 +98,11 @@ public class Customer {
         this.email = email;
     }
 
-    public CustomerType getCustomerType() {
+    public Long getCustomerType() {
         return customerType;
     }
 
-    public void setCustomerType(CustomerType customerType) {
+    public void setCustomerType(Long customerType) {
         this.customerType = customerType;
     }
 }
-
-
-
-
-
-
-
-

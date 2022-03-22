@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head th:replace="layout/layout.html ::boostrapCssSource">
+</head>
+<body>
+<div th:replace="layout/layout.html ::logo('Login')"></div>
+<div th:replace="layout/layout.html ::line"></div>
+<div th:replace="layout/layout.html ::menu"></div>
+<div th:replace="layout/layout.html ::line"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 right-border ">
+            <div class="container p-3">
+
+            </div>
+
+        </div>
+        <div class="col-9 p-4"  align="center">
+            <div class="container p-3">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div th:replace="layout/layout.html ::line"></div>
+<div th:replace="layout/layout.html ::footer"></div>
+<div th:replace="layout/layout.html ::boostrapScriptSource">
+</div>
+</body>
+</html>

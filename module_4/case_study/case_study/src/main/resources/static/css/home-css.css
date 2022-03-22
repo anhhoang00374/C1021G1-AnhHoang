@@ -1,0 +1,8 @@
+a.menu:first-child{
+    background: #21ebff;
+    color: #111;
+    box-shadow:0px 0px 50px #21ebff;
+}
+.right-border{
+    border-right: 3px solid #21abff;
+}
