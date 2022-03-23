@@ -1,7 +1,9 @@
 package com.example.case_study.controller.APIController;
 
+import com.example.case_study.DTO.CustomerDTO;
 import com.example.case_study.model.Customer;
 import com.example.case_study.service.ICustomerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -46,13 +48,15 @@ public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer,@Page
     return new ResponseEntity<>(customer,HttpStatus.OK);
 
 }
-@DeleteMapping("delete/{id}")
-    public ResponseEntity<Customer> delete(@PathVariable Long id){
+@GetMapping("edit/{id}")
+    public ResponseEntity<CustomerDTO> delete(@PathVariable Long id){
         Customer customer = customerService.findById(id);
-        customerService.deleteById(id);
-        if(customer!=null){
-            return new ResponseEntity<>(customer,HttpStatus.OK);
-        }
+    CustomerDTO customerDTO = new CustomerDTO();
+    BeanUtils.copyProperties(customer,customerDTO);
+    customerDTO.setCustomerTypeId(customer.getCustomerType().getId());
+    if(customer!=null){
+        return new ResponseEntity<>(customerDTO,HttpStatus.OK);
+    }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 }
 }

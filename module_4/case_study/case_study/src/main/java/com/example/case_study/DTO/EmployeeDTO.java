@@ -1,15 +1,18 @@
-package com.example.case_study.model;
+package com.example.case_study.DTO;
 
-
+import com.example.case_study.model.Division;
+import com.example.case_study.model.Education;
+import com.example.case_study.model.Position;
+import com.example.case_study.model.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-@Entity
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class EmployeeDTO {
+
     private Float salary;
     private String code;
     private String name;
@@ -18,35 +21,17 @@ public class Employee {
     private String idCard;
     private String address;
     private String email;
-
-    @ManyToOne
-    @JoinColumn(name = "position_id",referencedColumnName = "id")
-    @JsonBackReference
     private Position position;
-
-    @ManyToOne
-    @JoinColumn(name = "division_id",referencedColumnName = "id")
-    @JsonBackReference
     private Division division;
-
-    @ManyToOne
-    @JoinColumn(name = "education_id",referencedColumnName = "id")
-    @JsonBackReference
     private Education education;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_name",referencedColumnName = "userName")
     private User user;
 
-    public Employee() {
-
+    public EmployeeDTO() {
     }
 
-
-    public Employee(Long id, float salary, String code, String name, String birthday,
-                    String phone, String idCard, String address, String email, Position position,
-                    Division division, Education education, User user) {
-        this.id = id;
+    public EmployeeDTO(Float salary, String code, String name, String birthday, String phone,
+                       String idCard, String address, String email,
+                       Position position, Division division, Education education, User user) {
         this.salary = salary;
         this.code = code;
         this.name = name;
@@ -61,12 +46,12 @@ public class Employee {
         this.user = user;
     }
 
-    public User getUser() {
-        return user;
+    public Float getSalary() {
+        return salary;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setSalary(Float salary) {
+        this.salary = salary;
     }
 
     public String getCode() {
@@ -125,22 +110,6 @@ public class Employee {
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Float getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Float salary) {
-        this.salary = salary;
-    }
-
     public Position getPosition() {
         return position;
     }
@@ -163,5 +132,13 @@ public class Employee {
 
     public void setEducation(Education education) {
         this.education = education;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

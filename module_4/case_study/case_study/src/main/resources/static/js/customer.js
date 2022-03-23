@@ -186,16 +186,40 @@ $(document).ready(function(){
     });
 
     $(".edit").click(function (){
-        let currentForm = $(this).parent().parent();
-        console.log(currentForm.children()[3].search('<td>(.*?)</td>'));
-        //$("#editForm").children[1].val(currentForm.children[1].val());
-        $("#updateCode").val($("#currentCode").val());
-        $("#updateAddress").val($("#currentAddress").val());
-        $("#updateEmail").val($("#currentEmail").val());
-        $("#updateName").val($("#currentName").val());
-        $("#updateBirthday").val($("#currentBirthday").val());
-        $("#updateIdCard").val($("#currentIdCard").val());
-        $("#updatePhone").val($("#currentPhone").val());
+        let id = $(this).val();
+        console.log(id);
+        $.ajax({
+            url:"/api/customer/1.0/edit/"+id,
+            type:"GET",
+            dataType:"JSON",
+            success: function (data) {
+                $("#updateId").val(id);
+                $("#updateCode").val(data.code);
+                $("#updateAddress").val(data.address);
+                $("#updateEmail").val(data.email);
+                $("#updateName").val(data.name);
+                $("#updateBirthday").val(data.birthday);
+                $("#updateIdCard").val(data.idCard);
+                $("#updatePhone").val(data.phone);
+                if(data.gender){
+                    $("#updateGenderMan").attr("checked",true);
+                }else{
+                    $("#updateGenderWoman").attr("checked",true );
+                };
+                $("#updateCustomerType option[value=" + data.customerTypeId + "]").prop("selected",true);
+
+            }
+        })
+        // let currentForm = $(this).parent().parent();
+        // console.log(currentForm.children()[3].search('<td>(.*?)</td>'));
+        // //$("#editForm").children[1].val(currentForm.children[1].val());
+        // $("#updateCode").val($("#currentCode").val());
+        // $("#updateAddress").val($("#currentAddress").val());
+        // $("#updateEmail").val($("#currentEmail").val());
+        // $("#updateName").val($("#currentName").val());
+        // $("#updateBirthday").val($("#currentBirthday").val());
+        // $("#updateIdCard").val($("#currentIdCard").val());
+        // $("#updatePhone").val($("#currentPhone").val());
 
     });
 

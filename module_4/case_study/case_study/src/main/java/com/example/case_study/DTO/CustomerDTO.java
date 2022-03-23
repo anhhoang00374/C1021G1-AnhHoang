@@ -1,12 +1,5 @@
 package com.example.case_study.DTO;
 
-import com.example.case_study.model.CustomerType;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 public class CustomerDTO {
     private boolean gender;
     private String code;
@@ -16,7 +9,7 @@ public class CustomerDTO {
     private String idCard;
     private String address;
     private String email;
-    private Long customerType;
+    private Long customerTypeId;
 
     public CustomerDTO() {
     }
@@ -31,7 +24,7 @@ public class CustomerDTO {
         this.idCard = idCard;
         this.address = address;
         this.email = email;
-        this.customerType = customerType;
+        this.customerTypeId = customerType;
     }
 
     public boolean isGender() {
@@ -98,11 +91,11 @@ public class CustomerDTO {
         this.email = email;
     }
 
-    public Long getCustomerType() {
-        return customerType;
+    public Long getCustomerTypeId() {
+        return customerTypeId;
     }
 
-    public void setCustomerType(Long customerType) {
-        this.customerType = customerType;
+    public void setCustomerTypeId(Long customerTypeId) {
+        this.customerTypeId = customerTypeId;
     }
 }

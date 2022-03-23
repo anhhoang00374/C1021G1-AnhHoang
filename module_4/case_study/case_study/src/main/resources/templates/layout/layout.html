@@ -20,7 +20,7 @@
     </div>
 </div>
 <div th:fragment="line" id="line" class="m-1"></div>
-<div th:fragment="menu" class="container-fluid pl-5 pr-5" >
+<div th:fragment="menu(source)" class="container-fluid pl-5 pr-5" >
     <div class="row">
         <div class="col-12 d-flex justify-content-between">
             <div class="mb-3 mt-3">
@@ -31,8 +31,8 @@
                 <a class="menu item5" href="/contract">Contract</a>
             </div>
             <div class="mb-3 mt-3">
-                <form action="">
-                    <input type="text" id="search" placeholder=" Input to search">
+                <form th:action="${source}">
+                    <input type="text" name="search" id="search" placeholder=" Input to search">
                     <input type="submit" value="search" class="pt-1 pb-1" id="searchButton">
                 </form>
             </div>

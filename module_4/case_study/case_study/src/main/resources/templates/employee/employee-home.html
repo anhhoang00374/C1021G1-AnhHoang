@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/layout/layout.html ::boostrapCssSource">
+
+    </th:block>
+    <link rel="stylesheet" href="/css/employee.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body>
+<div th:replace="layout/layout.html ::logo('Login')"></div>
+<div th:replace="layout/layout.html ::line"></div>
+<div th:replace="layout/layout.html ::menu('/employee/search')"></div>
+<div th:replace="layout/layout.html ::line"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 right-border ">
+            <div class="container-fluid p-3" >
+                <div class="row">
+                    <div class="col-12" align="center">
+                        <h2>Farama's Employee List</h2>
+                    </div>
+                </div>
+                <div class="col-12"><br>
+                    <div align="center">
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+                            Add New
+                        </button>
+                        <br>
+                        <br>
+                    </div>
+                    <div style="text-align: center">
+                            <span id="message" th:style="${color}" th:text="${message}">
+                            </span>
+                    </div>
+                    <table id="employee-table">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Salary</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                            <th>Phone</th>
+                            <th>Id Card</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Position</th>
+                            <th>Division</th>
+                            <th>Education</th>
+                            <th>UserName</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                        </thead>
+                        <tbody th:if="${employeeList.isEmpty()}">
+                        <td  colspan="15" style="text-align: center">
+                            <span>Not data now, Please add</span>
+                        </td>
+                        </tbody>
+                        <tbody id="body" th:if="${!employeeList.isEmpty()}">
+                        <tr th:each="employee,status:${employeeList}" >
+                            <td th:text="${status.count}"></td>
+                            <td th:text="${employee.salary}"></td>
+                            <td  th:text="${employee.code}"></td>
+                            <td  th:text="${employee.name}"></td>
+                            <td  th:text="${employee.birthday}"></td>
+                            <td  th:text="${employee.phone}"></td>
+                            <td  th:text="${employee.idCard}"></td>
+                            <td  th:text="${employee.address}"></td>
+                            <td  th:text="${employee.email}"></td>
+                            <td  th:text="${employee.position.getPositionName()}"></td>
+                            <td  th:text="${employee.division.getDivisionName()}"></td>
+                            <td  th:text="${employee.education.educationName}"></td>
+                            <td  th:text="${employee.user.userName}"></td>
+                            <td>
+                                <button type="button" th:id="${employee.id}" class="delete  btn btn-primary btn-lg" data-toggle="modal" data-target="#deleteModal" th:value="${employee.name}" th:data="${employee.name}" style="background: transparent;border: none;padding:0" >
+                                    <i class="material-icons" style="font-size:40px;color:red">delete
+                                    </i>
+                                </button>
+                            </td>
+                            <td>
+
+                                <button type="button" class="edit btn btn-primary btn-lg" data-toggle="modal" data-target="#editModal" th:value="${employee.id}" style="background: transparent;border: none;padding:0">
+                                    <i class='far fa-edit' style='font-size:30px;color:green'></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <td colspan="15" style="text-align: center">
+                            <a id="previous" th:href="@{/customer/(page=${employeeList.number}-1)}" th:value="${employeeList.number}-1" th:if="${employeeList.hasPrevious()}">Previous</a>
+                            <span th:text="${employeeList.number}+1"></span>
+                            <span>/</span>
+                            <span th:text="${employeeList.totalPages}"></span>
+                            <a id="next" th:href="@{/customer/(page=${employeeList.number}+1)}" th:value="${employeeList.number}+1" th:if="${employeeList.hasNext()}">Next</a>
+                        </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <h5 class="modal-title" >Add new</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addNew" th:action="@{/employee/add-new}" method="post" th:object="${employeeCreate}">
+
+                    <label>Salary:</label><br>
+                    <input th:field="*{salary}" type="text" value="" placeholder="Input salary"><br>
+                    <label>Code:</label><br>
+                    <input type="text" placeholder="Input code" th:field="*{code}"><br>
+                    <label>Name:</label><br>
+                    <input type="text" th:field="*{name}" placeholder="Input name"><br>
+                    <label>Birthday:</label><br>
+                    <input type="date" th:field="*{birthday}"><br>
+                    <!--                        <input type="Date" th><br>-->
+                    <label>Phone:</label><br>
+                    <input type="text" placeholder="Input phone number" th:field="*{phone}"><br>
+                    <label>Id card:</label><br>
+                    <input type="text" placeholder="Input id card" th:field="*{idCard}"><br>
+                    <label>Address:</label><br>
+                    <input type="text" placeholder="Input phone number" th:field="*{address}"><br>
+                    <label>Email:</label><br>
+                    <input type="text" placeholder="input email" th:field="*{email}"><br>
+                    <label>Division:</label><br>
+                    <select th:field="*{division.id}">
+                        <option th:each="type:${divisionList}" th:value="${type.id}" th:text="${type.divisionName}">
+                        </option>
+                    </select><br>
+                    <label>Education:</label><br>
+                    <select th:field="*{education.id}">
+                        <option th:each="type:${educationList}" th:value="${type.id}" th:text="${type.educationName}">
+                        </option>
+                    </select><br>
+                    <label>Position:</label><br>
+                    <select th:field="*{position.id}">
+                        <option th:each="type:${positionList}" th:value="${type.id}" th:text="${type.positionName}">
+                        </option>
+                    </select><br>
+                    <label>User name:</label><br>
+                    <input type="text" th:field="*{user.userName}" placeholder="Input username">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" id="addNewCustomer" class="btn btn-primary" >Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you want to delete employee which has
+                <span style="font-style: italic;font-weight: bold">
+                     name is <span id="employeeName"></span>
+                and id is <span id="employeeId"></span>
+                </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="deleteButton" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="formDelete" th:action="@{/employee/delete}" hidden method="post">
+    <input type="text" name="deleteId" id="deleteValue">
+</form>
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+               Edit Employ
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/layout.html ::line"></div>
+<div th:replace="layout/layout.html ::footer"></div>
+<div th:replace="layout/layout.html ::boostrapScriptSource"></div>
+<script src="js/employee.js"></script>
+</body>
+</html>

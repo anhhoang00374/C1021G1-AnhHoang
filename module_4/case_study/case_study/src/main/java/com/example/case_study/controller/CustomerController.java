@@ -1,10 +1,12 @@
 package com.example.case_study.controller;
 
+import com.example.case_study.DTO.CustomerDTO;
 import com.example.case_study.model.Customer;
 import com.example.case_study.repository.ICustomerTypeRepository;
 import com.example.case_study.service.ICustomerService;
 import com.example.case_study.service.ICustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,7 @@ public class CustomerController {
     @RequestMapping
     public String displayList(Model model,@PageableDefault(size = 5) Pageable pageable){
         model.addAttribute("customer",new Customer());
+        model.addAttribute("customerEdit",new Customer());
         model.addAttribute("customerTypeList",customerTypeService.findAll());
         model.addAttribute("customerList",customerService.findAll(pageable));
         return "/customer/customer-home";
@@ -55,11 +58,30 @@ public class CustomerController {
         Customer customer = customerService.findById(id);
         if(customer!=null){
             redirectAttributes.addFlashAttribute("editCustomer",customer);
-            return "redirect:/";
+            return "redirect:/customer";
         }else {
             redirectAttributes.addFlashAttribute("message","Id doesn't exits");
             redirectAttributes.addFlashAttribute("color","color:red");
-            return "redirect:/";
+            return "redirect:/customer";
         }
+    }
+    @PostMapping("/edit")
+    public String updateCustomer(@ModelAttribute("customerEdit")Customer customer,RedirectAttributes redirectAttributes){
+        customerService.save(customer);
+        redirectAttributes.addFlashAttribute("message","Update successfully");
+        redirectAttributes.addFlashAttribute("color","color:green");
+        return "redirect:/customer";
+    }
+
+    @GetMapping("/search")
+    public String searchByName(@RequestParam(required = false,defaultValue = "") String search,@PageableDefault(size = 5) Pageable pageable,Model model){
+        Page<Customer> customerList = customerService.findByName(search,pageable);
+        model.addAttribute("customer",new Customer());
+        model.addAttribute("customerEdit",new Customer());
+        model.addAttribute("customerTypeList",customerTypeService.findAll());
+        model.addAttribute("customerList",customerList);
+        model.addAttribute("message","There are "+customerList.getTotalElements()+" customers are found");
+        model.addAttribute("color","color:green");
+        return "/customer/customer-home";
     }
 }
