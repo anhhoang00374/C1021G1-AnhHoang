@@ -64,10 +64,10 @@
                         <tbody id="body" th:if="${!employeeList.isEmpty()}">
                         <tr th:each="employee,status:${employeeList}" >
                             <td th:text="${status.count}"></td>
-                            <td th:text="${employee.salary}"></td>
+                            <td th:text="${#numbers.formatDecimal(employee.salary,0,2)}"></td>
                             <td  th:text="${employee.code}"></td>
                             <td  th:text="${employee.name}"></td>
-                            <td  th:text="${employee.birthday}"></td>
+                            <td   th:text="${employee.birthday}"></td>
                             <td  th:text="${employee.phone}"></td>
                             <td  th:text="${employee.idCard}"></td>
                             <td  th:text="${employee.address}"></td>
@@ -104,7 +104,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div th:class="${error==null?'modal fade':'modal show'}"  id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" >
@@ -117,7 +117,7 @@
                 <form id="addNew" th:action="@{/employee/add-new}" method="post" th:object="${employeeCreate}">
 
                     <label>Salary:</label><br>
-                    <input th:field="*{salary}" type="text" value="" placeholder="Input salary"><br>
+                    <input th:field="*{salary}"  type="text" value="" placeholder="Input salary"><br>
                     <label>Code:</label><br>
                     <input type="text" placeholder="Input code" th:field="*{code}"><br>
                     <label>Name:</label><br>
@@ -208,11 +208,47 @@
                 </button>
             </div>
             <div class="modal-body">
-               Edit Employ
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <form id="edit" th:action="@{/employee/update}" method="post" th:object="${employeeEdit}">
+                    <input type="hidden" id="updateId" th:field="*{id}">
+                    <label>Salary:</label><br>
+                    <input id="updateSalary" th:field="*{salary}" type="text" value="" placeholder="Input salary"><br>
+                    <label>Code:</label><br>
+                    <input id="updateCode" readonly type="text" placeholder="Input code" th:field="*{code}"><br>
+                    <label>Name:</label><br>
+                    <input id="updateName" type="text" th:field="*{name}" placeholder="Input name"><br>
+                    <label>Birthday:</label><br>
+                    <input id="updateBirthday" type="date" th:field="*{birthday}"><br>
+                    <!--                        <input type="Date" th><br>-->
+                    <label>Phone:</label><br>
+                    <input id="updatePhone" type="text" placeholder="Input phone number" th:field="*{phone}"><br>
+                    <label>Id card:</label><br>
+                    <input id="updateIdCard" type="text" placeholder="Input id card" th:field="*{idCard}"><br>
+                    <label>Address:</label><br>
+                    <input id="updateAddress" type="text" placeholder="Input phone number" th:field="*{address}"><br>
+                    <label>Email:</label><br>
+                    <input id="updateEmail" type="text" placeholder="input email" th:field="*{email}"><br>
+                    <label>Division:</label><br>
+                    <select id="updateDivision" th:field="*{division.id}">
+                        <option th:each="type:${divisionList}" th:value="${type.id}" th:text="${type.divisionName}">
+                        </option>
+                    </select><br>
+                    <label>Education:</label><br>
+                    <select id="updateEducation" th:field="*{education.id}">
+                        <option th:each="type:${educationList}" th:value="${type.id}" th:text="${type.educationName}">
+                        </option>
+                    </select><br>
+                    <label>Position:</label><br>
+                    <select id="updatePosition"  th:field="*{position.id}">
+                        <option th:each="type:${positionList}" th:value="${type.id}" th:text="${type.positionName}">
+                        </option>
+                    </select><br>
+                    <label>User name:</label><br>
+                    <input id="updateUserName" type="text" th:field="*{user.userName}" placeholder="Input username">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" id="updateEmployee" class="btn btn-primary" >Update</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

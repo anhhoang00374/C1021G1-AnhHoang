@@ -1,5 +1,6 @@
 package com.example.case_study.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ public class Education {
     private Long id;
     private String educationName;
     @OneToMany(mappedBy = "education",cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonBackReference
     private Set<Employee> employees;
 
 

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head th:replace="layout/layout.html ::boostrapCssSource">
+</head>
+<body>
+<div th:replace="layout/layout.html ::logo('Login')"></div>
+<div th:replace="layout/layout.html ::line"></div>
+<div th:replace="layout/layout.html ::menu('/contract')"></div>
+<div th:replace="layout/layout.html ::line"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 right-border ">
+            <div class="container p-3">
+                <div class="row">
+                    <div class="col-12">
+                        <div align="center">
+                            <h2>Furama'S Contract List</h2>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div align="center">
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addNew">
+                                Add new
+                            </button>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add new Contract</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="contract/add-new" th:object="${contract}" method="post">
+                    <label >Start date:</label><br>
+                    <input type="date" th:field="*{contractStartDate}"><br>
+                    <label >End date:</label><br>
+                    <input type="date" th:field="*{contractEndDate}"><br>
+                    <label >Contract Deposit</label><br>
+                    <input type="text" th:field="*{contractDeposit}"><br>
+                    <label >Total money:</label><br>
+                    <input type="text" th:field="*{contractTotalMoney}"><br>
+                    <label >Employee :</label><br>
+                    <select th:field="*{employee.id}">
+                        <option th:each="type:${employeeList}" th:value="${type.id}" th:text="${type.code}"></option>
+                    </select><br>
+                    <label >Customer :</label><br>
+                    <select th:field="*{customer.id}">
+                        <option th:each="type:${customerList}" th:value="${type.id}" th:text="${type.code}"></option>
+                    </select><br>
+                    <label >Service :</label><br>
+                    <select th:field="*{furamaService.id}">
+                        <option th:each="type:${furamaServiceList}" th:value="${type.id}" th:text="${type.code}"></option>
+                    </select><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div th:replace="layout/layout.html ::line"></div>
+<div th:replace="layout/layout.html ::footer"></div>
+<div th:replace="layout/layout.html ::boostrapScriptSource">
+</div>
+</body>
+</html>

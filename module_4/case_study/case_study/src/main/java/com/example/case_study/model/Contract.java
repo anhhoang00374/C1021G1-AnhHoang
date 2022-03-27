@@ -1,75 +1,72 @@
 package com.example.case_study.model;
 
 
-import com.example.case_study.model.ContractDetail;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import javax.persistence.*;
 import java.util.List;
-
+@Entity
 public class Contract {
-    private int contractId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String contractStartDate;
     private String contractEndDate;
-    private float contractDeposit;
-    private float contractTotalMoney;
-    private String employeeName;
-    private String customerName;
-    private String serviceName;
-    private int employeeId;
-    private int customerId;
+    private Float contractDeposit;
+    private Float contractTotalMoney;
+    @ManyToOne
+    @JsonManagedReference
+    @JoinColumn(name = "employee_id",referencedColumnName = "id")
+    private Employee employee;
 
-    public String getEmployeeName() {
-        return employeeName;
+    @ManyToOne
+    @JsonManagedReference
+    @JoinColumn(name = "customer_id",referencedColumnName = "id")
+    private Customer customer;
+
+    @ManyToOne
+    @JsonManagedReference
+    @JoinColumn(name = "service_id",referencedColumnName = "id")
+    private FuramaService furamaService;
+
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public FuramaService getFuramaService() {
+        return furamaService;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setFuramaService(FuramaService furamaService) {
+        this.furamaService = furamaService;
     }
-
-    private int serviceId;
-    private List<ContractDetail> listAttachService;
 
     public Contract() {
+
     }
 
-    public Contract(int contractId, String contractStartDate, String contractEndDate, float contractDeposit, float contractTotalMoney,
-                    String employeeName, String customerName, String serviceName,
-                    int employeeId, int customerId, int serviceId, List<ContractDetail> listAttachService) {
-        this.contractId = contractId;
+    public Contract(String contractStartDate, String contractEndDate, Float contractDeposit,
+                    Float contractTotalMoney,
+                    Employee employee, Customer customer, FuramaService furamaService) {
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
         this.contractDeposit = contractDeposit;
         this.contractTotalMoney = contractTotalMoney;
-        this.employeeName = employeeName;
-        this.customerName = customerName;
-        this.serviceName = serviceName;
-        this.employeeId = employeeId;
-        this.customerId = customerId;
-        this.serviceId = serviceId;
-        this.listAttachService = listAttachService;
-    }
-
-    public int getContractId() {
-        return contractId;
-    }
-
-    public void setContractId(int contractId) {
-        this.contractId = contractId;
+        this.employee = employee;
+        this.customer = customer;
+        this.furamaService = furamaService;
     }
 
     public String getContractStartDate() {
@@ -88,51 +85,20 @@ public class Contract {
         this.contractEndDate = contractEndDate;
     }
 
-    public float getContractDeposit() {
+    public Float getContractDeposit() {
         return contractDeposit;
     }
 
-    public void setContractDeposit(float contractDeposit) {
+    public void setContractDeposit(Float contractDeposit) {
         this.contractDeposit = contractDeposit;
     }
 
-    public float getContractTotalMoney() {
+    public Float getContractTotalMoney() {
         return contractTotalMoney;
     }
 
-    public void setContractTotalMoney(float contractTotalMoney) {
+    public void setContractTotalMoney(Float contractTotalMoney) {
         this.contractTotalMoney = contractTotalMoney;
     }
 
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public int getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    public List<ContractDetail> getListAttachService() {
-        return listAttachService;
-    }
-
-    public void setListAttachService(List<ContractDetail> listAttachService) {
-        this.listAttachService = listAttachService;
-    }
 }

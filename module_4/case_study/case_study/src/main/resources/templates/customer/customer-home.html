@@ -84,7 +84,7 @@
                                 </td>
                             </tr>
                             <td colspan="12" style="text-align: center">
-                                <a id="previous" th:href="@{/customer/(page=${customerList.number}-1)}" th:value="${customerList.number}-1" th:if="${customerList.hasPrevious()}">Previous</a>
+                                <a id="previous" th:href="@{/customer/(page=${customerList.number}-1, search = ${})}" th:value="${customerList.number}-1" th:if="${customerList.hasPrevious()}">Previous</a>
                                 <span th:text="${customerList.number}+1"></span>
                                 <span>/</span>
                                 <span th:text="${customerList.totalPages}"></span>

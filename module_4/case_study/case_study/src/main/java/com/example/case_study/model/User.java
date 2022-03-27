@@ -1,5 +1,8 @@
 package com.example.case_study.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,6 +12,7 @@ public class User {
     private String userName;
     private String password;
     @OneToOne(mappedBy = "user")
+    @JsonBackReference
     private Employee employee;
 
     @ManyToMany(mappedBy = "userList",fetch = FetchType.EAGER)

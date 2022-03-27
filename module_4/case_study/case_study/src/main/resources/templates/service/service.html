@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <th:block th:include="/layout/layout.html ::boostrapCssSource">
+
+    </th:block>
+    <link rel="stylesheet" href="/css/service.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div th:replace="layout/layout.html ::logo('Login')"></div>
+<div th:replace="layout/layout.html ::line"></div>
+<div th:replace="layout/layout.html ::menu('/service/search')"></div>
+<div th:replace="layout/layout.html ::line"></div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 ">
+            <div class="container p-3">
+                <div class="row">
+                    <div class="col-12" align="center">
+                        <h2>Farama's Service List</h2>
+                    </div>
+                    <br>
+                    <div class="col-12" align="center"><br>
+                        <div align="center">
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addNew">
+                                Add New
+                            </button>
+                            <br>
+                            <br>
+                        </div>
+                        <div style="text-align: center">
+                            <span id="message" th:style="${color}" th:text="${message}">
+                            </span>
+                        </div>
+                        <table id="service-table">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Area</th>
+                                <th>Cost</th>
+                                <th>Max People</th>
+                                <th>Type</th>
+                                <th>Detail</th>
+                            </tr>
+                            </thead>
+                            <tbody th:if="${serviceList.isEmpty()}">
+                            <td  colspan="7" style="text-align: center">
+                                <span>Not data now, Please add</span>
+                            </td>
+                            </tbody>
+                            <tbody id="body" th:if="${!serviceList.isEmpty()}">
+                            <tr th:each="service,status:${serviceList}" >
+                                <td th:text="${status.count}"></td>
+                                <td th:text="${service.serviceName}"></td>
+                                <td  th:text="${service.serviceArea}"></td>
+                                <td  th:text="${service.serviceCost}"></td>
+                                <td  th:text="${service.serviceMaxPeople}"></td>
+                                <td  th:text="${service.rentType.getRentName()}"></td>
+                                <td>
+                                    <button type="button" class="view btn btn-primary btn-lg" data-toggle="modal" data-target="#detailModal" th:value="${service.id}" style="border: none;padding:0">
+                                        <i class="material-icons" style="font-size:36px;color:#21abff;">streetview</i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <td colspan="15" style="text-align: center">
+                                <a id="previous" th:href="@{/customer/(page=${serviceList.number}-1)}" th:value="${serviceList.number}-1" th:if="${serviceList.hasPrevious()}">Previous</a>
+                                <span th:text="${serviceList.number}+1"></span>
+                                <span>/</span>
+                                <span th:text="${serviceList.totalPages}"></span>
+                                <a id="next" th:href="@{/customer/(page=${serviceList.number}+1)}" th:value="${serviceList.number}+1" th:if="${serviceList.hasNext()}">Next</a>
+                            </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add new service</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRoom">
+                    Add House
+                </button>
+<!--                <button type="button" class="cancelBtn btn btn-primary btn-lg" data-toggle="modal" data-target="#addRoom">-->
+<!--                    Add Room-->
+<!--                </button>-->
+                <br><br>
+                <button type="button" class="cancelBtn btn btn-primary btn-lg" data-toggle="modal" data-target="#addHouse">
+                    Add Room
+                </button>
+                <br>
+                <br>
+                <button type="button" class="cancelBtn btn btn-primary btn-lg" data-toggle="modal" data-target="#addVilla">
+                    Add Villa
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="addRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Add House</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/service/add-new" th:object="${furamaservice}" method="post">
+                    <label>Code:</label><br>
+                    <input th:field="*{code}" type="text" value="" placeholder="Input Code"><br>
+                    <label>Name:</label><br>
+                    <input th:field="*{serviceName}" type="text" value="" placeholder="Input service name"><br>
+                    <label>Area:</label><br>
+                    <input type="text" placeholder="Input area" th:field="*{serviceArea}"><br>
+                    <label>Cost:</label><br>
+                    <input type="text" th:field="*{serviceCost}" placeholder="Input cost"><br>
+                    <label>Max people:</label><br>
+                    <input type="text" th:field="*{serviceMaxPeople}" placeholder="input max people"><br>
+                    <!--                        <input type="Date" th><br>-->
+                    <label>Rent Type:</label><br>
+                    <input type="text" placeholder="Input rent type" th:field="*{rentType}"><br>
+
+                    <label>Rent type:</label><br>
+                    <select th:field="*{rentType}">
+                        <option th:each="type:${rentTypeList}" th:value="${type.id}" th:text="${type.getRentName()}"></option>
+                    </select><br>
+                    <label>Service type:</label><br>
+                    <select th:field="*{serviceType}">
+                        <option th:each="type:${serviceTypeList}" th:value="${type.id}" th:text="${type.serviceTypeName}"></option>
+                    </select><br>
+<!--                    <select th:field="*{standRoom}">-->
+<!--                        <option th:each="type:${standRoomList}" th:value="${type.id}" th:text="${type.standRoomName}"></option>-->
+<!--                    </select><br>-->
+                    <label>Complimentary:</label><br>
+                    <input type="checkbox" th:each="type:${complimentaryList}" th:value="${type.getId()}" th:text="${type.complimentaryName}"><br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div  class="modal fade" id="addRoom" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--        <div class="modal-content" >-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title">Add new Room</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                -->
+<!--            </div>-->
+
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="addHouse" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add House</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Body
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="addVilla" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Villa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Body
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/layout.html ::line"></div>
+<div th:replace="layout/layout.html ::footer"></div>
+<div th:replace="layout/layout.html ::boostrapScriptSource">
+
+</div>
+<script src="js/service.js"></script>
+</body>
+</html>

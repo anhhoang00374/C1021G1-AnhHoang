@@ -1,7 +1,17 @@
 package com.example.case_study.model;
 
+import org.hibernate.annotations.GeneratorType;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class AttachService {
-    private int attachServiceId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String attachServiceName;
     private int attachServiceCost;
     private String attachServiceUnit;
@@ -11,9 +21,9 @@ public class AttachService {
     public AttachService() {
     }
 
-    public AttachService(int attach_service_id, String attach_service_name, int attach_service_cost,
+    public AttachService(Long attach_service_id, String attach_service_name, int attach_service_cost,
                          String attach_unit, int attach_service_numbers, String service_status_status) {
-        this.attachServiceId = attach_service_id;
+        this.id = attach_service_id;
         this.attachServiceName = attach_service_name;
         this.attachServiceCost = attach_service_cost;
         this.attachServiceUnit = attach_unit;
@@ -29,12 +39,12 @@ public class AttachService {
         this.attachServiceNumbers = attachServiceNumbers;
     }
 
-    public int getAttach_service_id() {
-        return attachServiceId;
+    public Long getAttach_service_id() {
+        return id;
     }
 
-    public void setAttach_service_id(int attach_service_id) {
-        this.attachServiceId = attach_service_id;
+    public void setAttach_service_id(Long attach_service_id) {
+        this.id = attach_service_id;
     }
 
     public String getAttachServiceName() {

@@ -10,16 +10,25 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.*;
 
 public class EmployeeDTO {
-
+    @NotNull(message = "must input")
+    @Min(value = 0,message ="must be greater 0")
     private Float salary;
+    @NotBlank
     private String code;
+    @NotBlank
     private String name;
+    @NotBlank
     private String birthday;
+    @Pattern(regexp = "[0-9]{10}")
     private String phone;
+    @Pattern(regexp = "[0-9]{12}")
     private String idCard;
+    @NotBlank
     private String address;
+    @Email
     private String email;
     private Position position;
     private Division division;

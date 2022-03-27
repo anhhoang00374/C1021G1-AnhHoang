@@ -14,6 +14,12 @@ import java.util.List;
 public class CustomerService implements ICustomerService {
     @Autowired
     ICustomerRepository customerRepository;
+
+    @Override
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
+    }
+
     @Override
     public Page<Customer> findAll(Pageable pageable) {
         return customerRepository.findAll(pageable );

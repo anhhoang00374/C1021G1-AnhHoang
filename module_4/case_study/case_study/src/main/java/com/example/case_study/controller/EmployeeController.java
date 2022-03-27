@@ -1,5 +1,6 @@
 package com.example.case_study.controller;
 
+import com.example.case_study.DTO.EmployeeDTO;
 import com.example.case_study.model.Employee;
 import com.example.case_study.repository.IEmployeeRepository;
 import com.example.case_study.service.IDivisionService;
@@ -12,9 +13,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -32,7 +35,8 @@ public class EmployeeController {
     public String display(@PageableDefault(size = 5) Pageable pageable, Model model){
         Page<Employee> employeeList = employeeService.findAll(pageable);
         model.addAttribute("employeeList",employeeList);
-        model.addAttribute("employeeCreate",new Employee());
+        model.addAttribute("employeeCreate",new EmployeeDTO());
+        model.addAttribute("employeeEdit",new Employee());
         model.addAttribute("divisionList",divisionService.findAll());
         model.addAttribute("positionList",positionService.findAll());
         model.addAttribute("educationList",educationService.findAll());
@@ -40,8 +44,19 @@ public class EmployeeController {
     }
 
     @PostMapping("/add-new")
-    public String addNew (@ModelAttribute("employeeCreate")Employee employee, RedirectAttributes redirectAttributes){
-        employeeService.save(employee);
+    public String addNew (@Valid @ModelAttribute("employeeCreate")EmployeeDTO employeeDTO, BindingResult bindingResult,Model model,@PageableDefault Pageable pageable, RedirectAttributes redirectAttributes){
+        if(bindingResult.hasErrors()){
+            Page<Employee> employeeList = employeeService.findAll(pageable);
+            model.addAttribute("employeeList",employeeList);
+            model.addAttribute("employeeCreate",new EmployeeDTO());
+            model.addAttribute("employeeEdit",new Employee());
+            model.addAttribute("divisionList",divisionService.findAll());
+            model.addAttribute("positionList",positionService.findAll());
+            model.addAttribute("educationList",educationService.findAll());
+            model.addAttribute("error","error");
+            return "employee/employee-home";
+        }
+        //employeeService.save(employee);
         redirectAttributes.addFlashAttribute("message","Add new successfully");
         redirectAttributes.addFlashAttribute("color","color:green");
         return "redirect:/employee";
@@ -67,6 +82,7 @@ public class EmployeeController {
                                  @PageableDefault(size = 5)Pageable pageable,Model model){
         Page<Employee> employeeList = employeeService.findByName(search,pageable);
         model.addAttribute("employeeList",employeeList);
+        model.addAttribute("employeeEdit",new Employee());
         model.addAttribute("employeeCreate",new Employee());
         model.addAttribute("divisionList",divisionService.findAll());
         model.addAttribute("positionList",positionService.findAll());
@@ -74,5 +90,13 @@ public class EmployeeController {
         model.addAttribute("message","There are "+employeeList.getTotalElements()+" employees are found");
         model.addAttribute("color","color:green");
         return "employee/employee-home";
+    }
+
+    @PostMapping("/update")
+    public String updateEmployee(@ModelAttribute("employeeEdit") Employee employee,RedirectAttributes redirectAttributes){
+        employeeService.save(employee);
+        redirectAttributes.addFlashAttribute("message","Edit successfully");
+        redirectAttributes.addFlashAttribute("color","color:green");
+        return "redirect:/employee";
     }
 }

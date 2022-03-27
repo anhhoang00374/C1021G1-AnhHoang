@@ -1,24 +1,31 @@
 package com.example.case_study.model;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class RentType {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String rentName;
     private float rentCost;
-
+    @OneToMany(mappedBy = "rentType")
+    private List<FuramaService> serviceList;
     public RentType() {
     }
 
-    public RentType(int id, String rentName, float rentCost) {
+    public RentType(Long id, String rentName, float rentCost) {
         this.id = id;
         this.rentName = rentName;
         this.rentCost = rentCost;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

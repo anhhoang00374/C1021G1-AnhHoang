@@ -1,0 +1,40 @@
+#service-table *{
+    padding: 10px 30px;
+}
+
+#service-table tr:nth-child(2n){
+    background: #619bbe;
+    color: #f1f1f1;
+}
+
+#service-table thead{
+    background: #21abff;
+    color: #f1f1f1;
+}
+#message{
+    opacity: 0;
+    animation: opacity 4s;
+}
+@keyframes opacity {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+
+.modal-header{
+    text-align: center;
+    background-color: #619bbe;
+    color:white;
+
+}
+.modal{
+    box-shadow: 3px 3px 10px #21abff;
+}
+.modal input {
+    border-radius: 5px;
+    border: 2px solid #21abff;
+}

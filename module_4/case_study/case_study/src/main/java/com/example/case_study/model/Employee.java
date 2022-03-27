@@ -2,8 +2,10 @@ package com.example.case_study.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -21,32 +23,34 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "position_id",referencedColumnName = "id")
-    @JsonBackReference
+    @JsonManagedReference
     private Position position;
 
     @ManyToOne
     @JoinColumn(name = "division_id",referencedColumnName = "id")
-    @JsonBackReference
+    @JsonManagedReference
     private Division division;
 
     @ManyToOne
     @JoinColumn(name = "education_id",referencedColumnName = "id")
-    @JsonBackReference
+    @JsonManagedReference
     private Education education;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference
     @JoinColumn(name = "user_name",referencedColumnName = "userName")
     private User user;
-
+    @OneToMany(mappedBy = "employee")
+    @JsonBackReference
+    private List<Contract> contractList;
     public Employee() {
 
     }
 
 
-    public Employee(Long id, float salary, String code, String name, String birthday,
-                    String phone, String idCard, String address, String email, Position position,
-                    Division division, Education education, User user) {
-        this.id = id;
+    public Employee(Float salary, String code, String name, String birthday, String phone,
+                    String idCard, String address, String email, Position position, Division division,
+                    Education education, User user, List<Contract> contractList) {
         this.salary = salary;
         this.code = code;
         this.name = name;
@@ -59,6 +63,17 @@ public class Employee {
         this.division = division;
         this.education = education;
         this.user = user;
+        this.contractList = contractList;
+    }
+
+
+
+    public List<Contract> getContractList() {
+        return contractList;
+    }
+
+    public void setContractList(List<Contract> contractList) {
+        this.contractList = contractList;
     }
 
     public User getUser() {
