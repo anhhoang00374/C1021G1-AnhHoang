@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/basic::head}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:replace="~{/basic::menu}"></div>
+
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div align="center" style="background: #777777">
+                <h2>Add new</h2>
+                <form action="/add-new" method="post">
+                    <table>
+                        <tr>
+                        <tr></tr>
+                        </tr>
+
+                    </table>
+                    <a href="/" class="btn" style="background: red;color: white">Cancel</a>
+                    <button type="submit" class="btn" style="background: green;color: white">Update</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{/basic::footer}"></div>
+<div th:replace="~{/basic::scriptLayout}"></div>
+</body>
+</html>
