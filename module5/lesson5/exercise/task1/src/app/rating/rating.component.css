@@ -1,0 +1,10 @@
+.beforeRate{
+  background: gray;
+  padding: 30px;
+  margin: 10px;
+}
+.afterRate{
+  background: #e1e11b;
+  padding: 30px;
+  margin: 10px;
+}

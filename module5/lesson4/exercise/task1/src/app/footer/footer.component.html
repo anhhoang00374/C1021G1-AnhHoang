@@ -1,0 +1,12 @@
+
+<div [class.foo] = true>
+  <p>Applications are open for YC Summer 2022</p>
+  <ng-container>
+    <a [class.border]="(i==0||i==article.length-1)?false:true" href="{{item.url}}" *ngFor="let item of article;let i = index">
+      {{item.title}}
+    </a>
+  </ng-container>
+  <form action="">
+    <label>Search: </label> <input type="text">
+  </form>
+</div>

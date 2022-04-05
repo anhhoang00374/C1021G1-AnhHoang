@@ -1,0 +1,7 @@
+<select [(ngModel)]="currentColor">
+  <ng-container *ngFor="let item of colorArray">
+    <option [value]="item">{{item}}</option>
+  </ng-container>
+</select>
+<div [class] = "'color'" [style.background]="currentColor">
+</div>

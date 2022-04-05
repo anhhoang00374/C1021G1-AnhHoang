@@ -1,0 +1,7 @@
+<div [class.nav] = true>
+  <ng-container>
+    <a href="{{item.url}}" [class.border] = "(i==0||i==articleHeaderList.length-1)?false:true" *ngFor="let item of articleHeaderList; let i =  index">
+      {{item.title}}
+    </a>
+  </ng-container>
+</div>

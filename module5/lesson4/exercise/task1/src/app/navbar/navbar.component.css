@@ -1,0 +1,13 @@
+*{
+  box-sizing: border-box;
+}
+.border{
+  border-right: 1px solid black;
+}
+.nav{
+  background: orangered;
+}
+a{
+  margin: 10px;
+
+}

@@ -1,0 +1,6 @@
+<ng-container *ngFor="let item of ratingList" >
+  <button [class.beforeRate]="item.color=='gray'?true:false"
+          [class.afterRate]="item.color=='yellow'?true:false"
+          (click)="rate(item.value)">{{item.value}}</button>
+</ng-container><br>
+<app-rating-excute [value]="value"></app-rating-excute>

@@ -1,0 +1,6 @@
+<input type="text" [(ngModel)]="name" >
+<button (click)="addWord()">add new array</button>
+<p *ngIf="check" >content</p>
+<div *ngFor="let item of arr;let i = index">
+  {{i}}.{{item}}
+</div>
