@@ -21,7 +21,6 @@ export class CountDownComponent implements OnInit {
     stopContDown(){
     // @ts-ignore
       clearInterval(this.countDown());
-      this.currentValue = 15;
     }
     resetCountDown(){
   // @ts-ignore
